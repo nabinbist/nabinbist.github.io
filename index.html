@@ -1,480 +1,973 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Nabin Bist — Elite Personal Hub</title>
-  <meta name="description" content="An elite personal website: stories, vlogs, photos, tips, fitness and life."/>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nabin Bist — Personal Stories • Travel • Fitness</title>
+  <meta name="description" content="Nabin Bist — a personal site with stories, travel, fitness, photos, tips, and a living memo." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
   <style>
     :root{
-      --bg:#05060A;
-      --bg2:#070A12;
-      --card: rgba(14,18,30,.62);
-      --card2: rgba(10,14,24,.55);
-      --line: rgba(255,255,255,.10);
-      --text:#ECF2FF;
-      --muted:#AAB6D4;
-      --aqua:#2EE9C6;
-      --pink:#FF4D7D;
-      --gold:#F7C948;
-      --shadow: 0 24px 80px rgba(0,0,0,.55);
-      --r:24px;
+      --bg:#070A0F;
+      --bg2:#0B1020;
+      --card:rgba(255,255,255,.06);
+      --card2:rgba(255,255,255,.09);
+      --stroke:rgba(255,255,255,.10);
+      --text:rgba(255,255,255,.92);
+      --muted:rgba(255,255,255,.70);
+      --muted2:rgba(255,255,255,.55);
+      --accent:#22D3EE;        /* cyan */
+      --accent2:#A78BFA;       /* violet */
+      --hot:#F59E0B;           /* orange */
+      --good:#34D399;          /* green */
+      --danger:#FB7185;        /* rose */
+      --shadow: 0 20px 60px rgba(0,0,0,.45);
+      --shadow2: 0 12px 35px rgba(0,0,0,.35);
+      --radius: 18px;
+      --radius2: 26px;
+      --max: 1120px;
     }
+
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
       margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
       color:var(--text);
       background:
-        radial-gradient(900px 560px at 12% 8%, rgba(46,233,198,.18), transparent 60%),
-        radial-gradient(900px 560px at 88% 10%, rgba(255,77,125,.16), transparent 60%),
-        radial-gradient(700px 520px at 65% 92%, rgba(247,201,72,.12), transparent 60%),
-        linear-gradient(180deg, #04050A, #060914 40%, #05060A);
+        radial-gradient(1200px 600px at 18% 12%, rgba(34,211,238,.14), transparent 55%),
+        radial-gradient(900px 500px at 88% 22%, rgba(167,139,250,.13), transparent 50%),
+        radial-gradient(800px 500px at 60% 90%, rgba(245,158,11,.10), transparent 55%),
+        linear-gradient(180deg, var(--bg), #05060A 55%, #04040A);
       overflow-x:hidden;
     }
-    a{color:inherit;text-decoration:none}
-    .wrap{max-width:1200px;margin:0 auto;padding:18px 16px 70px}
-    .glass{
-      background: linear-gradient(180deg, var(--card), var(--card2));
-      border:1px solid var(--line);
-      border-radius:var(--r);
-      box-shadow:var(--shadow);
-      backdrop-filter: blur(14px);
-    }
 
-    /* subtle animated grain */
-    .grain:before{
-      content:""; position:fixed; inset:-40%;
-      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)' opacity='.14'/%3E%3C/svg%3E");
-      mix-blend-mode:overlay; opacity:.35; pointer-events:none;
-      animation: drift 10s linear infinite;
-    }
-    @keyframes drift{0%{transform:translate3d(0,0,0)}100%{transform:translate3d(80px,40px,0)}}
+    a{color:inherit; text-decoration:none}
+    .wrap{max-width:var(--max); margin:0 auto; padding:0 20px}
 
-    /* NAV */
+    /* Top nav */
     .nav{
-      display:flex;align-items:center;justify-content:space-between;gap:12px;
-      padding:12px 14px;border-radius:999px;
+      position:fixed; left:0; right:0; top:0;
+      z-index:50;
+      backdrop-filter: blur(14px);
+      background: linear-gradient(180deg, rgba(5,6,10,.78), rgba(5,6,10,.35));
+      border-bottom:1px solid rgba(255,255,255,.08);
     }
-    .brand{display:flex;align-items:center;gap:12px}
+    .nav .inner{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:14px; padding:14px 0;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      font-weight:800; letter-spacing:.5px;
+    }
     .logo{
-      width:34px;height:34px;border-radius:14px;
+      width:38px; height:38px; border-radius:14px;
       background:
-        radial-gradient(14px 14px at 25% 30%, rgba(46,233,198,.9), transparent 60%),
-        radial-gradient(18px 18px at 75% 40%, rgba(255,77,125,.85), transparent 60%),
-        linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.04));
+        radial-gradient(12px 12px at 30% 30%, rgba(255,255,255,.28), transparent 60%),
+        linear-gradient(135deg, rgba(34,211,238,.95), rgba(167,139,250,.92));
+      box-shadow: 0 12px 30px rgba(34,211,238,.20);
       border:1px solid rgba(255,255,255,.14);
-      box-shadow:0 18px 50px rgba(46,233,198,.12);
     }
-    .brand b{letter-spacing:1px}
-    .brand span{color:var(--muted);font-size:13px}
-    .links{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
-    .pill{
-      padding:9px 12px;border-radius:999px;border:1px solid var(--line);
-      background:rgba(7,10,15,.55);
-      color:var(--muted);font-size:14px;
-      transition:.2s ease;
+    .brand span{opacity:.95}
+    .menu{
+      display:flex; align-items:center; gap:14px;
+      font-weight:600; font-size:14px;
+      color:rgba(255,255,255,.82);
     }
-    .pill:hover{transform:translateY(-1px);border-color:rgba(46,233,198,.35);color:var(--text)}
+    .menu a{
+      padding:10px 10px; border-radius:12px;
+      transition:.18s ease;
+    }
+    .menu a:hover{background:rgba(255,255,255,.06)}
     .cta{
-      padding:10px 13px;border-radius:999px;border:0;
-      background: linear-gradient(135deg, rgba(46,233,198,.98), rgba(46,233,198,.55));
-      color:#061018;font-weight:900;font-size:14px;
-      box-shadow: 0 18px 55px rgba(46,233,198,.16);
-      transition:.2s ease;
+      display:flex; align-items:center; gap:10px;
     }
-    .cta:hover{transform:translateY(-1px)}
+    .btn{
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.06);
+      color:rgba(255,255,255,.92);
+      padding:10px 12px;
+      border-radius:14px;
+      font-weight:700;
+      font-size:14px;
+      transition:.18s ease;
+      cursor:pointer;
+      box-shadow: 0 10px 28px rgba(0,0,0,.22);
+    }
+    .btn:hover{transform: translateY(-1px); background:rgba(255,255,255,.09)}
+    .btn.primary{
+      background: linear-gradient(135deg, rgba(34,211,238,.95), rgba(167,139,250,.95));
+      border:1px solid rgba(255,255,255,.18);
+      color:#061018;
+    }
+    .btn.primary:hover{filter:brightness(1.03)}
+    .burger{display:none}
 
     /* HERO */
     .hero{
-      margin-top:16px;
-      display:grid;grid-template-columns:1.15fr .85fr;gap:12px;
+      padding-top:84px;
+      min-height: 100vh;
+      display:grid;
+      align-items:center;
+      position:relative;
+    }
+    .heroGrid{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:18px;
       align-items:stretch;
     }
-    .heroMain{padding:22px;position:relative;overflow:hidden}
-    .heroMain:before{
-      content:"";position:absolute;inset:-2px;pointer-events:none;
-      background:
-        radial-gradient(600px 260px at 10% 0%, rgba(46,233,198,.16), transparent 60%),
-        radial-gradient(520px 280px at 100% 10%, rgba(255,77,125,.14), transparent 60%);
+    .heroCard{
+      border:1px solid rgba(255,255,255,.10);
+      border-radius: var(--radius2);
+      overflow:hidden;
+      box-shadow: var(--shadow);
+      background: rgba(255,255,255,.04);
+      position:relative;
     }
-    .heroMain>*{position:relative}
+    .heroCard.big{
+      min-height: 540px;
+    }
+    .heroImg{
+      position:absolute; inset:0;
+      background-size:cover; background-position:center;
+      transform: scale(1.02);
+      filter: saturate(1.06) contrast(1.06);
+    }
+    .heroOverlay{
+      position:absolute; inset:0;
+      background:
+        radial-gradient(900px 600px at 20% 18%, rgba(34,211,238,.25), transparent 55%),
+        radial-gradient(900px 600px at 80% 28%, rgba(167,139,250,.24), transparent 55%),
+        linear-gradient(180deg, rgba(0,0,0,.45), rgba(0,0,0,.72));
+    }
+    .heroContent{
+      position:relative;
+      padding:34px 32px;
+      display:flex;
+      flex-direction:column;
+      justify-content:flex-end;
+      gap:16px;
+      min-height:540px;
+    }
     .kicker{
-      display:inline-flex;gap:10px;align-items:center;
-      padding:8px 12px;border-radius:999px;
-      background:rgba(7,10,15,.55);
-      border:1px solid rgba(255,255,255,.12);
-      color:var(--muted);
-      font-size:12px;letter-spacing:1px;text-transform:uppercase;
+      display:inline-flex; align-items:center; gap:10px;
+      font-size:12px; font-weight:800; letter-spacing:.22em;
+      text-transform:uppercase;
+      color: rgba(255,255,255,.80);
     }
-    .dot{width:8px;height:8px;border-radius:999px;background:var(--aqua);box-shadow:0 0 18px rgba(46,233,198,.7)}
-    h1{
-      margin:14px 0 0;
-      font-size:52px;line-height:1.02;letter-spacing:.2px;
+    .dot{
+      width:10px; height:10px; border-radius:999px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 0 0 6px rgba(34,211,238,.10);
     }
-    .grad{
-      background:linear-gradient(90deg, #EAF0FF, #B9FFF2 35%, #FFD2DE 70%, #FFF1C9);
-      -webkit-background-clip:text;background-clip:text;color:transparent;
+    .title{
+      font-size: clamp(38px, 5vw, 64px);
+      line-height: 1.02;
+      letter-spacing:-.03em;
+      margin:0;
+      font-weight: 900;
+      text-shadow: 0 18px 60px rgba(0,0,0,.55);
     }
-    .sub{margin:12px 0 0;color:var(--muted);font-size:16px;line-height:1.7;max-width:62ch}
-    .btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
-    .btn{
-      display:inline-flex;align-items:center;gap:10px;
-      padding:12px 14px;border-radius:16px;border:1px solid var(--line);
-      background:rgba(7,10,15,.55);
+    .title span{
+      background: linear-gradient(135deg, rgba(34,211,238,.95), rgba(167,139,250,.95));
+      -webkit-background-clip: text;
+      background-clip:text;
+      color:transparent;
+    }
+    .sub{
+      margin:0;
+      max-width: 54ch;
+      font-size: 16px;
+      line-height:1.55;
+      color: rgba(255,255,255,.80);
+    }
+    .heroActions{
+      display:flex; flex-wrap:wrap; gap:10px; margin-top:6px;
+    }
+    .pillRow{display:flex; gap:10px; flex-wrap:wrap; margin-top:8px}
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:10px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      font-weight:700;
+      color: rgba(255,255,255,.82);
+      font-size:13px;
+    }
+    .pill b{color:rgba(255,255,255,.92)}
+    .heroSide{
+      display:grid;
+      grid-template-rows: 1fr 1fr;
+      gap:18px;
+    }
+    .sideCard{
+      border-radius: var(--radius2);
+      border:1px solid rgba(255,255,255,.10);
+      overflow:hidden;
+      background: rgba(255,255,255,.04);
+      box-shadow: var(--shadow2);
+      position:relative;
+      min-height: 260px;
+    }
+    .sideContent{
+      position:absolute; inset:0;
+      padding:22px 22px;
+      display:flex; flex-direction:column; justify-content:flex-end; gap:10px;
+      background: linear-gradient(180deg, rgba(0,0,0,.20), rgba(0,0,0,.70));
+    }
+    .sideTitle{
+      margin:0;
+      font-size:18px;
       font-weight:900;
-      transition:.2s ease;
+      letter-spacing:-.02em;
     }
-    .btn:hover{transform:translateY(-1px);border-color:rgba(255,255,255,.18)}
-    .btn.primary{
-      border:0;color:#061018;
-      background:linear-gradient(135deg, rgba(255,77,125,.95), rgba(255,77,125,.55));
-      box-shadow:0 18px 55px rgba(255,77,125,.16);
+    .sideText{
+      margin:0;
+      color: rgba(255,255,255,.76);
+      font-size:14px;
+      line-height:1.45;
     }
-
-    /* Right panel */
-    .side{display:grid;gap:12px}
-    .card{padding:16px}
-    .bigAvatar{
-      height:210px;border-radius:20px;border:1px solid rgba(255,255,255,.12);
-      background:
-        radial-gradient(220px 160px at 20% 20%, rgba(46,233,198,.30), transparent 60%),
-        radial-gradient(220px 160px at 80% 30%, rgba(255,77,125,.26), transparent 60%),
-        radial-gradient(240px 160px at 60% 90%, rgba(247,201,72,.18), transparent 60%),
-        linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.03));
-      position:relative; overflow:hidden;
-    }
-    .bigAvatar:after{
-      content:"YOUR PHOTO"; position:absolute; inset:auto 14px 14px 14px;
-      padding:10px 12px;border-radius:999px;
-      background:rgba(7,10,15,.60);
-      border:1px solid rgba(255,255,255,.12);
-      color:rgba(236,242,255,.85);
-      font-weight:900;letter-spacing:1px;font-size:12px;
-    }
-    .stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
-    .stat{
-      padding:12px;border-radius:18px;border:1px solid rgba(255,255,255,.12);
-      background:rgba(7,10,15,.55);
-    }
-    .stat .k{color:var(--muted);font-size:12px;letter-spacing:1px;text-transform:uppercase}
-    .stat .v{margin-top:6px;font-weight:950;font-size:18px}
-    .meter{height:10px;border-radius:999px;background:rgba(255,255,255,.08);overflow:hidden;border:1px solid rgba(255,255,255,.10);margin-top:10px}
-    .fill{height:100%;width:75%;background:linear-gradient(90deg,var(--aqua),rgba(46,233,198,.25))}
-    .fill2{height:100%;width:62%;background:linear-gradient(90deg,var(--gold),rgba(247,201,72,.25))}
 
     /* Sections */
-    .section{margin-top:12px;padding:18px}
-    .head{display:flex;align-items:flex-end;justify-content:space-between;gap:10px;flex-wrap:wrap}
-    .section h2{margin:0;font-size:18px;letter-spacing:.6px}
-    .section p{margin:8px 0 0;color:var(--muted);line-height:1.6}
-    .mini{color:var(--muted);font-size:12px}
+    section{padding: 80px 0}
+    .sectionHead{
+      display:flex; align-items:flex-end; justify-content:space-between;
+      gap:14px; margin-bottom:18px;
+    }
+    .h2{
+      margin:0;
+      font-size: clamp(26px, 3.2vw, 40px);
+      letter-spacing:-.03em;
+      font-weight: 900;
+    }
+    .lead{
+      margin:0;
+      color: var(--muted);
+      max-width: 62ch;
+      line-height:1.55;
+      font-size:15px;
+    }
 
-    .grid3{margin-top:12px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-    .tile{
-      padding:16px;border-radius:20px;border:1px solid rgba(255,255,255,.12);
-      background:rgba(7,10,15,.52);
-      transition:.2s ease;
-      position:relative;overflow:hidden;
+    .grid3{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:14px;
     }
-    .tile:before{
-      content:"";position:absolute;inset:-2px;opacity:.9;pointer-events:none;
+    .card{
+      border-radius: var(--radius);
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.05);
+      padding:18px;
+      box-shadow: 0 18px 50px rgba(0,0,0,.30);
+      transition: .22s ease;
+      position:relative;
+      overflow:hidden;
+      min-height: 170px;
+    }
+    .card:hover{
+      transform: translateY(-3px);
+      background: rgba(255,255,255,.07);
+      border-color: rgba(255,255,255,.14);
+    }
+    .card:before{
+      content:"";
+      position:absolute; inset:-2px;
+      background: radial-gradient(600px 180px at 20% 10%, rgba(34,211,238,.14), transparent 55%),
+                  radial-gradient(700px 200px at 80% 20%, rgba(167,139,250,.14), transparent 55%);
+      opacity:.65;
+      pointer-events:none;
+    }
+    .card > *{position:relative}
+
+    .tag{
+      display:inline-flex; align-items:center; gap:8px;
+      font-size:12px; font-weight:900;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      color: rgba(255,255,255,.72);
+    }
+    .tag i{
+      width:10px; height:10px; border-radius:999px; display:inline-block;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+    }
+    .card h3{
+      margin:10px 0 6px;
+      font-size:18px;
+      font-weight:900;
+      letter-spacing:-.02em;
+    }
+    .card p{
+      margin:0;
+      color: var(--muted);
+      font-size:14px;
+      line-height:1.55;
+    }
+
+    /* Story timeline */
+    .story{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:16px;
+    }
+    .storyBlock{
+      border-radius: var(--radius2);
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      overflow:hidden;
+      min-height: 360px;
+      position:relative;
+      box-shadow: var(--shadow2);
+    }
+    .storyImg{
+      position:absolute; inset:0;
+      background-size:cover; background-position:center;
+      filter:saturate(1.05) contrast(1.05);
+      transform: scale(1.02);
+    }
+    .storyShade{
+      position:absolute; inset:0;
       background:
-        radial-gradient(260px 160px at 10% 0%, rgba(46,233,198,.12), transparent 60%),
-        radial-gradient(260px 160px at 100% 10%, rgba(255,77,125,.10), transparent 60%);
+        linear-gradient(180deg, rgba(0,0,0,.20), rgba(0,0,0,.78));
     }
-    .tile>*{position:relative}
-    .tile:hover{transform:translateY(-2px);border-color:rgba(46,233,198,.22)}
-    .tile h3{margin:0 0 8px;font-size:16px}
-    .tile p{margin:0;color:var(--muted);font-size:14px;line-height:1.6}
-    .chip{
-      display:inline-flex;align-items:center;gap:8px;
-      padding:8px 10px;border-radius:999px;margin-top:10px;
-      border:1px solid rgba(255,255,255,.12);
-      background:rgba(7,10,15,.60);
-      color:var(--muted);font-size:12px;
+    .storyText{
+      position:relative;
+      padding:22px;
+      display:flex; flex-direction:column; justify-content:flex-end; gap:10px;
+      min-height:360px;
+    }
+    .storyText h3{
+      margin:0;
+      font-size:22px;
+      font-weight: 900;
+      letter-spacing:-.02em;
+    }
+    .quote{
+      margin:0;
+      color: rgba(255,255,255,.80);
+      line-height:1.6;
+      font-size:14.5px;
+      max-width: 58ch;
+    }
+    .mini{
+      display:flex; gap:10px; flex-wrap:wrap; margin-top:8px;
+    }
+    .mini .pill{
+      padding:8px 10px;
+      font-size:12px;
+      background: rgba(255,255,255,.05);
     }
 
     /* Gallery */
-    .photos{margin-top:12px;display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
-    .ph{
-      border-radius:20px;border:1px solid rgba(255,255,255,.12);
-      background:
-        radial-gradient(180px 140px at 20% 20%, rgba(46,233,198,.30), transparent 60%),
-        radial-gradient(180px 140px at 80% 30%, rgba(255,77,125,.22), transparent 60%),
-        radial-gradient(200px 140px at 50% 90%, rgba(247,201,72,.14), transparent 60%),
-        linear-gradient(180deg, rgba(255,255,255,.09), rgba(255,255,255,.03));
-      aspect-ratio: 1/1;
-      position:relative;overflow:hidden;
+    .gallery{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr .75fr;
+      grid-template-rows: 240px 240px;
+      gap:14px;
     }
-    .ph span{
-      position:absolute;left:10px;bottom:10px;
-      font-size:12px;color:rgba(236,242,255,.88);
-      background:rgba(7,10,15,.55);
+    .g{
+      border-radius: var(--radius2);
+      border:1px solid rgba(255,255,255,.10);
+      overflow:hidden;
+      position:relative;
+      cursor:pointer;
+      box-shadow: var(--shadow2);
+      background: rgba(255,255,255,.03);
+    }
+    .g .img{
+      position:absolute; inset:0;
+      background-size:cover; background-position:center;
+      transition: transform .35s ease, filter .35s ease;
+      filter:saturate(1.02) contrast(1.03);
+    }
+    .g:hover .img{
+      transform: scale(1.06);
+      filter:saturate(1.10) contrast(1.08);
+    }
+    .g .cap{
+      position:absolute; left:14px; right:14px; bottom:14px;
+      padding:12px 12px;
+      border-radius: 16px;
       border:1px solid rgba(255,255,255,.12);
-      padding:6px 8px;border-radius:999px;
+      background: linear-gradient(180deg, rgba(0,0,0,.25), rgba(0,0,0,.55));
+      backdrop-filter: blur(10px);
+      font-weight:900;
+      letter-spacing:-.02em;
+      display:flex; justify-content:space-between; align-items:center;
+      gap:10px;
+    }
+    .cap small{
+      font-weight:700; color: rgba(255,255,255,.72);
+    }
+    .g.big{grid-row: span 2}
+
+    /* Memo / Tips */
+    .twoCol{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+      align-items:stretch;
+    }
+    .list{
+      margin: 10px 0 0;
+      padding-left:18px;
+      color: rgba(255,255,255,.78);
+      line-height:1.65;
+      font-size:14px;
+    }
+    .list li{margin: 8px 0}
+    .kbd{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 12.5px;
+      background: rgba(255,255,255,.07);
+      border:1px solid rgba(255,255,255,.12);
+      padding: 2px 8px;
+      border-radius: 10px;
     }
 
-    /* memo */
-    .memo{margin-top:12px;display:grid;grid-template-columns:1fr .9fr;gap:12px}
-    textarea{
-      width:100%;min-height:160px;resize:vertical;
-      border-radius:20px;border:1px solid rgba(255,255,255,.12);
-      background:rgba(7,10,15,.55);
-      color:var(--text);
-      padding:14px;font-size:14px;line-height:1.6;
-      outline:none;
+    /* Footer */
+    footer{
+      padding: 34px 0 50px;
+      border-top:1px solid rgba(255,255,255,.08);
+      background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(0,0,0,.35));
     }
-    textarea::placeholder{color:rgba(170,182,212,.75)}
-    .save{
-      margin-top:10px;display:inline-flex;gap:10px;align-items:center;
-      padding:11px 13px;border-radius:16px;border:1px solid rgba(255,255,255,.14);
-      background:rgba(7,10,15,.55);
-      font-weight:950;cursor:pointer;user-select:none;
-      transition:.2s ease;
+    .footGrid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:14px;
+      align-items:start;
     }
-    .save:hover{transform:translateY(-1px);border-color:rgba(255,255,255,.18)}
-    .ok{color:var(--muted);font-size:12px;margin-top:8px;line-height:1.5}
+    .footCard{
+      border-radius: var(--radius2);
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      padding:18px;
+    }
+    .footCard h3{margin:0 0 10px; font-size:16px; font-weight:900}
+    .footCard p{margin:0; color:var(--muted); line-height:1.6; font-size:14px}
+    .footLinks{
+      display:flex; flex-wrap:wrap; gap:10px; margin-top:12px;
+    }
+    .footLinks a{
+      padding:10px 12px; border-radius:14px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      font-weight:800; font-size:13px;
+      color: rgba(255,255,255,.84);
+    }
+    .copyright{
+      margin-top:14px;
+      color: rgba(255,255,255,.55);
+      font-size: 12.5px;
+    }
 
-    /* footer */
-    .foot{margin-top:12px;padding:16px 6px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;color:var(--muted);font-size:13px}
-
-    /* responsive */
-    @media (max-width:1050px){
-      .hero{grid-template-columns:1fr}
-      h1{font-size:44px}
-      .grid3{grid-template-columns:1fr}
-      .photos{grid-template-columns:repeat(3,1fr)}
-      .memo{grid-template-columns:1fr}
+    /* Modal */
+    .modal{
+      position:fixed; inset:0; z-index:100;
+      display:none;
+      background: rgba(0,0,0,.72);
+      backdrop-filter: blur(10px);
+      align-items:center; justify-content:center;
+      padding:18px;
     }
-    @media (max-width:520px){
-      h1{font-size:38px}
-      .photos{grid-template-columns:repeat(2,1fr)}
+    .modal.open{display:flex}
+    .modalBox{
+      width:min(980px, 100%);
+      border-radius: 22px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(10,12,18,.75);
+      overflow:hidden;
+      box-shadow: var(--shadow);
+    }
+    .modalTop{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 14px;
+      border-bottom:1px solid rgba(255,255,255,.10);
+    }
+    .modalTop b{font-weight:900}
+    .close{
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      color: rgba(255,255,255,.88);
+      border-radius: 14px;
+      padding:10px 12px;
+      font-weight:900;
+      cursor:pointer;
+    }
+    .modalImg{
+      width:100%;
+      aspect-ratio: 16/9;
+      background-size:cover;
+      background-position:center;
+    }
+
+    /* Reveal on scroll */
+    .reveal{
+      opacity:0;
+      transform: translateY(18px);
+      transition: .7s ease;
+    }
+    .reveal.in{
+      opacity:1;
+      transform: translateY(0);
+    }
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .heroGrid{grid-template-columns: 1fr}
+      .heroSide{grid-template-rows: auto; grid-template-columns: 1fr 1fr}
+      .grid3{grid-template-columns: 1fr}
+      .story{grid-template-columns: 1fr}
+      .twoCol{grid-template-columns: 1fr}
+      .gallery{
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 220px 220px 220px;
+      }
+      .g.big{grid-row: span 1}
+      .footGrid{grid-template-columns: 1fr}
+      .menu{display:none}
+      .burger{display:inline-flex}
     }
   </style>
 </head>
-<body class="grain">
-  <div class="wrap">
 
-    <div class="nav glass">
-      <div class="brand">
-        <div class="logo"></div>
-        <div>
-          <b>NABIN BIST</b><br/>
-          <span>Elite Personal Hub • Stories • Vlogs • Photos • Fitness</span>
-        </div>
-      </div>
-      <div class="links">
-        <a class="pill" href="#stories">Stories</a>
-        <a class="pill" href="#vlogs">Vlogs</a>
-        <a class="pill" href="#photos">Photos</a>
-        <a class="pill" href="#memo">Memo</a>
-        <a class="cta" href="#fitness">Fitness</a>
-      </div>
-    </div>
+<body>
+  <!-- NAV -->
+  <div class="nav">
+    <div class="wrap">
+      <div class="inner">
+        <a class="brand" href="#top">
+          <div class="logo" aria-hidden="true"></div>
+          <span>NABIN BIST</span>
+        </a>
 
-    <div class="hero">
-      <div class="heroMain glass">
-        <div class="kicker"><span class="dot"></span> LIVE • building a legendary website</div>
-        <h1><span class="grad">Not just a website.</span><br/>A personal universe.</h1>
-        <p class="sub">
-          Stories, mini vlogs, photos, tips & tricks, personal notes, and fitness —
-          all in one premium dark aesthetic. Minimal. Powerful. Memorable.
-        </p>
-
-        <div class="btns">
-          <a class="btn primary" href="#stories">Start Here</a>
-          <a class="btn" href="#photos">View Photos</a>
-          <a class="btn" href="#memo">Write Memo</a>
+        <div class="menu" aria-label="Primary navigation">
+          <a href="#about">About</a>
+          <a href="#journey">Journey</a>
+          <a href="#gallery">Gallery</a>
+          <a href="#tips">Tips</a>
+          <a href="#memo">Memo</a>
+          <a href="#contact">Contact</a>
         </div>
 
-        <div class="stats">
-          <div class="stat">
-            <div class="k">Website vibe</div>
-            <div class="v">Elite Dark</div>
-            <div class="meter"><div class="fill"></div></div>
-          </div>
-          <div class="stat">
-            <div class="k">Focus</div>
-            <div class="v">Discipline</div>
-            <div class="meter"><div class="fill2"></div></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="side">
-        <div class="card glass">
-          <div class="bigAvatar"></div>
-          <div class="mini" style="margin-top:10px">
-            Replace the “YOUR PHOTO” block with your real portrait later (I’ll guide you).
-          </div>
-        </div>
-
-        <div class="card glass">
-          <div class="mini">Signature line</div>
-          <div style="font-weight:950;font-size:18px;margin-top:6px">
-            “Small steps daily. Big results yearly.”
-          </div>
-          <div class="mini" style="margin-top:10px">
-            This is the type of line that makes people remember you.
-          </div>
+        <div class="cta">
+          <a class="btn" href="#gallery">View Photos</a>
+          <a class="btn primary" href="#contact">Work With Me</a>
+          <button class="btn burger" id="burger">Menu</button>
         </div>
       </div>
     </div>
+  </div>
 
-    <div class="section glass" id="stories">
-      <div class="head">
-        <div>
-          <h2>Stories</h2>
-          <p>Short, real, powerful. You can replace titles anytime.</p>
+  <!-- HERO -->
+  <main id="top" class="hero">
+    <div class="wrap">
+      <div class="heroGrid">
+        <div class="heroCard big reveal">
+          <!-- Change this image to your best hero -->
+          <div class="heroImg" style="background-image:url('assets/hero-eiffel.jpg')"></div>
+          <div class="heroOverlay"></div>
+
+          <div class="heroContent">
+            <div class="kicker"><span class="dot"></span> PERSONAL STORIES • TRAVEL • FITNESS • LIFE</div>
+
+            <h1 class="title">Building a life that feels <span>legendary</span>.</h1>
+
+            <p class="sub">
+              I’m Nabin. This is my digital home — a place for stories, vlogs, photos, discipline, and the lessons I’m collecting
+              across countries. No fake motivation. Only real progress.
+            </p>
+
+            <div class="heroActions">
+              <a class="btn primary" href="#journey">Start the Journey</a>
+              <a class="btn" href="#tips">Tips & Tricks</a>
+              <a class="btn" href="#memo">My Memo</a>
+            </div>
+
+            <div class="pillRow">
+              <div class="pill"><b>Now:</b> Europe • Growth Mode</div>
+              <div class="pill"><b>Focus:</b> Discipline + Skills</div>
+              <div class="pill"><b>Energy:</b> Quiet confidence</div>
+            </div>
+          </div>
         </div>
-        <div class="mini">Goal: make people feel something.</div>
+
+        <div class="heroSide">
+          <div class="sideCard reveal" style="background:rgba(255,255,255,.03)">
+            <div class="heroImg" style="background-image:url('assets/hero-lake.jpg')"></div>
+            <div class="sideContent">
+              <h3 class="sideTitle">Nature is therapy.</h3>
+              <p class="sideText">When the world is loud, mountains teach silence — and silence builds strength.</p>
+            </div>
+          </div>
+
+          <div class="sideCard reveal" style="background:rgba(255,255,255,.03)">
+            <div class="heroImg" style="background-image:url('assets/travel-plane.jpg')"></div>
+            <div class="sideContent">
+              <h3 class="sideTitle">Movement creates momentum.</h3>
+              <p class="sideText">New cities. New lessons. Same discipline. That’s how a story upgrades.</p>
+            </div>
+          </div>
+        </div>
       </div>
+    </div>
+  </main>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="wrap">
+      <div class="sectionHead reveal">
+        <div>
+          <h2 class="h2">Who I am</h2>
+          <p class="lead">A personal brand site that feels premium: clean design, strong visuals, real stories.</p>
+        </div>
+      </div>
+
       <div class="grid3">
-        <div class="tile">
-          <h3>1) The day I stopped quitting</h3>
-          <p>A turning point — discipline built in silence.</p>
-          <div class="chip">Read: 3 min</div>
+        <div class="card reveal">
+          <div class="tag"><i></i> Identity</div>
+          <h3>Not a “perfect life.” A real one.</h3>
+          <p>Travel, learning, building habits, wins, failures — I share the real process so it’s useful and inspiring.</p>
         </div>
-        <div class="tile">
-          <h3>2) From Nepal to bigger dreams</h3>
-          <p>My roots, my mindset, my next chapter.</p>
-          <div class="chip">Read: 4 min</div>
+
+        <div class="card reveal">
+          <div class="tag"><i></i> Fitness</div>
+          <h3>Discipline over motivation.</h3>
+          <p>Gym + steps + nutrition basics. I keep it simple, consistent, and sustainable.</p>
         </div>
-        <div class="tile">
-          <h3>3) Gym lessons that changed my life</h3>
-          <p>Progress is slow. That’s why it’s rare.</p>
-          <div class="chip">Read: 2 min</div>
+
+        <div class="card reveal">
+          <div class="tag"><i></i> Content</div>
+          <h3>Stories • vlogs • photos • notes</h3>
+          <p>A clean hub for your memories, tips, and growth — all in one place.</p>
         </div>
       </div>
     </div>
+  </section>
 
-    <div class="section glass" id="vlogs">
-      <div class="head">
+  <!-- JOURNEY -->
+  <section id="journey">
+    <div class="wrap">
+      <div class="sectionHead reveal">
         <div>
-          <h2>Vlogs</h2>
-          <p>Put YouTube/TikTok links here later. For now: premium placeholders.</p>
+          <h2 class="h2">My journey</h2>
+          <p class="lead">A cinematic timeline — every photo is a chapter. (You can change the text any time.)</p>
         </div>
-        <div class="mini">Tip: 30–60 sec videos are best.</div>
-      </div>
-      <div class="grid3">
-        <div class="tile">
-          <h3>Vlog 1: My routine</h3>
-          <p>Gym, work, mindset, food — simple and real.</p>
-          <div class="chip">Add link later</div>
-        </div>
-        <div class="tile">
-          <h3>Vlog 2: Weekly progress</h3>
-          <p>Steps, lifts, discipline, lessons learned.</p>
-          <div class="chip">Add link later</div>
-        </div>
-        <div class="tile">
-          <h3>Vlog 3: Life moments</h3>
-          <p>Travel, sunset, family, behind the scenes.</p>
-          <div class="chip">Add link later</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="section glass" id="photos">
-      <div class="head">
-        <div>
-          <h2>Photos</h2>
-          <p>Replace these blocks with your best photos (gym + travel + lifestyle).</p>
-        </div>
-        <div class="mini">Best: 8–12 photos total.</div>
       </div>
 
-      <div class="photos">
-        <div class="ph"><span>1</span></div>
-        <div class="ph"><span>2</span></div>
-        <div class="ph"><span>3</span></div>
-        <div class="ph"><span>4</span></div>
-        <div class="ph"><span>5</span></div>
-        <div class="ph"><span>6</span></div>
-      </div>
-    </div>
-
-    <div class="section glass" id="memo">
-      <div class="head">
-        <div>
-          <h2>Memo</h2>
-          <p>Private notes (saved only in your browser).</p>
+      <div class="story">
+        <div class="storyBlock reveal" data-modal-title="Paris — The Lights">
+          <div class="storyImg" style="background-image:url('assets/hero-eiffel.jpg')"></div>
+          <div class="storyShade"></div>
+          <div class="storyText">
+            <h3>Paris — the lights</h3>
+            <p class="quote">“Standing here, I remembered: the distance between dreams and reality is discipline.”</p>
+            <div class="mini">
+              <div class="pill">Confidence</div>
+              <div class="pill">Ambition</div>
+              <div class="pill">Story</div>
+            </div>
+          </div>
         </div>
-        <div class="mini">Ideas → notes → posts.</div>
+
+        <div class="storyBlock reveal" data-modal-title="Mountains — The Silence">
+          <div class="storyImg" style="background-image:url('assets/hero-lake.jpg')"></div>
+          <div class="storyShade"></div>
+          <div class="storyText">
+            <h3>Mountains — the silence</h3>
+            <p class="quote">“When you stop chasing noise, you hear yourself clearly. That’s where growth starts.”</p>
+            <div class="mini">
+              <div class="pill">Clarity</div>
+              <div class="pill">Peace</div>
+              <div class="pill">Focus</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="storyBlock reveal" data-modal-title="Airport — The Takeoff">
+          <div class="storyImg" style="background-image:url('assets/travel-plane.jpg')"></div>
+          <div class="storyShade"></div>
+          <div class="storyText">
+            <h3>Airport — the takeoff</h3>
+            <p class="quote">“Dreams don’t take off by luck. They take off when you keep showing up.”</p>
+            <div class="mini">
+              <div class="pill">Consistency</div>
+              <div class="pill">Work</div>
+              <div class="pill">Progress</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="storyBlock reveal" data-modal-title="Home — The Soft Side">
+          <div class="storyImg" style="background-image:url('assets/cat.jpg')"></div>
+          <div class="storyShade"></div>
+          <div class="storyText">
+            <h3>Home — the soft side</h3>
+            <p class="quote">“Even strong people need softness. Rest is part of the plan.”</p>
+            <div class="mini">
+              <div class="pill">Balance</div>
+              <div class="pill">Real life</div>
+              <div class="pill">Reset</div>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div class="memo">
-        <div>
-          <textarea id="memoBox" placeholder="Write here...
-• Story ideas
-• Vlog topics
-• Tips & tricks
-• Plans for the week
-• Fitness notes"></textarea>
-          <div class="save" id="saveBtn">Save Memo</div>
-          <div class="ok" id="statusText">Not saved yet.</div>
-        </div>
-        <div class="tile">
-          <h3>Quick prompts</h3>
+      <div style="margin-top:14px" class="reveal">
+        <div class="card">
+          <div class="tag"><i></i> VLOG IDEA</div>
+          <h3>Weekly format (simple + powerful)</h3>
           <p>
-            • Biggest lesson this week?<br/>
-            • What did I do even when I didn’t feel like it?<br/>
-            • One tip to teach others.<br/>
-            • My next 7-day challenge.
+            1) One moment that changed my mindset • 2) One fitness win • 3) One travel/photo story • 4) One tip people can use.
           </p>
-          <div class="chip">Write short, publish later</div>
         </div>
       </div>
     </div>
+  </section>
 
-    <div class="section glass" id="fitness">
-      <div class="head">
+  <!-- GALLERY -->
+  <section id="gallery">
+    <div class="wrap">
+      <div class="sectionHead reveal">
         <div>
-          <h2>Fitness</h2>
-          <p>Short, strong, realistic. (We can add full program later.)</p>
+          <h2 class="h2">Gallery</h2>
+          <p class="lead">Click any image for a cinematic preview. (Replace images with your own uploads.)</p>
         </div>
-        <div class="mini">Consistency wins.</div>
       </div>
+
+      <div class="gallery">
+        <div class="g big reveal" data-img="assets/portrait-2.jpg" data-title="Portrait — Calm Power">
+          <div class="img" style="background-image:url('assets/portrait-2.jpg')"></div>
+          <div class="cap"><span>Portrait — Calm Power</span><small>Tap to view</small></div>
+        </div>
+
+        <div class="g reveal" data-img="assets/city.jpg" data-title="City — Movement">
+          <div class="img" style="background-image:url('assets/city.jpg')"></div>
+          <div class="cap"><span>City — Movement</span><small>Tap</small></div>
+        </div>
+
+        <div class="g reveal" data-img="assets/forest.jpg" data-title="Forest — Work Ethic">
+          <div class="img" style="background-image:url('assets/forest.jpg')"></div>
+          <div class="cap"><span>Forest — Work Ethic</span><small>Tap</small></div>
+        </div>
+
+        <div class="g reveal" data-img="assets/mirror.jpg" data-title="Mirror — Real Life">
+          <div class="img" style="background-image:url('assets/mirror.jpg')"></div>
+          <div class="cap"><span>Mirror — Real Life</span><small>Tap</small></div>
+        </div>
+
+        <div class="g reveal" data-img="assets/portrait-1.jpg" data-title="Portrait — Identity">
+          <div class="img" style="background-image:url('assets/portrait-1.jpg')"></div>
+          <div class="cap"><span>Portrait — Identity</span><small>Tap</small></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIPS -->
+  <section id="tips">
+    <div class="wrap">
+      <div class="sectionHead reveal">
+        <div>
+          <h2 class="h2">Tips & tricks</h2>
+          <p class="lead">Short, practical rules that actually change your life. No unnecessary talk.</p>
+        </div>
+      </div>
+
+      <div class="twoCol">
+        <div class="card reveal">
+          <div class="tag"><i></i> Fitness</div>
+          <h3>Simple fat loss rules</h3>
+          <ul class="list">
+            <li>Daily: <span class="kbd">8k–12k steps</span> + water + sleep.</li>
+            <li>Protein first: every meal has protein.</li>
+            <li>Train 4–6 days/week. Consistency beats perfect workouts.</li>
+            <li>Track weight weekly, not daily panic.</li>
+          </ul>
+        </div>
+
+        <div class="card reveal">
+          <div class="tag"><i></i> Lifestyle</div>
+          <h3>Upgrade mindset</h3>
+          <ul class="list">
+            <li>Make a “minimum day” plan: even on bad days, you do something.</li>
+            <li>Remove distractions: focus is a skill.</li>
+            <li>Document your life: photos + short notes become legacy.</li>
+            <li>Growth = tiny changes repeated for months.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MEMO -->
+  <section id="memo">
+    <div class="wrap">
+      <div class="sectionHead reveal">
+        <div>
+          <h2 class="h2">My memo</h2>
+          <p class="lead">A living notebook. Add your own bullets weekly (new goals, thoughts, lessons).</p>
+        </div>
+      </div>
+
+      <div class="twoCol">
+        <div class="card reveal">
+          <div class="tag"><i></i> THIS WEEK</div>
+          <h3>Focus</h3>
+          <ul class="list">
+            <li>One hard thing every day.</li>
+            <li>Train + steps + protein.</li>
+            <li>Create content: 1 story + 3 photos.</li>
+            <li>Learn something new and write it here.</li>
+          </ul>
+        </div>
+
+        <div class="card reveal">
+          <div class="tag"><i></i> QUOTES</div>
+          <h3>Lines I live by</h3>
+          <ul class="list">
+            <li>“Discipline is self-respect in action.”</li>
+            <li>“Consistency is a superpower.”</li>
+            <li>“Nature is therapy.”</li>
+            <li>“No excuses. Only upgrades.”</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="wrap">
+      <div class="sectionHead reveal">
+        <div>
+          <h2 class="h2">Contact</h2>
+          <p class="lead">Want to collaborate, hire, or just say hi? Use the links below.</p>
+        </div>
+      </div>
+
       <div class="grid3">
-        <div class="tile">
-          <h3>Weekly structure</h3>
-          <p>Push/Pull/Legs x2 + steps + core.</p>
-          <div class="chip">Simple plan</div>
+        <div class="card reveal">
+          <div class="tag"><i></i> Email</div>
+          <h3>Write to me</h3>
+          <p>Replace this with your real email link.</p>
+          <div style="margin-top:12px">
+            <a class="btn" href="mailto:your-email@example.com">Send Email</a>
+          </div>
         </div>
-        <div class="tile">
-          <h3>Fat-loss basics</h3>
-          <p>Protein high • calories controlled • sleep 7–8h.</p>
-          <div class="chip">No excuses</div>
+
+        <div class="card reveal">
+          <div class="tag"><i></i> Social</div>
+          <h3>Instagram / TikTok / YouTube</h3>
+          <p>Add your handles here when ready. This section can become your “creator hub”.</p>
         </div>
-        <div class="tile">
-          <h3>Mindset</h3>
-          <p>Discipline first. Motivation later.</p>
-          <div class="chip">Always improve</div>
+
+        <div class="card reveal">
+          <div class="tag"><i></i> Domain</div>
+          <h3>bistnabin.com.np</h3>
+          <p>Once Cloudflare is active, we’ll connect your domain to this site in 2 minutes.</p>
         </div>
       </div>
     </div>
+  </section>
 
-    <div class="foot">
-      <div>© <span id="year"></span> Nabin Bist • Built with discipline.</div>
-      <div>Elite Dark Athletic Dash • Fast • Mobile-first</div>
+  <!-- FOOTER -->
+  <footer>
+    <div class="wrap">
+      <div class="footGrid">
+        <div class="footCard">
+          <h3>KEY RULES</h3>
+          <p>
+            • Show up daily • Track your progress • Keep it simple • Respect the process • Build your legacy.
+          </p>
+          <div class="footLinks">
+            <a href="#top">Back to top</a>
+            <a href="#journey">Journey</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#memo">Memo</a>
+          </div>
+          <div class="copyright">© <span id="yr"></span> Nabin Bist. Built with discipline.</div>
+        </div>
+
+        <div class="footCard">
+          <h3>Next upgrade</h3>
+          <p>
+            Want “world class”? Next I’ll add:
+            <br>• a real blog (posts page)
+            <br>• a vlog page (video embeds)
+            <br>• a “fitness programs” page
+            <br>• a password-protected private journal
+          </p>
+        </div>
+      </div>
     </div>
+  </footer>
 
+  <!-- MODAL -->
+  <div class="modal" id="modal">
+    <div class="modalBox">
+      <div class="modalTop">
+        <b id="modalTitle">Preview</b>
+        <button class="close" id="close">Close</button>
+      </div>
+      <div class="modalImg" id="modalImg"></div>
+    </div>
   </div>
 
   <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
+    // Year
+    document.getElementById('yr').textContent = new Date().getFullYear();
 
-    const box = document.getElementById("memoBox");
-    const statusText = document.getElementById("statusText");
-    const key = "nabin_memo_v2";
-    const saved = localStorage.getItem(key);
-    if(saved){ box.value = saved; statusText.textContent = "Loaded saved memo ✅"; }
+    // Scroll reveal
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          e.target.classList.add('in');
+          io.unobserve(e.target);
+        }
+      })
+    },{threshold:.14});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
-    document.getElementById("saveBtn").addEventListener("click", () => {
-      localStorage.setItem(key, box.value);
-      statusText.textContent = "Saved ✅ (" + new Date().toLocaleString() + ")";
+    // Modal gallery
+    const modal = document.getElementById('modal');
+    const modalImg = document.getElementById('modalImg');
+    const modalTitle = document.getElementById('modalTitle');
+    const close = document.getElementById('close');
+
+    function openModal(img, title){
+      modal.classList.add('open');
+      modalImg.style.backgroundImage = `url('${img}')`;
+      modalTitle.textContent = title || 'Preview';
+    }
+    function closeModal(){ modal.classList.remove('open'); }
+
+    document.querySelectorAll('[data-img]').forEach(el=>{
+      el.addEventListener('click', ()=>{
+        openModal(el.getAttribute('data-img'), el.getAttribute('data-title'));
+      });
+    });
+    document.querySelectorAll('.storyBlock').forEach(el=>{
+      el.addEventListener('click', ()=>{
+        const bg = el.querySelector('.storyImg').style.backgroundImage;
+        const img = bg.slice(5,-2);
+        openModal(img, el.getAttribute('data-modal-title') || 'Story');
+      });
+    });
+
+    close.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e)=>{ if(e.target === modal) closeModal(); });
+
+    // Simple mobile menu (opens section list)
+    document.getElementById('burger').addEventListener('click', ()=>{
+      alert("Mobile menu: tap any section: About, Journey, Gallery, Tips, Memo, Contact.\n\nTip: On phone, scroll — this site is designed for scroll.");
     });
   </script>
 </body>
