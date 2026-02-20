@@ -1,24 +1,24 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Nabin Bist — Stories • Fitness • Life</title>
-  <meta name="description" content="Personal website of Nabin Bist — stories, vlogs, photos, memos, tips and fitness. Premium dark aesthetic." />
-
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Nabin Bist — Elite Personal Hub</title>
+  <meta name="description" content="An elite personal website: stories, vlogs, photos, tips, fitness and life."/>
   <style>
     :root{
       --bg:#05060A;
-      --panel: rgba(14,18,28,.72);
-      --panel2: rgba(9,12,20,.70);
-      --text:#EAF0FF;
-      --muted:#A9B4CF;
+      --bg2:#070A12;
+      --card: rgba(14,18,30,.62);
+      --card2: rgba(10,14,24,.55);
       --line: rgba(255,255,255,.10);
+      --text:#ECF2FF;
+      --muted:#AAB6D4;
       --aqua:#2EE9C6;
       --pink:#FF4D7D;
       --gold:#F7C948;
-      --shadow: 0 20px 60px rgba(0,0,0,.55);
-      --r: 20px;
+      --shadow: 0 24px 80px rgba(0,0,0,.55);
+      --r:24px;
     }
     *{box-sizing:border-box}
     html,body{height:100%}
@@ -27,226 +27,245 @@
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
       color:var(--text);
       background:
-        radial-gradient(900px 520px at 15% 10%, rgba(46,233,198,.14), transparent 60%),
-        radial-gradient(900px 520px at 85% 12%, rgba(255,77,125,.12), transparent 60%),
-        radial-gradient(700px 420px at 70% 90%, rgba(247,201,72,.10), transparent 60%),
-        linear-gradient(180deg, #04050A, #060914 35%, #05060A);
+        radial-gradient(900px 560px at 12% 8%, rgba(46,233,198,.18), transparent 60%),
+        radial-gradient(900px 560px at 88% 10%, rgba(255,77,125,.16), transparent 60%),
+        radial-gradient(700px 520px at 65% 92%, rgba(247,201,72,.12), transparent 60%),
+        linear-gradient(180deg, #04050A, #060914 40%, #05060A);
       overflow-x:hidden;
     }
     a{color:inherit;text-decoration:none}
-    .wrap{max-width:1150px;margin:0 auto;padding:20px 16px 70px}
+    .wrap{max-width:1200px;margin:0 auto;padding:18px 16px 70px}
     .glass{
-      background: linear-gradient(180deg, var(--panel), var(--panel2));
+      background: linear-gradient(180deg, var(--card), var(--card2));
       border:1px solid var(--line);
-      border-radius: var(--r);
-      box-shadow: var(--shadow);
+      border-radius:var(--r);
+      box-shadow:var(--shadow);
       backdrop-filter: blur(14px);
     }
+
+    /* subtle animated grain */
+    .grain:before{
+      content:""; position:fixed; inset:-40%;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)' opacity='.14'/%3E%3C/svg%3E");
+      mix-blend-mode:overlay; opacity:.35; pointer-events:none;
+      animation: drift 10s linear infinite;
+    }
+    @keyframes drift{0%{transform:translate3d(0,0,0)}100%{transform:translate3d(80px,40px,0)}}
 
     /* NAV */
     .nav{
       display:flex;align-items:center;justify-content:space-between;gap:12px;
       padding:12px 14px;border-radius:999px;
     }
-    .brand{display:flex;align-items:center;gap:10px}
-    .orb{
-      width:12px;height:12px;border-radius:999px;background:var(--aqua);
-      box-shadow:0 0 18px rgba(46,233,198,.75);
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{
+      width:34px;height:34px;border-radius:14px;
+      background:
+        radial-gradient(14px 14px at 25% 30%, rgba(46,233,198,.9), transparent 60%),
+        radial-gradient(18px 18px at 75% 40%, rgba(255,77,125,.85), transparent 60%),
+        linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.04));
+      border:1px solid rgba(255,255,255,.14);
+      box-shadow:0 18px 50px rgba(46,233,198,.12);
     }
-    .brand b{letter-spacing:.8px}
+    .brand b{letter-spacing:1px}
     .brand span{color:var(--muted);font-size:13px}
-    .navlinks{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:flex-end}
+    .links{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
     .pill{
       padding:9px 12px;border-radius:999px;border:1px solid var(--line);
       background:rgba(7,10,15,.55);
       color:var(--muted);font-size:14px;
       transition:.2s ease;
     }
-    .pill:hover{transform:translateY(-1px);border-color:rgba(46,233,198,.40);color:var(--text)}
+    .pill:hover{transform:translateY(-1px);border-color:rgba(46,233,198,.35);color:var(--text)}
     .cta{
       padding:10px 13px;border-radius:999px;border:0;
       background: linear-gradient(135deg, rgba(46,233,198,.98), rgba(46,233,198,.55));
       color:#061018;font-weight:900;font-size:14px;
-      box-shadow: 0 16px 40px rgba(46,233,198,.16);
+      box-shadow: 0 18px 55px rgba(46,233,198,.16);
       transition:.2s ease;
     }
     .cta:hover{transform:translateY(-1px)}
 
     /* HERO */
     .hero{
-      margin-top:18px;
-      display:grid;grid-template-columns:1.1fr .9fr;gap:14px;
+      margin-top:16px;
+      display:grid;grid-template-columns:1.15fr .85fr;gap:12px;
       align-items:stretch;
     }
-    .card{padding:20px;position:relative;overflow:hidden}
-    .card:before{
+    .heroMain{padding:22px;position:relative;overflow:hidden}
+    .heroMain:before{
       content:"";position:absolute;inset:-2px;pointer-events:none;
       background:
-        radial-gradient(600px 220px at 20% 0%, rgba(46,233,198,.12), transparent 60%),
-        radial-gradient(520px 240px at 98% 10%, rgba(255,77,125,.10), transparent 60%);
+        radial-gradient(600px 260px at 10% 0%, rgba(46,233,198,.16), transparent 60%),
+        radial-gradient(520px 280px at 100% 10%, rgba(255,77,125,.14), transparent 60%);
     }
-    .card>*{position:relative}
-    h1{margin:0;font-size:46px;line-height:1.03;letter-spacing:.4px}
-    .sub{margin:12px 0 0;color:var(--muted);font-size:16px;max-width:55ch;line-height:1.55}
-    .tagrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
-    .tag{
-      padding:8px 10px;border-radius:999px;border:1px solid var(--line);
+    .heroMain>*{position:relative}
+    .kicker{
+      display:inline-flex;gap:10px;align-items:center;
+      padding:8px 12px;border-radius:999px;
       background:rgba(7,10,15,.55);
-      font-size:12px;letter-spacing:.9px;text-transform:uppercase;
+      border:1px solid rgba(255,255,255,.12);
+      color:var(--muted);
+      font-size:12px;letter-spacing:1px;text-transform:uppercase;
     }
-    .tag.a{border-color:rgba(46,233,198,.35)}
-    .tag.p{border-color:rgba(255,77,125,.35)}
-    .tag.g{border-color:rgba(247,201,72,.35)}
-    .btnrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+    .dot{width:8px;height:8px;border-radius:999px;background:var(--aqua);box-shadow:0 0 18px rgba(46,233,198,.7)}
+    h1{
+      margin:14px 0 0;
+      font-size:52px;line-height:1.02;letter-spacing:.2px;
+    }
+    .grad{
+      background:linear-gradient(90deg, #EAF0FF, #B9FFF2 35%, #FFD2DE 70%, #FFF1C9);
+      -webkit-background-clip:text;background-clip:text;color:transparent;
+    }
+    .sub{margin:12px 0 0;color:var(--muted);font-size:16px;line-height:1.7;max-width:62ch}
+    .btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
     .btn{
       display:inline-flex;align-items:center;gap:10px;
-      padding:12px 14px;border-radius:14px;border:1px solid var(--line);
+      padding:12px 14px;border-radius:16px;border:1px solid var(--line);
       background:rgba(7,10,15,.55);
-      font-weight:800;
+      font-weight:900;
       transition:.2s ease;
     }
     .btn:hover{transform:translateY(-1px);border-color:rgba(255,255,255,.18)}
     .btn.primary{
       border:0;color:#061018;
       background:linear-gradient(135deg, rgba(255,77,125,.95), rgba(255,77,125,.55));
-      box-shadow:0 18px 45px rgba(255,77,125,.16);
+      box-shadow:0 18px 55px rgba(255,77,125,.16);
     }
 
-    /* RIGHT HERO PANEL */
-    .profile{
-      display:grid;gap:12px;
+    /* Right panel */
+    .side{display:grid;gap:12px}
+    .card{padding:16px}
+    .bigAvatar{
+      height:210px;border-radius:20px;border:1px solid rgba(255,255,255,.12);
+      background:
+        radial-gradient(220px 160px at 20% 20%, rgba(46,233,198,.30), transparent 60%),
+        radial-gradient(220px 160px at 80% 30%, rgba(255,77,125,.26), transparent 60%),
+        radial-gradient(240px 160px at 60% 90%, rgba(247,201,72,.18), transparent 60%),
+        linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.03));
+      position:relative; overflow:hidden;
     }
-    .heroBox{
-      padding:18px;border-radius:18px;border:1px solid var(--line);
-      background:rgba(7,10,15,.52);
+    .bigAvatar:after{
+      content:"YOUR PHOTO"; position:absolute; inset:auto 14px 14px 14px;
+      padding:10px 12px;border-radius:999px;
+      background:rgba(7,10,15,.60);
+      border:1px solid rgba(255,255,255,.12);
+      color:rgba(236,242,255,.85);
+      font-weight:900;letter-spacing:1px;font-size:12px;
     }
-    .k{color:var(--muted);font-size:12px;letter-spacing:.9px;text-transform:uppercase}
-    .v{margin-top:6px;font-size:18px;font-weight:950}
-    .meter{height:9px;border-radius:999px;background:rgba(255,255,255,.08);overflow:hidden;border:1px solid rgba(255,255,255,.10);margin-top:10px}
-    .fill{height:100%;width:72%;background:linear-gradient(90deg,var(--aqua),rgba(46,233,198,.25))}
-    .fill2{height:100%;width:58%;background:linear-gradient(90deg,var(--gold),rgba(247,201,72,.25))}
-    .quote{
-      padding:18px;border-radius:18px;border:1px solid var(--line);
-      background:linear-gradient(180deg, rgba(7,10,15,.52), rgba(7,10,15,.35));
-      color:var(--muted);
-      line-height:1.55;
+    .stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+    .stat{
+      padding:12px;border-radius:18px;border:1px solid rgba(255,255,255,.12);
+      background:rgba(7,10,15,.55);
     }
-    .quote b{color:var(--text)}
+    .stat .k{color:var(--muted);font-size:12px;letter-spacing:1px;text-transform:uppercase}
+    .stat .v{margin-top:6px;font-weight:950;font-size:18px}
+    .meter{height:10px;border-radius:999px;background:rgba(255,255,255,.08);overflow:hidden;border:1px solid rgba(255,255,255,.10);margin-top:10px}
+    .fill{height:100%;width:75%;background:linear-gradient(90deg,var(--aqua),rgba(46,233,198,.25))}
+    .fill2{height:100%;width:62%;background:linear-gradient(90deg,var(--gold),rgba(247,201,72,.25))}
 
-    /* SECTION HEADERS */
-    .section{margin-top:14px;padding:18px}
-    .section h2{margin:0;font-size:18px;letter-spacing:.5px}
+    /* Sections */
+    .section{margin-top:12px;padding:18px}
+    .head{display:flex;align-items:flex-end;justify-content:space-between;gap:10px;flex-wrap:wrap}
+    .section h2{margin:0;font-size:18px;letter-spacing:.6px}
     .section p{margin:8px 0 0;color:var(--muted);line-height:1.6}
-    .grid3{margin-top:14px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .mini{color:var(--muted);font-size:12px}
+
+    .grid3{margin-top:12px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
     .tile{
-      padding:16px;border-radius:18px;border:1px solid var(--line);
+      padding:16px;border-radius:20px;border:1px solid rgba(255,255,255,.12);
       background:rgba(7,10,15,.52);
       transition:.2s ease;
+      position:relative;overflow:hidden;
     }
-    .tile:hover{transform:translateY(-2px);border-color:rgba(46,233,198,.25)}
+    .tile:before{
+      content:"";position:absolute;inset:-2px;opacity:.9;pointer-events:none;
+      background:
+        radial-gradient(260px 160px at 10% 0%, rgba(46,233,198,.12), transparent 60%),
+        radial-gradient(260px 160px at 100% 10%, rgba(255,77,125,.10), transparent 60%);
+    }
+    .tile>*{position:relative}
+    .tile:hover{transform:translateY(-2px);border-color:rgba(46,233,198,.22)}
     .tile h3{margin:0 0 8px;font-size:16px}
-    .tile p{margin:0;color:var(--muted);font-size:14px;line-height:1.55}
-
-    /* BLOG/VLOG LIST */
-    .grid2{margin-top:12px;display:grid;grid-template-columns:1.1fr .9fr;gap:12px}
-    .post{
-      padding:14px;border-radius:18px;border:1px solid var(--line);
-      background:rgba(7,10,15,.52);
-      display:flex;gap:12px;align-items:flex-start;
-    }
-    .thumb{
-      width:120px;min-width:120px;height:78px;border-radius:14px;
-      background:
-        radial-gradient(120px 80px at 20% 20%, rgba(46,233,198,.35), transparent 60%),
-        radial-gradient(120px 80px at 80% 20%, rgba(255,77,125,.30), transparent 60%),
-        linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
-      border:1px solid rgba(255,255,255,.12);
-    }
-    .post b{display:block}
-    .meta{color:var(--muted);font-size:12px;margin-top:4px;line-height:1.45}
+    .tile p{margin:0;color:var(--muted);font-size:14px;line-height:1.6}
     .chip{
-      display:inline-flex;gap:8px;align-items:center;
-      padding:7px 10px;border-radius:999px;border:1px solid var(--line);
-      background:rgba(7,10,15,.55);color:var(--muted);font-size:12px;margin-top:8px;
+      display:inline-flex;align-items:center;gap:8px;
+      padding:8px 10px;border-radius:999px;margin-top:10px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(7,10,15,.60);
+      color:var(--muted);font-size:12px;
     }
 
-    /* PHOTO GRID */
-    .photos{margin-top:12px;display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+    /* Gallery */
+    .photos{margin-top:12px;display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
     .ph{
-      aspect-ratio: 1/1;
-      border-radius:18px;
-      border:1px solid rgba(255,255,255,.12);
+      border-radius:20px;border:1px solid rgba(255,255,255,.12);
       background:
-        radial-gradient(150px 120px at 20% 20%, rgba(46,233,198,.35), transparent 60%),
-        radial-gradient(150px 120px at 80% 30%, rgba(255,77,125,.25), transparent 60%),
-        radial-gradient(180px 140px at 50% 90%, rgba(247,201,72,.18), transparent 60%),
-        linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
-      overflow:hidden;
-      position:relative;
+        radial-gradient(180px 140px at 20% 20%, rgba(46,233,198,.30), transparent 60%),
+        radial-gradient(180px 140px at 80% 30%, rgba(255,77,125,.22), transparent 60%),
+        radial-gradient(200px 140px at 50% 90%, rgba(247,201,72,.14), transparent 60%),
+        linear-gradient(180deg, rgba(255,255,255,.09), rgba(255,255,255,.03));
+      aspect-ratio: 1/1;
+      position:relative;overflow:hidden;
     }
     .ph span{
       position:absolute;left:10px;bottom:10px;
-      font-size:12px;color:rgba(234,240,255,.85);
+      font-size:12px;color:rgba(236,242,255,.88);
       background:rgba(7,10,15,.55);
       border:1px solid rgba(255,255,255,.12);
       padding:6px 8px;border-radius:999px;
     }
 
-    /* MEMO */
-    .memo{
-      margin-top:12px;
-      display:grid;grid-template-columns:1fr 1fr;gap:12px;
-    }
+    /* memo */
+    .memo{margin-top:12px;display:grid;grid-template-columns:1fr .9fr;gap:12px}
     textarea{
-      width:100%;min-height:150px;resize:vertical;
-      border-radius:18px;border:1px solid rgba(255,255,255,.12);
+      width:100%;min-height:160px;resize:vertical;
+      border-radius:20px;border:1px solid rgba(255,255,255,.12);
       background:rgba(7,10,15,.55);
       color:var(--text);
       padding:14px;font-size:14px;line-height:1.6;
       outline:none;
     }
-    textarea::placeholder{color:rgba(169,180,207,.75)}
-    .smallbtn{
-      margin-top:10px;
-      display:inline-flex;gap:10px;align-items:center;
-      padding:10px 12px;border-radius:14px;border:1px solid rgba(255,255,255,.14);
+    textarea::placeholder{color:rgba(170,182,212,.75)}
+    .save{
+      margin-top:10px;display:inline-flex;gap:10px;align-items:center;
+      padding:11px 13px;border-radius:16px;border:1px solid rgba(255,255,255,.14);
       background:rgba(7,10,15,.55);
-      font-weight:900;
-      cursor:pointer;
-      user-select:none;
+      font-weight:950;cursor:pointer;user-select:none;
+      transition:.2s ease;
     }
-    .smallbtn:hover{transform:translateY(-1px)}
+    .save:hover{transform:translateY(-1px);border-color:rgba(255,255,255,.18)}
     .ok{color:var(--muted);font-size:12px;margin-top:8px;line-height:1.5}
 
-    /* FOOTER */
-    .foot{
-      margin-top:14px;
-      padding:16px 6px;
-      display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;
-      color:var(--muted);font-size:13px;
-    }
+    /* footer */
+    .foot{margin-top:12px;padding:16px 6px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;color:var(--muted);font-size:13px}
 
-    @media (max-width:980px){
+    /* responsive */
+    @media (max-width:1050px){
       .hero{grid-template-columns:1fr}
-      h1{font-size:40px}
+      h1{font-size:44px}
       .grid3{grid-template-columns:1fr}
-      .grid2{grid-template-columns:1fr}
-      .photos{grid-template-columns:repeat(2,1fr)}
+      .photos{grid-template-columns:repeat(3,1fr)}
       .memo{grid-template-columns:1fr}
+    }
+    @media (max-width:520px){
+      h1{font-size:38px}
+      .photos{grid-template-columns:repeat(2,1fr)}
     }
   </style>
 </head>
-
-<body>
+<body class="grain">
   <div class="wrap">
 
     <div class="nav glass">
       <div class="brand">
-        <div class="orb"></div>
-        <b>NABIN BIST</b>
-        <span>Stories • Vlogs • Photos • Fitness</span>
+        <div class="logo"></div>
+        <div>
+          <b>NABIN BIST</b><br/>
+          <span>Elite Personal Hub • Stories • Vlogs • Photos • Fitness</span>
+        </div>
       </div>
-      <div class="navlinks">
+      <div class="links">
         <a class="pill" href="#stories">Stories</a>
         <a class="pill" href="#vlogs">Vlogs</a>
         <a class="pill" href="#photos">Photos</a>
@@ -256,220 +275,202 @@
     </div>
 
     <div class="hero">
-      <div class="card glass">
-        <h1>My life, my lessons,<br/>my journey — shared.</h1>
+      <div class="heroMain glass">
+        <div class="kicker"><span class="dot"></span> LIVE • building a legendary website</div>
+        <h1><span class="grad">Not just a website.</span><br/>A personal universe.</h1>
         <p class="sub">
-          This is my personal space: real stories, short vlogs, photos, tips & tricks,
-          and my fitness lifestyle — all in one clean, premium website.
+          Stories, mini vlogs, photos, tips & tricks, personal notes, and fitness —
+          all in one premium dark aesthetic. Minimal. Powerful. Memorable.
         </p>
 
-        <div class="tagrow">
-          <span class="tag a">personal stories</span>
-          <span class="tag p">vlogs + photos</span>
-          <span class="tag g">tips + fitness</span>
+        <div class="btns">
+          <a class="btn primary" href="#stories">Start Here</a>
+          <a class="btn" href="#photos">View Photos</a>
+          <a class="btn" href="#memo">Write Memo</a>
         </div>
 
-        <div class="btnrow">
-          <a class="btn primary" href="#stories">Start Reading</a>
-          <a class="btn" href="#vlogs">Watch Vlogs</a>
-          <a class="btn" href="#memo">Write a Memo</a>
+        <div class="stats">
+          <div class="stat">
+            <div class="k">Website vibe</div>
+            <div class="v">Elite Dark</div>
+            <div class="meter"><div class="fill"></div></div>
+          </div>
+          <div class="stat">
+            <div class="k">Focus</div>
+            <div class="v">Discipline</div>
+            <div class="meter"><div class="fill2"></div></div>
+          </div>
         </div>
       </div>
 
-      <div class="card glass profile">
-        <div class="heroBox">
-          <div class="k">Now Building</div>
-          <div class="v">A top-notch personal brand</div>
-          <div class="meter"><div class="fill"></div></div>
-          <div class="meta">Design: dark premium • fast • mobile-first</div>
+      <div class="side">
+        <div class="card glass">
+          <div class="bigAvatar"></div>
+          <div class="mini" style="margin-top:10px">
+            Replace the “YOUR PHOTO” block with your real portrait later (I’ll guide you).
+          </div>
         </div>
 
-        <div class="heroBox">
-          <div class="k">Daily System</div>
-          <div class="v">Discipline > Motivation</div>
-          <div class="meter"><div class="fill2"></div></div>
-          <div class="meta">Small steps every day = big results.</div>
-        </div>
-
-        <div class="quote">
-          <b>Mini philosophy:</b><br/>
-          I don’t want a “normal” website. I want something people remember.
-          Clean. Powerful. Simple. And real.
+        <div class="card glass">
+          <div class="mini">Signature line</div>
+          <div style="font-weight:950;font-size:18px;margin-top:6px">
+            “Small steps daily. Big results yearly.”
+          </div>
+          <div class="mini" style="margin-top:10px">
+            This is the type of line that makes people remember you.
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- STORIES -->
     <div class="section glass" id="stories">
-      <h2>Stories (Blog)</h2>
-      <p>Short stories, life lessons, and real moments. (You can edit these titles anytime.)</p>
-
-      <div class="grid2">
-        <div class="post">
-          <div class="thumb"></div>
-          <div>
-            <b>1) The day I decided to stop quitting</b>
-            <div class="meta">A personal turning point — building discipline when life is messy.</div>
-            <div class="chip">Read time: 3 min • Mood: Real</div>
-          </div>
+      <div class="head">
+        <div>
+          <h2>Stories</h2>
+          <p>Short, real, powerful. You can replace titles anytime.</p>
         </div>
-
-        <div class="post">
-          <div class="thumb"></div>
-          <div>
-            <b>2) From Nepal to bigger dreams</b>
-            <div class="meta">My background, my mindset, and the future I’m building.</div>
-            <div class="chip">Read time: 4 min • Mood: Hope</div>
-          </div>
-        </div>
-
-        <div class="post">
-          <div class="thumb"></div>
-          <div>
-            <b>3) What the gym taught me about life</b>
-            <div class="meta">Progress is slow. That’s why it’s rare.</div>
-            <div class="chip">Read time: 2 min • Mood: Strong</div>
-          </div>
-        </div>
-
-        <div class="post">
-          <div class="thumb"></div>
-          <div>
-            <b>4) Tips I wish I knew earlier</b>
-            <div class="meta">Simple lessons about sleep, focus, money, and consistency.</div>
-            <div class="chip">Read time: 3 min • Mood: Useful</div>
-          </div>
-        </div>
+        <div class="mini">Goal: make people feel something.</div>
       </div>
-    </div>
-
-    <!-- VLOGS -->
-    <div class="section glass" id="vlogs">
-      <h2>Vlogs</h2>
-      <p>Later you can embed YouTube/TikTok/Instagram. For now these are placeholders.</p>
-
       <div class="grid3">
         <div class="tile">
-          <h3>Vlog 1: A day in my routine</h3>
-          <p>Gym, work, food, mindset — simple vlog style.</p>
-          <div class="chip">Replace with your video link</div>
+          <h3>1) The day I stopped quitting</h3>
+          <p>A turning point — discipline built in silence.</p>
+          <div class="chip">Read: 3 min</div>
         </div>
         <div class="tile">
-          <h3>Vlog 2: Progress update</h3>
-          <p>Weekly check-in: weight, steps, workouts, learning.</p>
-          <div class="chip">Replace with your video link</div>
+          <h3>2) From Nepal to bigger dreams</h3>
+          <p>My roots, my mindset, my next chapter.</p>
+          <div class="chip">Read: 4 min</div>
         </div>
         <div class="tile">
-          <h3>Vlog 3: Travel / life moments</h3>
-          <p>Short clips that show your real personality.</p>
-          <div class="chip">Replace with your video link</div>
+          <h3>3) Gym lessons that changed my life</h3>
+          <p>Progress is slow. That’s why it’s rare.</p>
+          <div class="chip">Read: 2 min</div>
         </div>
       </div>
     </div>
 
-    <!-- PHOTOS -->
+    <div class="section glass" id="vlogs">
+      <div class="head">
+        <div>
+          <h2>Vlogs</h2>
+          <p>Put YouTube/TikTok links here later. For now: premium placeholders.</p>
+        </div>
+        <div class="mini">Tip: 30–60 sec videos are best.</div>
+      </div>
+      <div class="grid3">
+        <div class="tile">
+          <h3>Vlog 1: My routine</h3>
+          <p>Gym, work, mindset, food — simple and real.</p>
+          <div class="chip">Add link later</div>
+        </div>
+        <div class="tile">
+          <h3>Vlog 2: Weekly progress</h3>
+          <p>Steps, lifts, discipline, lessons learned.</p>
+          <div class="chip">Add link later</div>
+        </div>
+        <div class="tile">
+          <h3>Vlog 3: Life moments</h3>
+          <p>Travel, sunset, family, behind the scenes.</p>
+          <div class="chip">Add link later</div>
+        </div>
+      </div>
+    </div>
+
     <div class="section glass" id="photos">
-      <h2>Photos</h2>
-      <p>Put your best photos here (gym, travel, family moments, sunsets, anything).</p>
+      <div class="head">
+        <div>
+          <h2>Photos</h2>
+          <p>Replace these blocks with your best photos (gym + travel + lifestyle).</p>
+        </div>
+        <div class="mini">Best: 8–12 photos total.</div>
+      </div>
 
       <div class="photos">
-        <div class="ph"><span>Photo 1</span></div>
-        <div class="ph"><span>Photo 2</span></div>
-        <div class="ph"><span>Photo 3</span></div>
-        <div class="ph"><span>Photo 4</span></div>
-        <div class="ph"><span>Photo 5</span></div>
-        <div class="ph"><span>Photo 6</span></div>
-        <div class="ph"><span>Photo 7</span></div>
-        <div class="ph"><span>Photo 8</span></div>
+        <div class="ph"><span>1</span></div>
+        <div class="ph"><span>2</span></div>
+        <div class="ph"><span>3</span></div>
+        <div class="ph"><span>4</span></div>
+        <div class="ph"><span>5</span></div>
+        <div class="ph"><span>6</span></div>
       </div>
     </div>
 
-    <!-- MEMO -->
     <div class="section glass" id="memo">
-      <h2>Memo (Private notes on this device)</h2>
-      <p>This memo saves only in your browser (localStorage). Good for ideas, journal, tips, plans.</p>
+      <div class="head">
+        <div>
+          <h2>Memo</h2>
+          <p>Private notes (saved only in your browser).</p>
+        </div>
+        <div class="mini">Ideas → notes → posts.</div>
+      </div>
 
       <div class="memo">
         <div>
-          <textarea id="memoBox" placeholder="Write your memo here...
-- Story ideas
-- Vlog topics
-- Fitness plan notes
-- Life lessons
-- Daily goals"></textarea>
-          <div class="smallbtn" id="saveBtn">Save Memo</div>
+          <textarea id="memoBox" placeholder="Write here...
+• Story ideas
+• Vlog topics
+• Tips & tricks
+• Plans for the week
+• Fitness notes"></textarea>
+          <div class="save" id="saveBtn">Save Memo</div>
           <div class="ok" id="statusText">Not saved yet.</div>
         </div>
-
         <div class="tile">
-          <h3>Quick prompts (copy ideas)</h3>
+          <h3>Quick prompts</h3>
           <p>
-            • What was my biggest lesson this week?<br/>
-            • What am I grateful for today?<br/>
+            • Biggest lesson this week?<br/>
             • What did I do even when I didn’t feel like it?<br/>
-            • One tip I want to teach others.<br/>
+            • One tip to teach others.<br/>
             • My next 7-day challenge.
           </p>
-          <div class="chip">Tip: Write short, post later</div>
+          <div class="chip">Write short, publish later</div>
         </div>
       </div>
     </div>
 
-    <!-- FITNESS -->
     <div class="section glass" id="fitness">
-      <h2>Fitness</h2>
-      <p>Simple, strong, realistic. (Later we will add your full elite plan + dashboard.)</p>
-
+      <div class="head">
+        <div>
+          <h2>Fitness</h2>
+          <p>Short, strong, realistic. (We can add full program later.)</p>
+        </div>
+        <div class="mini">Consistency wins.</div>
+      </div>
       <div class="grid3">
         <div class="tile">
-          <h3>Weekly plan</h3>
-          <p>Push / Pull / Legs x2 + rest day. Core 10 min, steps daily.</p>
-          <div class="chip">Consistency wins</div>
+          <h3>Weekly structure</h3>
+          <p>Push/Pull/Legs x2 + steps + core.</p>
+          <div class="chip">Simple plan</div>
         </div>
         <div class="tile">
-          <h3>Fat loss basics</h3>
-          <p>Protein high, calories controlled, sleep 7–8h, walk daily.</p>
-          <div class="chip">Simple > complicated</div>
+          <h3>Fat-loss basics</h3>
+          <p>Protein high • calories controlled • sleep 7–8h.</p>
+          <div class="chip">No excuses</div>
         </div>
         <div class="tile">
-          <h3>My rule</h3>
-          <p>Train hard, recover smart, repeat. No excuses, just progress.</p>
-          <div class="chip">Discipline mode</div>
+          <h3>Mindset</h3>
+          <p>Discipline first. Motivation later.</p>
+          <div class="chip">Always improve</div>
         </div>
-      </div>
-    </div>
-
-    <div class="section glass" id="contact">
-      <h2>Contact</h2>
-      <p>If you want to connect or collaborate, reach me here.</p>
-      <div class="btnrow">
-        <a class="btn primary" href="mailto:nabinbisht@icloud.com">Email Me</a>
-        <a class="btn" href="https://nabinbist.github.io" target="_blank" rel="noopener">GitHub Pages</a>
-        <a class="btn" href="https://bistnabin.com.np" target="_blank" rel="noopener">My Domain</a>
       </div>
     </div>
 
     <div class="foot">
       <div>© <span id="year"></span> Nabin Bist • Built with discipline.</div>
-      <div>Dark premium • Fast • Mobile-first</div>
+      <div>Elite Dark Athletic Dash • Fast • Mobile-first</div>
     </div>
 
   </div>
 
   <script>
-    // footer year
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // memo local save
     const box = document.getElementById("memoBox");
     const statusText = document.getElementById("statusText");
-    const key = "nabin_memo_v1";
-
+    const key = "nabin_memo_v2";
     const saved = localStorage.getItem(key);
-    if(saved){
-      box.value = saved;
-      statusText.textContent = "Loaded saved memo ✅";
-    }
+    if(saved){ box.value = saved; statusText.textContent = "Loaded saved memo ✅"; }
 
     document.getElementById("saveBtn").addEventListener("click", () => {
       localStorage.setItem(key, box.value);
