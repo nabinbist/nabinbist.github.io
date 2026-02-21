@@ -519,6 +519,242 @@
       transform: translateY(0);
     }
 
+    /* === GYM TRACKER (SCOPED) === */
+    #gym .container{
+      max-width:100%;
+      margin:0 auto;
+      background:#ffffff;
+      border-radius:20px;
+      padding:24px 20px 28px;
+      box-shadow:0 20px 60px rgba(0,0,0,0.45);
+      color:#111827;
+    }
+    #gym .header{
+      text-align:center;
+      margin-bottom:24px;
+      padding-bottom:18px;
+      border-bottom:3px solid #667eea;
+    }
+    #gym .header h1{
+      font-size:26px;
+      font-weight:800;
+      background:linear-gradient(135deg,#DC5555 0%,#17A2B8 50%,#28A745 100%);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      margin-bottom:8px;
+      letter-spacing:2px;
+    }
+    #gym .header p{
+      font-size:13px;
+      color:#4b5563;
+      font-weight:600;
+    }
+    #gym .stats-box{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
+      gap:10px;
+      background:linear-gradient(135deg,#f9fafb 0%,#e5e7eb 100%);
+      border:1px solid #e5e7eb;
+      border-radius:15px;
+      padding:10px;
+      margin-bottom:20px;
+    }
+    #gym .stat-item{text-align:center;}
+    #gym .stat-label{
+      font-weight:700;
+      color:#4b5563;
+      font-size:11px;
+      text-transform:uppercase;
+      margin-bottom:4px;
+    }
+    #gym .stat-value{
+      color:#111827;
+      font-size:14px;
+      font-weight:600;
+    }
+    #gym .progress-overview{
+      background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);
+      color:white;
+      padding:14px 14px 16px;
+      border-radius:15px;
+      margin-bottom:18px;
+      text-align:center;
+    }
+    #gym .progress-overview h2{
+      margin:0 0 8px;
+      font-size:16px;
+    }
+    #gym .progress-bar-container{
+      background:rgba(255,255,255,0.28);
+      border-radius:999px;
+      height:22px;
+      overflow:hidden;
+      margin-bottom:6px;
+    }
+    #gym .progress-bar{
+      background:linear-gradient(90deg,#22c55e 0%,#14b8a6 100%);
+      height:100%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:700;
+      font-size:11px;
+      transition:width .3s ease;
+    }
+    #gym .day-selector{
+      display:flex;
+      flex-wrap:wrap;
+      gap:6px;
+      margin-bottom:16px;
+      justify-content:center;
+    }
+    #gym .day-btn{
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid #d1d5db;
+      background:#f9fafb;
+      cursor:pointer;
+      font-weight:700;
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:.05em;
+    }
+    #gym .day-btn.push{border-color:#fca5a5;color:#b91c1c;}
+    #gym .day-btn.pull{border-color:#7dd3fc;color:#0369a1;}
+    #gym .day-btn.legs{border-color:#86efac;color:#15803d;}
+    #gym .day-btn.rest{border-color:#9ca3af;color:#374151;}
+    #gym .day-btn.active{
+      background:#111827;
+      color:#f9fafb;
+      border-color:#111827;
+    }
+    #gym .workout-content{min-height:260px;}
+    #gym .day-header-title{
+      font-size:20px;
+      font-weight:900;
+      margin:0 0 4px;
+      text-align:left;
+    }
+    #gym .day-label-title{
+      text-align:left;
+      padding:6px 10px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:700;
+      margin-bottom:12px;
+      display:inline-block;
+    }
+    #gym .day-label-title.push{
+      background:rgba(220,38,38,0.06);
+      border:1px solid #fca5a5;
+      color:#b91c1c;
+    }
+    #gym .day-label-title.pull{
+      background:rgba(56,189,248,0.06);
+      border:1px solid #7dd3fc;
+      color:#0369a1;
+    }
+    #gym .day-label-title.legs{
+      background:rgba(34,197,94,0.06);
+      border:1px solid #86efac;
+      color:#15803d;
+    }
+    #gym .exercises-list{
+      list-style:none;
+      padding:0;
+      margin:0;
+    }
+    #gym .exercise-item{
+      border:1px solid #e5e7eb;
+      border-radius:10px;
+      padding:8px 10px;
+      margin-bottom:6px;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      cursor:pointer;
+      transition:background .2s ease,border-color .2s ease,transform .1s ease;
+    }
+    #gym .exercise-item:hover{
+      border-color:#6366f1;
+      background:#eef2ff;
+      transform:translateX(2px);
+    }
+    #gym .exercise-item.completed{
+      opacity:.55;
+      text-decoration:line-through;
+      background:#f3f4f6;
+    }
+    #gym .exercise-item.hidden{display:none;}
+    #gym .checkbox{
+      width:18px;height:18px;
+      border:2px solid #d1d5db;
+      border-radius:6px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex-shrink:0;
+    }
+    #gym .exercise-item.completed .checkbox{
+      background:#22c55e;
+      border-color:#22c55e;
+    }
+    #gym .checkbox::after{
+      content:'✓';
+      color:#f9fafb;
+      font-size:12px;
+      font-weight:900;
+      display:none;
+    }
+    #gym .exercise-item.completed .checkbox::after{display:block;}
+    #gym .exercise-text{
+      flex:1;
+      font-size:13px;
+      font-weight:600;
+      color:#111827;
+    }
+    #gym .rest-content{
+      padding:8px 4px;
+      font-size:13px;
+    }
+    #gym .rest-item{
+      background:linear-gradient(135deg,#6b7280,#374151);
+      color:#f9fafb;
+      padding:8px 10px;
+      border-radius:10px;
+      margin:6px 0;
+      font-size:13px;
+      font-weight:700;
+    }
+    #gym .completion-message{
+      background:linear-gradient(135deg,#22c55e 0%,#14b8a6 100%);
+      color:#f9fafb;
+      padding:12px;
+      border-radius:10px;
+      text-align:center;
+      margin-top:10px;
+      font-size:13px;
+      font-weight:800;
+      display:none;
+    }
+    #gym .completion-message.show{display:block;}
+    #gym .reset-btn{
+      margin-top:16px;
+      border:none;
+      border-radius:999px;
+      padding:8px 16px;
+      font-size:12px;
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      background:linear-gradient(135deg,#dc2626,#b91c1c);
+      color:#f9fafb;
+      cursor:pointer;
+    }
+    @media (max-width:700px){
+      #gym .container{padding:18px 14px 22px;}
+    }
+
     /* Responsive */
     @media (max-width: 980px){
       .heroGrid{grid-template-columns: 1fr}
@@ -554,11 +790,10 @@
           <a href="#gallery">Gallery</a>
           <a href="#tips">Tips</a>
           <a href="#memo">Memo</a>
+          <a href="#gym">Gym Schedule</a>
           <a href="#contact">Contact</a>
-           <!-- NEW -->
-  <a href="#gym">Gym Schedule</a>
-</div>
-        
+        </div>
+
         <div class="cta">
           <a class="btn" href="#gallery">View Photos</a>
           <a class="btn primary" href="#contact">Work With Me</a>
@@ -573,7 +808,6 @@
     <div class="wrap">
       <div class="heroGrid">
         <div class="heroCard big reveal">
-          <!-- Change this image to your best hero -->
           <div class="heroImg" style="background-image:url('assets/hero-eiffel.jpg')"></div>
           <div class="heroOverlay"></div>
 
@@ -843,9 +1077,9 @@
         </div>
       </div>
     </div>
-  </section> 
+  </section>
 
-    <!-- GYM SCHEDULE / WORKOUT TRACKER -->
+  <!-- GYM -->
   <section id="gym">
     <div class="wrap">
       <div class="sectionHead reveal">
@@ -856,15 +1090,10 @@
       </div>
 
       <div style="margin-top:18px">
-        <!-- BEGIN: Nabin Workout Tracker -->
-        <div class="container" style="max-width:1400px;margin:0 auto;background:white;border-radius:20px;padding:30px;box-shadow:0 20px 60px rgba(0,0,0,0.3);color:#000;">
-          <div class="header" style="text-align:center;margin-bottom:30px;padding-bottom:20px;border-bottom:3px solid #667eea;">
-            <h1 style="font-size:32px;font-weight:800;background:linear-gradient(135deg,#DC5555 0%,#17A2B8 50%,#28A745 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:10px;letter-spacing:2px;">
-              NABIN BIST'S ELITE TRAINING PROGRAM
-            </h1>
-            <p style="font-size:14px;color:#666;font-weight:600;">
-              Interactive Workout Tracker – check off exercises as you complete them.
-            </p>
+        <div class="container">
+          <div class="header">
+            <h1>NABIN BIST'S ELITE TRAINING PROGRAM</h1>
+            <p>Interactive Workout Tracker – check off exercises as you complete them.</p>
           </div>
 
           <div class="stats-box">
@@ -1048,7 +1277,7 @@
                 <div class="rest-item">✓ 10–12k Steps</div>
                 <div class="rest-item">✓ Stretching</div>
                 <div class="rest-item">✓ Stomach Vacuum 3×30 sec</div>
-                <p style="margin-top:30px;font-size:18px;color:#6c757d;font-weight:600;">
+                <p style="margin-top:30px;font-size:14px;color:#6c757d;font-weight:600;">
                   Rest day is crucial for recovery and muscle growth. Take it easy!
                 </p>
               </div>
@@ -1210,7 +1439,6 @@
 
           <button class="reset-btn" onclick="resetProgress()">🔄 Reset All Progress</button>
         </div>
-        <!-- END: Nabin Workout Tracker -->
       </div>
     </div>
   </section>
@@ -1264,8 +1492,8 @@
             <a href="#journey">Journey</a>
             <a href="#gallery">Gallery</a>
             <a href="#memo">Memo</a>
-             <!-- NEW -->
-  <a href="#gym">Gym Schedule</a>
+            <a href="#gym">Gym</a>
+          </div>
           <div class="copyright">© <span id="yr"></span> Nabin Bist. Built with discipline.</div>
         </div>
 
@@ -1338,31 +1566,29 @@
     close.addEventListener('click', closeModal);
     modal.addEventListener('click', (e)=>{ if(e.target === modal) closeModal(); });
 
-    // Simple mobile menu (opens section list)
+    // Simple mobile menu
     document.getElementById('burger').addEventListener('click', ()=>{
-      alert("Mobile menu: tap any section: About, Journey, Gallery, Tips, Memo, Contact.\n\nTip: On phone, scroll — this site is designed for scroll.");
+      alert("Mobile menu: tap any section: About, Journey, Gallery, Tips, Memo, Gym, Contact.\n\nTip: On phone, scroll — this site is designed for scroll.");
     });
-  </script>
-    <script>
-    // === WORKOUT TRACKER LOGIC ===
+
+    // === GYM TRACKER LOGIC ===
     let currentDay = 'monday';
 
     function showDay(day) {
-      const allDays = document.querySelectorAll('.day-content');
+      const allDays = document.querySelectorAll('#gym .day-content');
       allDays.forEach(d => d.classList.add('hidden'));
 
-      document.getElementById(day).classList.remove('hidden');
+      const target = document.getElementById(day);
+      if (target) target.classList.remove('hidden');
       currentDay = day;
 
-      const allButtons = document.querySelectorAll('.day-btn');
+      const allButtons = document.querySelectorAll('#gym .day-btn');
       allButtons.forEach(btn => btn.classList.remove('active'));
 
       const clickedButton = Array.from(allButtons).find(btn =>
         btn.textContent.toLowerCase().includes(day)
       );
-      if (clickedButton) {
-        clickedButton.classList.add('active');
-      }
+      if (clickedButton) clickedButton.classList.add('active');
 
       updateProgress();
     }
@@ -1374,7 +1600,7 @@
         setTimeout(() => {
           element.classList.add('hidden');
           updateProgress();
-        }, 500);
+        }, 400);
       }
 
       updateProgress();
@@ -1382,6 +1608,8 @@
 
     function updateProgress() {
       const currentDayElement = document.getElementById(currentDay);
+      if (!currentDayElement) return;
+
       const exercises = currentDayElement.querySelectorAll('.exercise-item:not(.hidden)');
       const completed = currentDayElement.querySelectorAll('.exercise-item.completed:not(.hidden)').length;
       const total = exercises.length;
@@ -1389,40 +1617,43 @@
       const bar = document.getElementById('progressBar');
       const text = document.getElementById('progressText');
 
-      if (total === 0 && currentDay !== 'thursday') {
+      if (currentDay === 'thursday') {
+        bar.style.width = '100%';
+        bar.textContent = 'Rest Day';
+        text.textContent = 'Recovery day – take it easy!';
+        return;
+      }
+
+      if (total === 0) {
         const completionMsg = document.getElementById(currentDay + '-complete');
         if (completionMsg) completionMsg.classList.add('show');
         bar.style.width = '100%';
         bar.textContent = '100%';
         text.textContent = '🎉 Workout Complete!';
-      } else if (currentDay === 'thursday') {
-        bar.style.width = '100%';
-        bar.textContent = 'Rest Day';
-        text.textContent = 'Recovery day – take it easy!';
       } else {
-        const percentage = total > 0 ? Math.round((completed / total) * 100) : 0;
-        bar.style.width = percentage + '%';
-        bar.textContent = percentage + '%';
+        const pct = Math.round((completed / total) * 100);
+        bar.style.width = pct + '%';
+        bar.textContent = pct + '%';
         text.textContent = `${completed} of ${total} exercises completed`;
       }
     }
 
     function resetProgress() {
-      if (confirm('Are you sure you want to reset all progress? This will uncheck all exercises.')) {
-        const allExercises = document.querySelectorAll('.exercise-item');
-        allExercises.forEach(ex => ex.classList.remove('completed', 'hidden'));
+      if (!confirm('Are you sure you want to reset all progress? This will uncheck all exercises.')) return;
 
-        const allCompletions = document.querySelectorAll('.completion-message');
-        allCompletions.forEach(msg => msg.classList.remove('show'));
-
-        updateProgress();
-      }
+      document.querySelectorAll('#gym .exercise-item').forEach(ex => {
+        ex.classList.remove('completed', 'hidden');
+      });
+      document.querySelectorAll('#gym .completion-message').forEach(msg => {
+        msg.classList.remove('show');
+      });
+      currentDay = 'monday';
+      showDay('monday');
     }
 
     window.addEventListener('load', () => {
-      updateProgress();
+      showDay('monday');
     });
   </script>
-
 </body>
 </html>
