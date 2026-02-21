@@ -555,8 +555,10 @@
           <a href="#tips">Tips</a>
           <a href="#memo">Memo</a>
           <a href="#contact">Contact</a>
-        </div>
-
+           <!-- NEW -->
+  <a href="#gym">Gym Schedule</a>
+</div>
+        
         <div class="cta">
           <a class="btn" href="#gallery">View Photos</a>
           <a class="btn primary" href="#contact">Work With Me</a>
@@ -841,6 +843,376 @@
         </div>
       </div>
     </div>
+  </section> 
+
+    <!-- GYM SCHEDULE / WORKOUT TRACKER -->
+  <section id="gym">
+    <div class="wrap">
+      <div class="sectionHead reveal">
+        <div>
+          <h2 class="h2">Gym schedule</h2>
+          <p class="lead">Interactive weekly push / pull / legs program – track each workout and reset anytime.</p>
+        </div>
+      </div>
+
+      <div style="margin-top:18px">
+        <!-- BEGIN: Nabin Workout Tracker -->
+        <div class="container" style="max-width:1400px;margin:0 auto;background:white;border-radius:20px;padding:30px;box-shadow:0 20px 60px rgba(0,0,0,0.3);color:#000;">
+          <div class="header" style="text-align:center;margin-bottom:30px;padding-bottom:20px;border-bottom:3px solid #667eea;">
+            <h1 style="font-size:32px;font-weight:800;background:linear-gradient(135deg,#DC5555 0%,#17A2B8 50%,#28A745 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:10px;letter-spacing:2px;">
+              NABIN BIST'S ELITE TRAINING PROGRAM
+            </h1>
+            <p style="font-size:14px;color:#666;font-weight:600;">
+              Interactive Workout Tracker – check off exercises as you complete them.
+            </p>
+          </div>
+
+          <div class="stats-box">
+            <div class="stat-item">
+              <div class="stat-label">Weight</div>
+              <div class="stat-value">85 kg</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-label">Height</div>
+              <div class="stat-value">5'11 (180 cm)</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-label">Age</div>
+              <div class="stat-value">29</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-label">Calories</div>
+              <div class="stat-value">2200–2300 kcal</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-label">Protein</div>
+              <div class="stat-value">170–190 g</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-label">Steps</div>
+              <div class="stat-value">10,000–12,000</div>
+            </div>
+          </div>
+
+          <div class="progress-overview">
+            <h2>Today's Progress</h2>
+            <div class="progress-bar-container">
+              <div class="progress-bar" id="progressBar" style="width:0%;">0%</div>
+            </div>
+            <p id="progressText">Select a day to start your workout!</p>
+          </div>
+
+          <div class="day-selector">
+            <button class="day-btn push active" onclick="showDay('monday')">Monday</button>
+            <button class="day-btn pull" onclick="showDay('tuesday')">Tuesday</button>
+            <button class="day-btn legs" onclick="showDay('wednesday')">Wednesday</button>
+            <button class="day-btn rest" onclick="showDay('thursday')">Thursday</button>
+            <button class="day-btn push" onclick="showDay('friday')">Friday</button>
+            <button class="day-btn pull" onclick="showDay('saturday')">Saturday</button>
+            <button class="day-btn legs" onclick="showDay('sunday')">Sunday</button>
+          </div>
+
+          <div class="workout-content">
+            <!-- MONDAY -->
+            <div id="monday" class="day-content">
+              <h2 class="day-header-title" style="color:#DC5555;">MONDAY</h2>
+              <div class="day-label-title push">PUSH (HEAVY)</div>
+              <ul class="exercises-list">
+                <li class="exercise-item" onclick="toggleExercise(this)">
+                  <div class="checkbox"></div>
+                  <div class="exercise-text">Barbell Bench Press – 4×5–6</div>
+                </li>
+                <li class="exercise-item" onclick="toggleExercise(this)">
+                  <div class="checkbox"></div>
+                  <div class="exercise-text">Incline Dumbbell Press – 3×6–8</div>
+                </li>
+                <li class="exercise-item" onclick="toggleExercise(this)">
+                  <div class="checkbox"></div>
+                  <div class="exercise-text">Overhead Barbell Press – 3×6–8</div>
+                </li>
+                <li class="exercise-item" onclick="toggleExercise(this)">
+                  <div class="checkbox"></div>
+                  <div class="exercise-text">Dumbbell Lateral Raise – 3×12–15</div>
+                </li>
+                <li class="exercise-item" onclick="toggleExercise(this)">
+                  <div class="checkbox"></div>
+                  <div class="exercise-text">Rear Delt Fly – 3×12–15</div>
+                </li>
+                <li class="exercise-item" onclick="toggleExercise(this)">
+                  <div class="checkbox"></div>
+                  <div class="exercise-text">Weighted Dips – 3×6–8</div>
+                </li>
+                <li class="exercise-item" onclick="toggleExercise(this)">
+                  <div class="checkbox"></div>
+                  <div class="exercise-text">Triceps Pushdown – 3×10–12</div>
+                </li>
+                <li class="exercise-item" onclick="toggleExercise(this)">
+                  <div class="checkbox"></div>
+                  <div class="exercise-text">Cable Crunch – 3×15</div>
+                </li>
+              </ul>
+              <div class="completion-message" id="monday-complete">
+                🎉 MONDAY WORKOUT COMPLETE! Great job! 💪
+              </div>
+            </div>
+
+            <!-- TUESDAY -->
+            <div id="tuesday" class="day-content hidden">
+              <h2 class="day-header-title" style="color:#17A2B8;">TUESDAY</h2>
+              <div class="day-label-title pull">PULL (HEAVY)</div>
+              <ul class="exercises-list">
+                <li class="exercise-item" onclick="toggleExercise(this)">
+                  <div class="checkbox"></div>
+                  <div class="exercise-text">Barbell Row – 4×6–8</div>
+                </li>
+                <li class="exercise-item" onclick="toggleExercise(this)">
+                  <div class="checkbox"></div>
+                  <div class="exercise-text">Pull-Ups or Lat Pulldown – 3×6–8</div>
+                </li>
+                <li class="exercise-item" onclick="toggleExercise(this)">
+                  <div class="checkbox"></div>
+                  <div class="exercise-text">Chest Supported Row – 3×8</div>
+                </li>
+                <li class="exercise-item" onclick="toggleExercise(this)">
+                  <div class="checkbox"></div>
+                  <div class="exercise-text">Dumbbell Shrugs – 3×12</div>
+                </li>
+                <li class="exercise-item" onclick="toggleExercise(this)">
+                  <div class="checkbox"></div>
+                  <div class="exercise-text">Face Pull – 3×12–15</div>
+                </li>
+                <li class="exercise-item" onclick="toggleExercise(this)">
+                  <div class="checkbox"></div>
+                  <div class="exercise-text">Barbell Curl – 3×8</div>
+                </li>
+                <li class="exercise-item" onclick="toggleExercise(this)">
+                  <div class="checkbox"></div>
+                  <div class="exercise-text">Hammer Curl – 3×10–12</div>
+                </li>
+                <li class="exercise-item" onclick="toggleExercise(this)">
+                  <div class="checkbox"></div>
+                  <div class="exercise-text">Hanging Leg Raise – 3×12</div>
+                </li>
+              </ul>
+              <div class="completion-message" id="tuesday-complete">
+                🎉 TUESDAY WORKOUT COMPLETE! Excellent work! 💪
+              </div>
+            </div>
+
+            <!-- WEDNESDAY -->
+            <div id="wednesday" class="day-content hidden">
+              <h2 class="day-header-title" style="color:#28A745;">WEDNESDAY</h2>
+              <div class="day-label-title legs">LEGS (HEAVY)</div>
+              <ul class="exercises-list">
+                <li class="exercise-item" onclick="toggleExercise(this)">
+                  <div class="checkbox"></div>
+                  <div class="exercise-text">Barbell Squat – 4×5–6</div>
+                </li>
+                <li class="exercise-item" onclick="toggleExercise(this)">
+                  <div class="checkbox"></div>
+                  <div class="exercise-text">Romanian Deadlift – 3×6–8</div>
+                </li>
+                <li class="exercise-item" onclick="toggleExercise(this)">
+                  <div class="checkbox"></div>
+                  <div class="exercise-text">Leg Press – 3×8–10</div>
+                </li>
+                <li class="exercise-item" onclick="toggleExercise(this)">
+                  <div class="checkbox"></div>
+                  <div class="exercise-text">Bulgarian Split Squat – 3×8–10</div>
+                </li>
+                <li class="exercise-item" onclick="toggleExercise(this)">
+                  <div class="checkbox"></div>
+                  <div class="exercise-text">Leg Curl – 3×10–12</div>
+                </li>
+                <li class="exercise-item" onclick="toggleExercise(this)">
+                  <div class="checkbox"></div>
+                  <div class="exercise-text">Standing Calf Raise – 4×15–20</div>
+                </li>
+                <li class="exercise-item" onclick="toggleExercise(this)">
+                  <div class="checkbox"></div>
+                  <div class="exercise-text">Plank – 3×45–60 sec</div>
+                </li>
+              </ul>
+              <div class="completion-message" id="wednesday-complete">
+                🎉 WEDNESDAY WORKOUT COMPLETE! Beast mode! 💪
+              </div>
+            </div>
+
+            <!-- THURSDAY -->
+            <div id="thursday" class="day-content hidden">
+              <h2 class="day-header-title" style="color:#6c757d;">THURSDAY</h2>
+              <div class="day-label-title" style="background:rgba(108,117,125,0.1);border:3px solid #6c757d;color:#6c757d;">
+                REST & ACTIVE RECOVERY
+              </div>
+              <div class="rest-content">
+                <div class="rest-item">✓ 10–12k Steps</div>
+                <div class="rest-item">✓ Stretching</div>
+                <div class="rest-item">✓ Stomach Vacuum 3×30 sec</div>
+                <p style="margin-top:30px;font-size:18px;color:#6c757d;font-weight:600;">
+                  Rest day is crucial for recovery and muscle growth. Take it easy!
+                </p>
+              </div>
+            </div>
+
+            <!-- FRIDAY -->
+            <div id="friday" class="day-content hidden">
+              <h2 class="day-header-title" style="color:#DC5555;">FRIDAY</h2>
+              <div class="day-label-title push">PUSH (HYPERTROPHY)</div>
+              <ul class="exercises-list">
+                <li class="exercise-item" onclick="toggleExercise(this)">
+                  <div class="checkbox"></div>
+                  <div class="exercise-text">Incline Machine Press – 3×10–12</div>
+                </li>
+                <li class="exercise-item" onclick="toggleExercise(this)">
+                  <div class="checkbox"></div>
+                  <div class="exercise-text">Flat Dumbbell Press – 3×10–12</div>
+                </li>
+                <li class="exercise-item" onclick="toggleExercise(this)">
+                  <div class="checkbox"></div>
+                  <div class="exercise-text">Cable Chest Fly (Low to High) – 3×12–15</div>
+                </li>
+                <li class="exercise-item" onclick="toggleExercise(this)">
+                  <div class="checkbox"></div>
+                  <div class="exercise-text">Dumbbell Shoulder Press – 3×10</div>
+                </li>
+                <li class="exercise-item" onclick="toggleExercise(this)">
+                  <div class="checkbox"></div>
+                  <div class="exercise-text">Cable Lateral Raise – 3×15</div>
+                </li>
+                <li class="exercise-item" onclick="toggleExercise(this)">
+                  <div class="checkbox"></div>
+                  <div class="exercise-text">Rear Delt Fly – 3×15</div>
+                </li>
+                <li class="exercise-item" onclick="toggleExercise(this)">
+                  <div class="checkbox"></div>
+                  <div class="exercise-text">Skull Crushers – 3×12</div>
+                </li>
+                <li class="exercise-item" onclick="toggleExercise(this)">
+                  <div class="checkbox"></div>
+                  <div class="exercise-text">Overhead Triceps Extension – 3×12</div>
+                </li>
+                <li class="exercise-item" onclick="toggleExercise(this)">
+                  <div class="checkbox"></div>
+                  <div class="exercise-text">Decline Sit-Ups – 3×15</div>
+                </li>
+              </ul>
+              <div class="completion-message" id="friday-complete">
+                🎉 FRIDAY WORKOUT COMPLETE! Amazing effort! 💪
+              </div>
+            </div>
+
+            <!-- SATURDAY -->
+            <div id="saturday" class="day-content hidden">
+              <h2 class="day-header-title" style="color:#17A2B8;">SATURDAY</h2>
+              <div class="day-label-title pull">PULL (HYPERTROPHY)</div>
+              <ul class="exercises-list">
+                <li class="exercise-item" onclick="toggleExercise(this)">
+                  <div class="checkbox"></div>
+                  <div class="exercise-text">Lat Pulldown (Wide) – 3×10–12</div>
+                </li>
+                <li class="exercise-item" onclick="toggleExercise(this)">
+                  <div class="checkbox"></div>
+                  <div class="exercise-text">Seated Cable Row – 3×10–12</div>
+                </li>
+                <li class="exercise-item" onclick="toggleExercise(this)">
+                  <div class="checkbox"></div>
+                  <div class="exercise-text">Single Arm Dumbbell Row – 3×12</div>
+                </li>
+                <li class="exercise-item" onclick="toggleExercise(this)">
+                  <div class="checkbox"></div>
+                  <div class="exercise-text">Face Pull – 3×15</div>
+                </li>
+                <li class="exercise-item" onclick="toggleExercise(this)">
+                  <div class="checkbox"></div>
+                  <div class="exercise-text">Incline Dumbbell Curl – 3×12</div>
+                </li>
+                <li class="exercise-item" onclick="toggleExercise(this)">
+                  <div class="checkbox"></div>
+                  <div class="exercise-text">Cable Curl – 3×12</div>
+                </li>
+                <li class="exercise-item" onclick="toggleExercise(this)">
+                  <div class="checkbox"></div>
+                  <div class="exercise-text">Wrist Curls – 2×15</div>
+                </li>
+                <li class="exercise-item" onclick="toggleExercise(this)">
+                  <div class="checkbox"></div>
+                  <div class="exercise-text">Pallof Press – 3×12 each side</div>
+                </li>
+                <li class="exercise-item" onclick="toggleExercise(this)">
+                  <div class="checkbox"></div>
+                  <div class="exercise-text">Russian Twists – 3×20</div>
+                </li>
+                <li class="exercise-item" onclick="toggleExercise(this)">
+                  <div class="checkbox"></div>
+                  <div class="exercise-text">Reverse Crunch – 3×15</div>
+                </li>
+              </ul>
+              <div class="completion-message" id="saturday-complete">
+                🎉 SATURDAY WORKOUT COMPLETE! Keep crushing it! 💪
+              </div>
+            </div>
+
+            <!-- SUNDAY -->
+            <div id="sunday" class="day-content hidden">
+              <h2 class="day-header-title" style="color:#28A745;">SUNDAY</h2>
+              <div class="day-label-title legs">LEGS (HYPERTROPHY + CORE)</div>
+              <ul class="exercises-list">
+                <li class="exercise-item" onclick="toggleExercise(this)">
+                  <div class="checkbox"></div>
+                  <div class="exercise-text">Front Squat – 3×8–10</div>
+                </li>
+                <li class="exercise-item" onclick="toggleExercise(this)">
+                  <div class="checkbox"></div>
+                  <div class="exercise-text">Walking Lunges – 3×12</div>
+                </li>
+                <li class="exercise-item" onclick="toggleExercise(this)">
+                  <div class="checkbox"></div>
+                  <div class="exercise-text">Leg Extension – 3×15</div>
+                </li>
+                <li class="exercise-item" onclick="toggleExercise(this)">
+                  <div class="checkbox"></div>
+                  <div class="exercise-text">Leg Curl – 3×15</div>
+                </li>
+                <li class="exercise-item" onclick="toggleExercise(this)">
+                  <div class="checkbox"></div>
+                  <div class="exercise-text">Hip Thrust – 3×10–12</div>
+                </li>
+                <li class="exercise-item" onclick="toggleExercise(this)">
+                  <div class="checkbox"></div>
+                  <div class="exercise-text">Back Extension – 3×12</div>
+                </li>
+                <li class="exercise-item" onclick="toggleExercise(this)">
+                  <div class="checkbox"></div>
+                  <div class="exercise-text">Seated Calf Raise – 4×20</div>
+                </li>
+                <li class="exercise-item" onclick="toggleExercise(this)">
+                  <div class="checkbox"></div>
+                  <div class="exercise-text">Band Lateral Walk – 2×15</div>
+                </li>
+                <li class="exercise-item" onclick="toggleExercise(this)">
+                  <div class="checkbox"></div>
+                  <div class="exercise-text">Hanging Leg Raise – 3×12</div>
+                </li>
+                <li class="exercise-item" onclick="toggleExercise(this)">
+                  <div class="checkbox"></div>
+                  <div class="exercise-text">Side Plank – 3×40 sec</div>
+                </li>
+                <li class="exercise-item" onclick="toggleExercise(this)">
+                  <div class="checkbox"></div>
+                  <div class="exercise-text">Ab Wheel Rollout – 3×10–12</div>
+                </li>
+              </ul>
+              <div class="completion-message" id="sunday-complete">
+                🎉 SUNDAY WORKOUT COMPLETE! Week finished strong! 💪
+              </div>
+            </div>
+          </div>
+
+          <button class="reset-btn" onclick="resetProgress()">🔄 Reset All Progress</button>
+        </div>
+        <!-- END: Nabin Workout Tracker -->
+      </div>
+    </div>
   </section>
 
   <!-- CONTACT -->
@@ -892,7 +1264,8 @@
             <a href="#journey">Journey</a>
             <a href="#gallery">Gallery</a>
             <a href="#memo">Memo</a>
-          </div>
+             <!-- NEW -->
+  <a href="#gym">Gym Schedule</a>
           <div class="copyright">© <span id="yr"></span> Nabin Bist. Built with discipline.</div>
         </div>
 
@@ -970,5 +1343,86 @@
       alert("Mobile menu: tap any section: About, Journey, Gallery, Tips, Memo, Contact.\n\nTip: On phone, scroll — this site is designed for scroll.");
     });
   </script>
+    <script>
+    // === WORKOUT TRACKER LOGIC ===
+    let currentDay = 'monday';
+
+    function showDay(day) {
+      const allDays = document.querySelectorAll('.day-content');
+      allDays.forEach(d => d.classList.add('hidden'));
+
+      document.getElementById(day).classList.remove('hidden');
+      currentDay = day;
+
+      const allButtons = document.querySelectorAll('.day-btn');
+      allButtons.forEach(btn => btn.classList.remove('active'));
+
+      const clickedButton = Array.from(allButtons).find(btn =>
+        btn.textContent.toLowerCase().includes(day)
+      );
+      if (clickedButton) {
+        clickedButton.classList.add('active');
+      }
+
+      updateProgress();
+    }
+
+    function toggleExercise(element) {
+      element.classList.toggle('completed');
+
+      if (element.classList.contains('completed')) {
+        setTimeout(() => {
+          element.classList.add('hidden');
+          updateProgress();
+        }, 500);
+      }
+
+      updateProgress();
+    }
+
+    function updateProgress() {
+      const currentDayElement = document.getElementById(currentDay);
+      const exercises = currentDayElement.querySelectorAll('.exercise-item:not(.hidden)');
+      const completed = currentDayElement.querySelectorAll('.exercise-item.completed:not(.hidden)').length;
+      const total = exercises.length;
+
+      const bar = document.getElementById('progressBar');
+      const text = document.getElementById('progressText');
+
+      if (total === 0 && currentDay !== 'thursday') {
+        const completionMsg = document.getElementById(currentDay + '-complete');
+        if (completionMsg) completionMsg.classList.add('show');
+        bar.style.width = '100%';
+        bar.textContent = '100%';
+        text.textContent = '🎉 Workout Complete!';
+      } else if (currentDay === 'thursday') {
+        bar.style.width = '100%';
+        bar.textContent = 'Rest Day';
+        text.textContent = 'Recovery day – take it easy!';
+      } else {
+        const percentage = total > 0 ? Math.round((completed / total) * 100) : 0;
+        bar.style.width = percentage + '%';
+        bar.textContent = percentage + '%';
+        text.textContent = `${completed} of ${total} exercises completed`;
+      }
+    }
+
+    function resetProgress() {
+      if (confirm('Are you sure you want to reset all progress? This will uncheck all exercises.')) {
+        const allExercises = document.querySelectorAll('.exercise-item');
+        allExercises.forEach(ex => ex.classList.remove('completed', 'hidden'));
+
+        const allCompletions = document.querySelectorAll('.completion-message');
+        allCompletions.forEach(msg => msg.classList.remove('show'));
+
+        updateProgress();
+      }
+    }
+
+    window.addEventListener('load', () => {
+      updateProgress();
+    });
+  </script>
+
 </body>
 </html>
