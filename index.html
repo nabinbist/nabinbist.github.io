@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Nabin Bist — Personal Stories • Travel • Fitness</title>
-  <meta name="description" content="Nabin Bist — a personal site with stories, travel, fitness, photos, tips, and a living memo." />
+  <title>Nabin Bist — Stories • Travel • Fitness</title>
+  <meta name="description" content="Nabin Bist — stories, travel, fitness, photos, and a living memo." />
   <meta name="theme-color" content="#070A0F" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,20 +13,22 @@
 
   <style>
     :root{
-      --bg:#070A0F;
+      --bg:#06070D;
       --bg2:#0B1020;
-      --card:rgba(255,255,255,.06);
+      --card:rgba(255,255,255,.05);
       --stroke:rgba(255,255,255,.10);
       --text:rgba(255,255,255,.92);
       --muted:rgba(255,255,255,.70);
       --muted2:rgba(255,255,255,.55);
-      --accent:#22D3EE;
-      --accent2:#A78BFA;
-      --shadow: 0 20px 60px rgba(0,0,0,.45);
-      --shadow2: 0 12px 35px rgba(0,0,0,.35);
-      --radius: 18px;
-      --radius2: 26px;
-      --max: 1120px;
+      --c1:#22D3EE;
+      --c2:#A78BFA;
+      --c3:#60A5FA;
+      --shadow: 0 30px 120px rgba(0,0,0,.65);
+      --shadow2: 0 16px 50px rgba(0,0,0,.45);
+      --r:18px;
+      --r2:26px;
+      --max:1120px;
+      --navH:72px;
     }
 
     *{box-sizing:border-box}
@@ -37,46 +39,66 @@
       font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
       color:var(--text);
       background:
-        radial-gradient(1200px 600px at 18% 12%, rgba(34,211,238,.14), transparent 55%),
-        radial-gradient(900px 500px at 88% 22%, rgba(167,139,250,.13), transparent 50%),
-        radial-gradient(800px 500px at 60% 90%, rgba(245,158,11,.10), transparent 55%),
-        linear-gradient(180deg, var(--bg), #05060A 55%, #04040A);
+        radial-gradient(1200px 700px at 18% 12%, rgba(34,211,238,.16), transparent 55%),
+        radial-gradient(1000px 650px at 88% 18%, rgba(167,139,250,.14), transparent 55%),
+        radial-gradient(900px 650px at 60% 92%, rgba(96,165,250,.10), transparent 55%),
+        linear-gradient(180deg, var(--bg), #04050A 60%, #03040A);
       overflow-x:hidden;
     }
+    body.lock{overflow:hidden; touch-action:none}
     a{color:inherit; text-decoration:none}
     .wrap{max-width:var(--max); margin:0 auto; padding:0 20px}
+    section, main, footer{scroll-margin-top: calc(var(--navH) + 16px);}
+
+    /* subtle noise */
+    .noise{
+      pointer-events:none;
+      position:fixed;
+      inset:0;
+      opacity:.06;
+      mix-blend-mode: overlay;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E");
+      z-index:1;
+    }
 
     /* NAV */
     .nav{
       position:fixed; left:0; right:0; top:0;
       z-index:50;
-      backdrop-filter: blur(14px);
-      background: linear-gradient(180deg, rgba(5,6,10,.78), rgba(5,6,10,.35));
+      backdrop-filter: blur(16px);
+      background: linear-gradient(180deg, rgba(5,6,10,.78), rgba(5,6,10,.30));
       border-bottom:1px solid rgba(255,255,255,.08);
     }
     .nav .inner{
       display:flex; align-items:center; justify-content:space-between;
       gap:12px; padding:14px 0;
+      min-height:var(--navH);
     }
-    .brand{
-      display:flex; align-items:center; gap:10px;
-      font-weight:800; letter-spacing:.5px;
-    }
+    .brand{display:flex; align-items:center; gap:10px; font-weight:900; letter-spacing:.08em}
     .logo{
       width:38px; height:38px; border-radius:14px;
       background:
-        radial-gradient(12px 12px at 30% 30%, rgba(255,255,255,.28), transparent 60%),
+        radial-gradient(12px 12px at 30% 30%, rgba(255,255,255,.25), transparent 60%),
         linear-gradient(135deg, rgba(34,211,238,.95), rgba(167,139,250,.92));
-      box-shadow: 0 12px 30px rgba(34,211,238,.20);
       border:1px solid rgba(255,255,255,.14);
+      box-shadow: 0 12px 40px rgba(34,211,238,.22);
     }
     .menu{
-      display:flex; align-items:center; gap:12px;
-      font-weight:700; font-size:14px;
+      display:flex; align-items:center; gap:10px;
+      font-weight:800; font-size:13px;
       color:rgba(255,255,255,.82);
     }
-    .menu a{padding:10px 10px; border-radius:12px; transition:.18s ease}
-    .menu a:hover{background:rgba(255,255,255,.06)}
+    .menu a{
+      padding:10px 10px; border-radius:12px;
+      transition:.18s ease;
+      border:1px solid transparent;
+    }
+    .menu a:hover{
+      background:rgba(255,255,255,.06);
+      border-color: rgba(255,255,255,.10);
+      box-shadow: 0 0 30px rgba(34,211,238,.10);
+    }
+
     .cta{display:flex; align-items:center; gap:10px}
     .btn{
       border:1px solid rgba(255,255,255,.14);
@@ -84,11 +106,14 @@
       color:rgba(255,255,255,.92);
       padding:10px 12px;
       border-radius:14px;
-      font-weight:800;
+      font-weight:900;
       font-size:14px;
       transition:.18s ease;
       cursor:pointer;
-      box-shadow: 0 10px 28px rgba(0,0,0,.22);
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+      user-select:none;
+      box-shadow: 0 10px 28px rgba(0,0,0,.18);
     }
     .btn:hover{transform: translateY(-1px); background:rgba(255,255,255,.09)}
     .btn.primary{
@@ -96,113 +121,148 @@
       border:1px solid rgba(255,255,255,.18);
       color:#061018;
     }
-    .btn.primary:hover{filter:brightness(1.03)}
+    .btn.primary:hover{filter:brightness(1.05)}
     .burger{display:none}
 
-    /* Mobile drawer */
-    .drawerMask{
-      position:fixed; inset:0; z-index:80;
-      display:none;
-      background:rgba(0,0,0,.55);
-      backdrop-filter: blur(6px);
-    }
-    .drawerMask.open{display:block}
-    .drawer{
-      position:fixed; top:0; right:-360px; height:100vh; width:min(360px, 86vw);
-      z-index:90;
-      background: rgba(10,12,18,.92);
-      border-left:1px solid rgba(255,255,255,.10);
-      box-shadow: var(--shadow);
-      transition: right .28s ease;
-      padding:14px;
-      display:flex; flex-direction:column; gap:10px;
-    }
-    .drawer.open{right:0}
-    .drawerTop{
-      display:flex; align-items:center; justify-content:space-between;
-      padding:8px 6px 12px;
-      border-bottom:1px solid rgba(255,255,255,.10);
-    }
-    .drawerTop b{font-weight:900; letter-spacing:.04em}
-    .drawer a{
-      padding:12px 12px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.05);
-      font-weight:800;
-      color: rgba(255,255,255,.86);
-      transition:.18s ease;
-    }
-    .drawer a:hover{transform: translateY(-1px); background: rgba(255,255,255,.08)}
-    .drawer .row{display:flex; gap:10px}
-    .drawer .row a{flex:1; text-align:center}
-
     /* HERO */
-    .hero{padding-top:84px; min-height:100vh; display:grid; align-items:center}
+    .hero{padding-top:calc(var(--navH) + 18px); min-height:100vh; display:grid; align-items:center; position:relative; z-index:2;}
     .heroGrid{display:grid; grid-template-columns: 1.1fr .9fr; gap:18px; align-items:stretch}
-    .heroCard{
+    .cardBig{
       border:1px solid rgba(255,255,255,.10);
-      border-radius: var(--radius2);
+      border-radius: var(--r2);
       overflow:hidden;
       box-shadow: var(--shadow);
       background: rgba(255,255,255,.04);
       position:relative;
-      transform: translateY(8px);
-      animation: floatIn .8s ease forwards;
+      min-height:540px;
+      transform: translateY(12px);
+      opacity:0;
+      transition:.7s ease;
     }
-    @keyframes floatIn{to{transform: translateY(0)}}
-    .heroCard.big{min-height:540px}
-    .heroImg{position:absolute; inset:0; background-size:cover; background-position:center; transform: scale(1.02); filter:saturate(1.06) contrast(1.06)}
-    .heroOverlay{
+    .cardBig.in{transform: translateY(0); opacity:1}
+    .bgImg{position:absolute; inset:0; background-size:cover; background-position:center; transform: scale(1.04); filter:saturate(1.05) contrast(1.06)}
+    .shade{
       position:absolute; inset:0;
       background:
-        radial-gradient(900px 600px at 20% 18%, rgba(34,211,238,.25), transparent 55%),
-        radial-gradient(900px 600px at 80% 28%, rgba(167,139,250,.24), transparent 55%),
-        linear-gradient(180deg, rgba(0,0,0,.45), rgba(0,0,0,.72));
+        radial-gradient(900px 650px at 20% 16%, rgba(34,211,238,.25), transparent 55%),
+        radial-gradient(900px 650px at 80% 26%, rgba(167,139,250,.22), transparent 55%),
+        linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.78));
     }
-    .heroContent{position:relative; padding:34px 32px; display:flex; flex-direction:column; justify-content:flex-end; gap:16px; min-height:540px}
-    .kicker{display:inline-flex; align-items:center; gap:10px; font-size:12px; font-weight:900; letter-spacing:.22em; text-transform:uppercase; color: rgba(255,255,255,.80)}
-    .dot{width:10px; height:10px; border-radius:999px; background: linear-gradient(135deg, var(--accent), var(--accent2)); box-shadow: 0 0 0 6px rgba(34,211,238,.10)}
-    .title{font-size: clamp(38px, 5vw, 64px); line-height: 1.02; letter-spacing:-.03em; margin:0; font-weight: 900; text-shadow: 0 18px 60px rgba(0,0,0,.55)}
-    .title span{background: linear-gradient(135deg, rgba(34,211,238,.95), rgba(167,139,250,.95)); -webkit-background-clip:text; background-clip:text; color:transparent}
-    .sub{margin:0; max-width:54ch; font-size:16px; line-height:1.55; color: rgba(255,255,255,.80)}
+    .content{
+      position:relative;
+      padding:34px 32px;
+      display:flex;
+      flex-direction:column;
+      justify-content:flex-end;
+      gap:16px;
+      min-height:540px;
+    }
+    .kicker{
+      display:inline-flex; align-items:center; gap:10px;
+      font-size:12px; font-weight:900;
+      letter-spacing:.24em; text-transform:uppercase;
+      color: rgba(255,255,255,.80);
+    }
+    .dot{
+      width:10px; height:10px; border-radius:999px;
+      background: linear-gradient(135deg, var(--c1), var(--c2));
+      box-shadow: 0 0 0 6px rgba(34,211,238,.10), 0 0 26px rgba(34,211,238,.18);
+    }
+    .title{
+      font-size: clamp(38px, 5vw, 64px);
+      line-height: 1.02;
+      letter-spacing:-.03em;
+      margin:0;
+      font-weight: 900;
+      text-shadow: 0 18px 70px rgba(0,0,0,.60);
+    }
+    .grad{
+      background: linear-gradient(135deg, rgba(34,211,238,.98), rgba(167,139,250,.98));
+      -webkit-background-clip:text; background-clip:text;
+      color:transparent;
+    }
+    .sub{
+      margin:0;
+      max-width:60ch;
+      font-size:16px;
+      line-height:1.55;
+      color: rgba(255,255,255,.80);
+    }
     .heroActions{display:flex; flex-wrap:wrap; gap:10px; margin-top:6px}
-    .pillRow{display:flex; gap:10px; flex-wrap:wrap; margin-top:8px}
-    .pill{display:inline-flex; align-items:center; gap:8px; padding:10px 12px; border-radius:999px; border:1px solid rgba(255,255,255,.14); background: rgba(255,255,255,.06); font-weight:800; color: rgba(255,255,255,.82); font-size:13px}
-    .pill b{color:rgba(255,255,255,.92)}
+    .pills{display:flex; gap:10px; flex-wrap:wrap; margin-top:8px}
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:10px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      font-weight:900;
+      color: rgba(255,255,255,.84);
+      font-size:13px
+    }
+    .pStrong{color:rgba(255,255,255,.94)}
+
     .heroSide{display:grid; grid-template-rows: 1fr 1fr; gap:18px}
-    .sideCard{border-radius: var(--radius2); border:1px solid rgba(255,255,255,.10); overflow:hidden; background: rgba(255,255,255,.04); box-shadow: var(--shadow2); position:relative; min-height:260px}
-    .sideContent{position:absolute; inset:0; padding:22px; display:flex; flex-direction:column; justify-content:flex-end; gap:10px; background: linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.74))}
+    .side{
+      border-radius: var(--r2);
+      border:1px solid rgba(255,255,255,.10);
+      overflow:hidden;
+      background: rgba(255,255,255,.04);
+      box-shadow: var(--shadow2);
+      position:relative;
+      min-height:260px;
+      transform: translateY(12px);
+      opacity:0;
+      transition:.7s ease;
+    }
+    .side.in{transform: translateY(0); opacity:1}
+    .sideOverlay{
+      position:absolute; inset:0; padding:22px;
+      display:flex; flex-direction:column; justify-content:flex-end; gap:10px;
+      background: linear-gradient(180deg, rgba(0,0,0,.10), rgba(0,0,0,.78));
+    }
     .sideTitle{margin:0; font-size:18px; font-weight:900; letter-spacing:-.02em}
     .sideText{margin:0; color: rgba(255,255,255,.76); font-size:14px; line-height:1.45}
 
-    /* Sections */
-    section{padding: 80px 0}
+    /* SECTIONS */
+    section{padding: 84px 0; position:relative; z-index:2}
     .sectionHead{display:flex; align-items:flex-end; justify-content:space-between; gap:14px; margin-bottom:18px}
     .h2{margin:0; font-size: clamp(26px, 3.2vw, 40px); letter-spacing:-.03em; font-weight: 900}
     .lead{margin:0; color: var(--muted); max-width: 62ch; line-height:1.55; font-size:15px}
 
     .grid3{display:grid; grid-template-columns: repeat(3, 1fr); gap:14px}
     .card{
-      border-radius: var(--radius);
+      border-radius: var(--r);
       border:1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.05);
       padding:18px;
-      box-shadow: 0 18px 50px rgba(0,0,0,.30);
+      box-shadow: 0 18px 60px rgba(0,0,0,.32);
       transition: .22s ease;
       position:relative;
       overflow:hidden;
       min-height: 170px;
     }
-    .card:hover{transform: translateY(-3px); background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.14)}
+    .card::before{
+      content:"";
+      position:absolute; inset:-2px;
+      background: radial-gradient(500px 300px at 30% 0%, rgba(34,211,238,.18), transparent 55%);
+      opacity:.9;
+      pointer-events:none;
+    }
+    .card:hover{
+      transform: translateY(-4px);
+      background: rgba(255,255,255,.07);
+      border-color: rgba(255,255,255,.14);
+      box-shadow: 0 28px 90px rgba(0,0,0,.44), 0 0 40px rgba(34,211,238,.10);
+    }
     .tag{display:inline-flex; align-items:center; gap:8px; font-size:12px; font-weight:900; letter-spacing:.14em; text-transform:uppercase; color: rgba(255,255,255,.72)}
-    .tag i{width:10px; height:10px; border-radius:999px; display:inline-block; background: linear-gradient(135deg, var(--accent), var(--accent2))}
-    .card h3{margin:10px 0 6px; font-size:18px; font-weight:900; letter-spacing:-.02em}
-    .card p{margin:0; color: var(--muted); font-size:14px; line-height:1.55}
+    .tag i{width:10px; height:10px; border-radius:999px; display:inline-block; background: linear-gradient(135deg, var(--c1), var(--c2))}
+    .card h3{margin:10px 0 6px; font-size:18px; font-weight:900; letter-spacing:-.02em; position:relative}
+    .card p{margin:0; color: var(--muted); font-size:14px; line-height:1.55; position:relative}
 
     .story{display:grid; grid-template-columns: 1fr 1fr; gap:16px}
     .storyBlock{
-      border-radius: var(--radius2);
+      border-radius: var(--r2);
       border:1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.04);
       overflow:hidden;
@@ -210,11 +270,13 @@
       position:relative;
       box-shadow: var(--shadow2);
       cursor:pointer;
-      transition: transform .22s ease;
+      transition: transform .22s ease, box-shadow .22s ease;
     }
-    .storyBlock:hover{transform: translateY(-3px)}
-    .storyImg{position:absolute; inset:0; background-size:cover; background-position:center; filter:saturate(1.05) contrast(1.05); transform: scale(1.02)}
-    .storyShade{position:absolute; inset:0; background: linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.80))}
+    .storyBlock:hover{
+      transform: translateY(-4px);
+      box-shadow: 0 30px 100px rgba(0,0,0,.55), 0 0 40px rgba(167,139,250,.12);
+    }
+    .storyShade{position:absolute; inset:0; background: linear-gradient(180deg, rgba(0,0,0,.10), rgba(0,0,0,.82))}
     .storyText{position:relative; padding:22px; display:flex; flex-direction:column; justify-content:flex-end; gap:10px; min-height:360px}
     .storyText h3{margin:0; font-size:22px; font-weight:900; letter-spacing:-.02em}
     .quote{margin:0; color: rgba(255,255,255,.80); line-height:1.6; font-size:14.5px; max-width: 58ch}
@@ -223,20 +285,28 @@
 
     .gallery{display:grid; grid-template-columns: 1.25fr .75fr .75fr; grid-template-rows: 240px 240px; gap:14px}
     .g{
-      border-radius: var(--radius2);
+      border-radius: var(--r2);
       border:1px solid rgba(255,255,255,.10);
       overflow:hidden;
       position:relative;
       cursor:pointer;
       box-shadow: var(--shadow2);
       background: rgba(255,255,255,.03);
-      transition: transform .22s ease;
+      transition: transform .22s ease, box-shadow .22s ease;
     }
-    .g:hover{transform: translateY(-3px)}
-    .g .img{position:absolute; inset:0; background-size:cover; background-position:center; transition: transform .35s ease, filter .35s ease; filter:saturate(1.02) contrast(1.03)}
-    .g:hover .img{transform: scale(1.06); filter:saturate(1.10) contrast(1.08)}
-    .g .cap{position:absolute; left:14px; right:14px; bottom:14px; padding:12px; border-radius: 16px; border:1px solid rgba(255,255,255,.12); background: linear-gradient(180deg, rgba(0,0,0,.25), rgba(0,0,0,.55)); backdrop-filter: blur(10px); font-weight:900; display:flex; justify-content:space-between; align-items:center; gap:10px}
-    .cap small{font-weight:700; color: rgba(255,255,255,.72)}
+    .g:hover{transform: translateY(-4px); box-shadow: 0 30px 100px rgba(0,0,0,.55), 0 0 40px rgba(34,211,238,.12)}
+    .g .img{position:absolute; inset:0; background-size:cover; background-position:center; transition: transform .45s ease, filter .45s ease; filter:saturate(1.02) contrast(1.03)}
+    .g:hover .img{transform: scale(1.07); filter:saturate(1.12) contrast(1.08)}
+    .g .cap{
+      position:absolute; left:14px; right:14px; bottom:14px;
+      padding:12px; border-radius: 16px;
+      border:1px solid rgba(255,255,255,.12);
+      background: linear-gradient(180deg, rgba(0,0,0,.20), rgba(0,0,0,.55));
+      backdrop-filter: blur(12px);
+      font-weight:900;
+      display:flex; justify-content:space-between; align-items:center; gap:10px
+    }
+    .cap small{font-weight:800; color: rgba(255,255,255,.70)}
     .g.big{grid-row: span 2}
 
     .twoCol{display:grid; grid-template-columns: 1fr 1fr; gap:14px; align-items:stretch}
@@ -248,17 +318,18 @@
       padding: 34px 0 50px;
       border-top:1px solid rgba(255,255,255,.08);
       background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(0,0,0,.35));
+      position:relative; z-index:2;
     }
     .footGrid{display:grid; grid-template-columns: 1.2fr .8fr; gap:14px}
-    .footCard{border-radius: var(--radius2); border:1px solid rgba(255,255,255,.10); background: rgba(255,255,255,.04); padding:18px}
+    .footCard{border-radius: var(--r2); border:1px solid rgba(255,255,255,.10); background: rgba(255,255,255,.04); padding:18px}
     .footCard h3{margin:0 0 10px; font-size:16px; font-weight:900}
     .footCard p{margin:0; color:var(--muted); line-height:1.6; font-size:14px}
     .footLinks{display:flex; flex-wrap:wrap; gap:10px; margin-top:12px}
     .footLinks a{padding:10px 12px; border-radius:14px; border:1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.05); font-weight:900; font-size:13px; color: rgba(255,255,255,.84)}
     .copyright{margin-top:14px; color: rgba(255,255,255,.55); font-size: 12.5px}
 
-    /* Modal */
-    .modal{position:fixed; inset:0; z-index:100; display:none; background: rgba(0,0,0,.72); backdrop-filter: blur(10px); align-items:center; justify-content:center; padding:18px}
+    /* MODAL */
+    .modal{position:fixed; inset:0; z-index:1200; display:none; background: rgba(0,0,0,.72); backdrop-filter: blur(10px); align-items:center; justify-content:center; padding:18px}
     .modal.open{display:flex}
     .modalBox{width:min(980px, 100%); border-radius: 22px; border:1px solid rgba(255,255,255,.14); background: rgba(10,12,18,.75); overflow:hidden; box-shadow: var(--shadow)}
     .modalTop{display:flex; align-items:center; justify-content:space-between; padding:14px; border-bottom:1px solid rgba(255,255,255,.10)}
@@ -266,9 +337,176 @@
     .close{border:1px solid rgba(255,255,255,.14); background: rgba(255,255,255,.06); color: rgba(255,255,255,.88); border-radius: 14px; padding:10px 12px; font-weight:900; cursor:pointer}
     .modalImg{width:100%; aspect-ratio: 16/9; background-size:cover; background-position:center}
 
-    /* Reveal */
-    .reveal{opacity:0; transform: translateY(18px); transition: .7s ease}
+    /* REVEAL */
+    .reveal{opacity:0; transform: translateY(18px); transition: .8s cubic-bezier(.22,.61,.36,1)}
     .reveal.in{opacity:1; transform: translateY(0)}
+
+    /* ============= CYBER NEON MENU + GLITCH ============= */
+    .neoMenu{
+      position:fixed; inset:0; z-index:1100;
+      display:flex; align-items:center; justify-content:center;
+      opacity:0; pointer-events:none; transition:.35s ease;
+    }
+    .neoMenu.open{opacity:1; pointer-events:auto}
+    .neoMenu__bg{
+      position:absolute; inset:0;
+      background:
+        radial-gradient(650px 650px at var(--mx,50%) var(--my,40%), rgba(34,211,238,.22), transparent 60%),
+        radial-gradient(900px 800px at 85% 75%, rgba(167,139,250,.18), transparent 60%),
+        rgba(6,8,14,.88);
+      backdrop-filter: blur(18px);
+      transition:.25s ease;
+    }
+    .neoMenu__bg::before{
+      content:""; position:absolute; inset:-2px;
+      background: repeating-linear-gradient(to bottom, rgba(255,255,255,.06) 0px, rgba(255,255,255,.06) 1px, transparent 2px, transparent 7px);
+      opacity:.06; mix-blend-mode: overlay;
+      animation: scan 7s linear infinite;
+    }
+    @keyframes scan{from{transform: translateY(-12px)}to{transform: translateY(12px)}}
+    .neoMenu__bg::after{
+      content:""; position:absolute; inset:0;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='.25'/%3E%3C/svg%3E");
+      opacity:.07; mix-blend-mode: overlay; pointer-events:none;
+    }
+
+    .neoMenu__panel{
+      position:relative;
+      width:min(520px, 92vw);
+      border-radius: 24px;
+      padding:18px 18px 16px;
+      border:1px solid rgba(255,255,255,.10);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      box-shadow: 0 40px 120px rgba(0,0,0,.65), 0 0 80px rgba(34,211,238,.10);
+      transform: translateY(14px) scale(.98);
+      opacity:0;
+      transition: .38s cubic-bezier(.22,.61,.36,1);
+      overflow:hidden;
+    }
+    .neoMenu__panel::before{
+      content:""; position:absolute; inset:-2px;
+      background: linear-gradient(135deg, rgba(34,211,238,.55), rgba(167,139,250,.45), rgba(34,211,238,.25));
+      opacity:.22; filter: blur(14px); pointer-events:none;
+    }
+    .neoMenu.open .neoMenu__panel{transform: translateY(0) scale(1); opacity:1}
+
+    .neoMenu__top{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:14px; padding:8px 6px 14px;
+      border-bottom:1px solid rgba(255,255,255,.10);
+    }
+    .neoMenu__brand{display:flex; align-items:center; gap:10px}
+    .neoDot{
+      width:10px; height:10px; border-radius:999px;
+      background: linear-gradient(135deg, rgba(34,211,238,.95), rgba(167,139,250,.95));
+      box-shadow: 0 0 0 6px rgba(34,211,238,.10), 0 0 26px rgba(34,211,238,.25);
+    }
+    .neoMenu__label{
+      font-weight:900; letter-spacing:.22em; font-size:11px;
+      color: rgba(255,255,255,.70); text-transform:uppercase;
+      position:relative;
+    }
+
+    /* glitch text */
+    .glitch{
+      position:relative;
+      display:inline-block;
+    }
+    .glitch::before, .glitch::after{
+      content: attr(data-text);
+      position:absolute; left:0; top:0;
+      width:100%;
+      opacity:.45;
+      pointer-events:none;
+      mix-blend-mode: screen;
+    }
+    .glitch::before{transform: translate(1px,0); color: rgba(34,211,238,.95); clip-path: inset(0 0 52% 0);}
+    .glitch::after{transform: translate(-1px,0); color: rgba(167,139,250,.95); clip-path: inset(48% 0 0 0);}
+    .neoMenu.open .glitch::before{animation: glitch1 1.6s infinite linear;}
+    .neoMenu.open .glitch::after{animation: glitch2 1.2s infinite linear;}
+    @keyframes glitch1{
+      0%,100%{clip-path: inset(0 0 52% 0); transform: translate(1px,0)}
+      20%{clip-path: inset(10% 0 35% 0); transform: translate(2px,-1px)}
+      40%{clip-path: inset(2% 0 60% 0); transform: translate(1px,1px)}
+      60%{clip-path: inset(15% 0 30% 0); transform: translate(3px,0)}
+      80%{clip-path: inset(0 0 52% 0); transform: translate(2px,1px)}
+    }
+    @keyframes glitch2{
+      0%,100%{clip-path: inset(48% 0 0 0); transform: translate(-1px,0)}
+      25%{clip-path: inset(55% 0 0 0); transform: translate(-3px,1px)}
+      50%{clip-path: inset(40% 0 10% 0); transform: translate(-2px,-1px)}
+      75%{clip-path: inset(60% 0 0 0); transform: translate(-4px,0)}
+    }
+
+    .neoClose{
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      color: rgba(255,255,255,.90);
+      border-radius: 999px;
+      padding:10px 14px;
+      font-weight:900;
+      cursor:pointer;
+      transition:.18s ease;
+    }
+    .neoClose:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,.09);
+      box-shadow: 0 0 28px rgba(34,211,238,.14);
+    }
+
+    .neoLinks{
+      display:flex; flex-direction:column; gap:10px;
+      padding:16px 4px 10px;
+    }
+    .neoLink{
+      position:relative;
+      display:flex; align-items:center; justify-content:space-between;
+      gap:16px; padding:14px 14px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.03);
+      border:1px solid rgba(255,255,255,.08);
+      font-weight:900; color: rgba(255,255,255,.90);
+      transform: translateY(14px); opacity:0;
+      transition: .35s cubic-bezier(.22,.61,.36,1), border-color .2s ease, background .2s ease;
+    }
+    .neoLink span{font-size:20px}
+    .neoLink i{font-style:normal; font-weight:900; font-size:12px; letter-spacing:.18em; opacity:.55}
+    .neoLink::after{
+      content:""; position:absolute; left:14px; right:14px; bottom:8px;
+      height:2px; border-radius:999px;
+      background: linear-gradient(90deg, rgba(34,211,238,.0), rgba(34,211,238,.95), rgba(167,139,250,.95), rgba(34,211,238,.0));
+      opacity:0; transform: translateY(4px); transition:.25s ease;
+    }
+    .neoLink:hover{
+      background: rgba(255,255,255,.06);
+      border-color: rgba(255,255,255,.16);
+      transform: translateY(-1px);
+      box-shadow: 0 18px 60px rgba(0,0,0,.35);
+    }
+    .neoLink:hover::after{opacity:1; transform: translateY(0)}
+    .neoMenu.open .neoLink{opacity:1; transform: translateY(0)}
+    .neoMenu.open .neoLink:nth-child(1){transition-delay:.06s}
+    .neoMenu.open .neoLink:nth-child(2){transition-delay:.10s}
+    .neoMenu.open .neoLink:nth-child(3){transition-delay:.14s}
+    .neoMenu.open .neoLink:nth-child(4){transition-delay:.18s}
+    .neoMenu.open .neoLink:nth-child(5){transition-delay:.22s}
+    .neoMenu.open .neoLink:nth-child(6){transition-delay:.26s}
+    .neoMenu.open .neoLink:nth-child(7){transition-delay:.30s}
+
+    .neoMenu__footer{
+      display:flex; justify-content:space-between; align-items:center;
+      gap:12px; padding:12px 6px 2px;
+      border-top:1px solid rgba(255,255,255,.10);
+      margin-top:8px;
+    }
+    .neoChip{
+      padding:8px 10px; border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      font-weight:900; letter-spacing:.12em; font-size:10.5px;
+      color: rgba(255,255,255,.78); text-transform:uppercase;
+    }
+    .neoHint{color: rgba(255,255,255,.55); font-weight:800; font-size:12px}
 
     /* Responsive */
     @media (max-width: 980px){
@@ -284,15 +522,20 @@
       .burger{display:inline-flex}
     }
     @media (max-width: 520px){
-      .heroContent{padding:26px 20px}
-      .heroCard.big{min-height: 560px}
-      .heroContent{min-height: 560px}
+      .content{padding:26px 20px}
+      .cardBig{min-height:560px}
+      .content{min-height:560px}
       .heroSide{grid-template-columns: 1fr}
+    }
+    @media (prefers-reduced-motion: reduce){
+      .neoMenu, .neoMenu__panel, .neoLink, .neoMenu__bg::before, .reveal{transition:none; animation:none}
     }
   </style>
 </head>
 
 <body>
+  <div class="noise" aria-hidden="true"></div>
+
   <!-- NAV -->
   <div class="nav">
     <div class="wrap">
@@ -308,52 +551,60 @@
           <a href="#gallery">Gallery</a>
           <a href="#tips">Tips</a>
           <a href="#memo">Memo</a>
-          <a href="./gym.html">Gym Schedule</a>
+          <a href="/gym.html">Gym</a>
           <a href="#contact">Contact</a>
         </nav>
 
         <div class="cta">
           <a class="btn" href="#gallery">View Photos</a>
           <a class="btn primary" href="#contact">Work With Me</a>
-          <button class="btn burger" id="burger" aria-haspopup="dialog" aria-controls="drawer" aria-expanded="false">Menu</button>
+          <button class="btn burger" id="burger" aria-haspopup="dialog" aria-expanded="false">Menu</button>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Mobile Drawer -->
-  <div class="drawerMask" id="drawerMask" aria-hidden="true"></div>
-  <aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-label="Mobile menu">
-    <div class="drawerTop">
-      <b>MENU</b>
-      <button class="btn" id="drawerClose">Close</button>
+  <!-- CYBER MENU -->
+  <div class="neoMenu" id="neoMenu" aria-hidden="true">
+    <div class="neoMenu__bg" id="neoBg"></div>
+
+    <div class="neoMenu__panel" role="dialog" aria-modal="true" aria-label="Menu">
+      <div class="neoMenu__top">
+        <div class="neoMenu__brand">
+          <span class="neoDot"></span>
+          <span class="neoMenu__label glitch" data-text="NAVIGATION">NAVIGATION</span>
+        </div>
+        <button class="neoClose" id="neoClose">Close</button>
+      </div>
+
+      <nav class="neoLinks" aria-label="Mobile navigation">
+        <a class="neoLink" href="#about"><span>About</span><i>01</i></a>
+        <a class="neoLink" href="#journey"><span>Journey</span><i>02</i></a>
+        <a class="neoLink" href="#gallery"><span>Gallery</span><i>03</i></a>
+        <a class="neoLink" href="#tips"><span>Tips</span><i>04</i></a>
+        <a class="neoLink" href="#memo"><span>Memo</span><i>05</i></a>
+        <a class="neoLink" href="/gym.html"><span>Gym Schedule</span><i>06</i></a>
+        <a class="neoLink" href="#contact"><span>Contact</span><i>07</i></a>
+      </nav>
+
+      <div class="neoMenu__footer">
+        <div class="neoChip">CYBER • GLASS • NEON</div>
+        <div class="neoHint">Tap outside or press ESC</div>
+      </div>
     </div>
-    <a class="drawerLink" href="#about">About</a>
-    <a class="drawerLink" href="#journey">Journey</a>
-    <a class="drawerLink" href="#gallery">Gallery</a>
-    <a class="drawerLink" href="#tips">Tips</a>
-    <a class="drawerLink" href="#memo">Memo</a>
-    <a class="drawerLink" href="./gym.html">Gym Schedule</a>
-    <a class="drawerLink" href="#contact">Contact</a>
-    <div class="row">
-      <a href="#gallery">Photos</a>
-      <a href="#contact">Work</a>
-    </div>
-  </aside>
+  </div>
 
   <!-- HERO -->
   <main id="top" class="hero">
     <div class="wrap">
       <div class="heroGrid">
-        <div class="heroCard big reveal">
-          <div class="heroImg" style="background-image:url('./assets/hero-eiffel.jpg')"></div>
-          <div class="heroOverlay"></div>
+        <div class="cardBig reveal">
+          <div class="bgImg" style="background-image:url('/assets/hero-eiffel.jpg')"></div>
+          <div class="shade"></div>
 
-          <div class="heroContent">
-            <div class="kicker"><span class="dot"></span> PERSONAL STORIES • TRAVEL • FITNESS • LIFE</div>
-
-            <h1 class="title">Building a life that feels <span>legendary</span>.</h1>
-
+          <div class="content">
+            <div class="kicker"><span class="dot"></span> STORIES • TRAVEL • FITNESS • LIFE SYSTEMS</div>
+            <h1 class="title">Building a life that feels <span class="grad">legendary</span>.</h1>
             <p class="sub">
               I’m Nabin. This is my digital home — stories, photos, discipline, and lessons across countries.
               No fake motivation. Only real progress.
@@ -361,30 +612,30 @@
 
             <div class="heroActions">
               <a class="btn primary" href="#journey">Start the Journey</a>
-              <a class="btn" href="#tips">Tips & Tricks</a>
+              <a class="btn" href="/gym.html">Gym Schedule</a>
               <a class="btn" href="#memo">My Memo</a>
             </div>
 
-            <div class="pillRow">
-              <div class="pill"><b>Now:</b> Europe • Growth Mode</div>
-              <div class="pill"><b>Focus:</b> Discipline + Skills</div>
-              <div class="pill"><b>Energy:</b> Quiet confidence</div>
+            <div class="pills">
+              <div class="pill"><span class="pStrong">Now:</span> Europe • Growth Mode</div>
+              <div class="pill"><span class="pStrong">Focus:</span> Discipline + Skills</div>
+              <div class="pill"><span class="pStrong">Energy:</span> Quiet confidence</div>
             </div>
           </div>
         </div>
 
         <div class="heroSide">
-          <div class="sideCard reveal">
-            <div class="heroImg" style="background-image:url('./assets/hero-lake.jpg')"></div>
-            <div class="sideContent">
+          <div class="side reveal">
+            <div class="bgImg" style="background-image:url('/assets/hero-lake.jpg')"></div>
+            <div class="sideOverlay">
               <h3 class="sideTitle">Nature is therapy.</h3>
               <p class="sideText">When the world is loud, mountains teach silence — and silence builds strength.</p>
             </div>
           </div>
 
-          <div class="sideCard reveal">
-            <div class="heroImg" style="background-image:url('./assets/travel-plane.jpg')"></div>
-            <div class="sideContent">
+          <div class="side reveal">
+            <div class="bgImg" style="background-image:url('/assets/travel-plane.jpg')"></div>
+            <div class="sideOverlay">
               <h3 class="sideTitle">Movement creates momentum.</h3>
               <p class="sideText">New cities. New lessons. Same discipline. That’s how a story upgrades.</p>
             </div>
@@ -400,27 +651,27 @@
       <div class="sectionHead reveal">
         <div>
           <h2 class="h2">Who I am</h2>
-          <p class="lead">Premium look, clean structure, and real stories. Not messy, not random.</p>
+          <p class="lead">Clean structure, premium look, real stories. Minimal noise. Maximum direction.</p>
         </div>
       </div>
 
       <div class="grid3">
         <div class="card reveal">
           <div class="tag"><i></i> Identity</div>
-          <h3>Not a perfect life. A real one.</h3>
+          <h3>Not perfect. Real.</h3>
           <p>Travel, learning, habits, wins, failures — I share the process, not the fake highlight reel.</p>
         </div>
 
         <div class="card reveal">
           <div class="tag"><i></i> Fitness</div>
-          <h3>Discipline over motivation.</h3>
+          <h3>Discipline beats motivation.</h3>
           <p>Gym + steps + simple nutrition. Repeat until it becomes your identity.</p>
         </div>
 
         <div class="card reveal">
-          <div class="tag"><i></i> Content</div>
-          <h3>Stories • photos • notes</h3>
-          <p>A clean hub for memories, lessons, and progress.</p>
+          <div class="tag"><i></i> Systems</div>
+          <h3>Simple rules, repeated.</h3>
+          <p>Small upgrades daily. That’s how a life becomes legendary.</p>
         </div>
       </div>
     </div>
@@ -438,7 +689,7 @@
 
       <div class="story">
         <div class="storyBlock reveal" data-modal-title="Paris — The Lights">
-          <div class="storyImg" style="background-image:url('./assets/hero-eiffel.jpg')"></div>
+          <div class="bgImg" style="background-image:url('/assets/hero-eiffel.jpg')"></div>
           <div class="storyShade"></div>
           <div class="storyText">
             <h3>Paris — the lights</h3>
@@ -452,7 +703,7 @@
         </div>
 
         <div class="storyBlock reveal" data-modal-title="Mountains — The Silence">
-          <div class="storyImg" style="background-image:url('./assets/hero-lake.jpg')"></div>
+          <div class="bgImg" style="background-image:url('/assets/hero-lake.jpg')"></div>
           <div class="storyShade"></div>
           <div class="storyText">
             <h3>Mountains — the silence</h3>
@@ -466,7 +717,7 @@
         </div>
 
         <div class="storyBlock reveal" data-modal-title="Airport — The Takeoff">
-          <div class="storyImg" style="background-image:url('./assets/travel-plane.jpg')"></div>
+          <div class="bgImg" style="background-image:url('/assets/travel-plane.jpg')"></div>
           <div class="storyShade"></div>
           <div class="storyText">
             <h3>Airport — the takeoff</h3>
@@ -480,7 +731,7 @@
         </div>
 
         <div class="storyBlock reveal" data-modal-title="Home — The Soft Side">
-          <div class="storyImg" style="background-image:url('./assets/cat.jpg')"></div>
+          <div class="bgImg" style="background-image:url('/assets/cat.jpg')"></div>
           <div class="storyShade"></div>
           <div class="storyText">
             <h3>Home — the soft side</h3>
@@ -507,28 +758,28 @@
       </div>
 
       <div class="gallery">
-        <div class="g big reveal" data-img="./assets/portrait-2.jpg" data-title="Portrait — Calm Power">
-          <div class="img" style="background-image:url('./assets/portrait-2.jpg')"></div>
+        <div class="g big reveal" data-img="/assets/portrait-2.jpg" data-title="Portrait — Calm Power">
+          <div class="img" style="background-image:url('/assets/portrait-2.jpg')"></div>
           <div class="cap"><span>Portrait — Calm Power</span><small>Tap</small></div>
         </div>
 
-        <div class="g reveal" data-img="./assets/city.jpg" data-title="City — Movement">
-          <div class="img" style="background-image:url('./assets/city.jpg')"></div>
+        <div class="g reveal" data-img="/assets/city.jpg" data-title="City — Movement">
+          <div class="img" style="background-image:url('/assets/city.jpg')"></div>
           <div class="cap"><span>City — Movement</span><small>Tap</small></div>
         </div>
 
-        <div class="g reveal" data-img="./assets/forest.jpg" data-title="Forest — Work Ethic">
-          <div class="img" style="background-image:url('./assets/forest.jpg')"></div>
+        <div class="g reveal" data-img="/assets/forest.jpg" data-title="Forest — Work Ethic">
+          <div class="img" style="background-image:url('/assets/forest.jpg')"></div>
           <div class="cap"><span>Forest — Work Ethic</span><small>Tap</small></div>
         </div>
 
-        <div class="g reveal" data-img="./assets/mirror.jpg" data-title="Mirror — Real Life">
-          <div class="img" style="background-image:url('./assets/mirror.jpg')"></div>
+        <div class="g reveal" data-img="/assets/mirror.jpg" data-title="Mirror — Real Life">
+          <div class="img" style="background-image:url('/assets/mirror.jpg')"></div>
           <div class="cap"><span>Mirror — Real Life</span><small>Tap</small></div>
         </div>
 
-        <div class="g reveal" data-img="./assets/portrait-1.jpg" data-title="Portrait — Identity">
-          <div class="img" style="background-image:url('./assets/portrait-1.jpg')"></div>
+        <div class="g reveal" data-img="/assets/portrait-1.jpg" data-title="Portrait — Identity">
+          <div class="img" style="background-image:url('/assets/portrait-1.jpg')"></div>
           <div class="cap"><span>Portrait — Identity</span><small>Tap</small></div>
         </div>
       </div>
@@ -548,7 +799,7 @@
       <div class="twoCol">
         <div class="card reveal">
           <div class="tag"><i></i> Fitness</div>
-          <h3>Simple fat loss rules</h3>
+          <h3>Simple fat-loss rules</h3>
           <ul class="list">
             <li>Daily: <span class="kbd">8k–12k steps</span> + water + sleep.</li>
             <li>Protein first: every meal has protein.</li>
@@ -558,8 +809,8 @@
         </div>
 
         <div class="card reveal">
-          <div class="tag"><i></i> Lifestyle</div>
-          <h3>Upgrade mindset</h3>
+          <div class="tag"><i></i> Mindset</div>
+          <h3>Upgrade mentality</h3>
           <ul class="list">
             <li>Minimum day plan: even on bad days, do something.</li>
             <li>Remove distractions: focus is a skill.</li>
@@ -638,7 +889,7 @@
           <h3>My Program</h3>
           <p>Interactive weekly tracker with saved progress.</p>
           <div style="margin-top:12px">
-            <a class="btn primary" href="./gym.html">Open Gym Schedule</a>
+            <a class="btn primary" href="/gym.html">Open Gym Schedule</a>
           </div>
         </div>
       </div>
@@ -656,7 +907,7 @@
             <a href="#journey">Journey</a>
             <a href="#gallery">Gallery</a>
             <a href="#memo">Memo</a>
-            <a href="./gym.html">Gym</a>
+            <a href="/gym.html">Gym</a>
           </div>
           <div class="copyright">© <span id="yr"></span> Nabin Bist. Built with discipline.</div>
         </div>
@@ -718,7 +969,7 @@
     });
     document.querySelectorAll('.storyBlock').forEach(el=>{
       el.addEventListener('click', ()=>{
-        const bg = el.querySelector('.storyImg').style.backgroundImage;
+        const bg = el.querySelector('.bgImg').style.backgroundImage;
         const img = bg.slice(5,-2);
         openModal(img, el.dataset.modalTitle || 'Story');
       });
@@ -728,30 +979,52 @@
     modal.addEventListener('click', (e)=>{ if(e.target === modal) closeModal(); });
     document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeModal(); });
 
-    // Mobile drawer menu
+    // CYBER MENU
     const burger = document.getElementById('burger');
-    const drawer = document.getElementById('drawer');
-    const drawerMask = document.getElementById('drawerMask');
-    const drawerClose = document.getElementById('drawerClose');
+    const neoMenu = document.getElementById('neoMenu');
+    const neoClose = document.getElementById('neoClose');
+    const neoBg = document.getElementById('neoBg');
 
-    function openDrawer(){
-      drawer.classList.add('open');
-      drawerMask.classList.add('open');
-      burger.setAttribute('aria-expanded','true');
+    function openNeo(){
+      neoMenu.classList.add('open');
+      document.body.classList.add('lock');
+      burger?.setAttribute('aria-expanded','true');
+      neoMenu.setAttribute('aria-hidden','false');
     }
-    function closeDrawer(){
-      drawer.classList.remove('open');
-      drawerMask.classList.remove('open');
-      burger.setAttribute('aria-expanded','false');
+    function closeNeo(){
+      neoMenu.classList.remove('open');
+      document.body.classList.remove('lock');
+      burger?.setAttribute('aria-expanded','false');
+      neoMenu.setAttribute('aria-hidden','true');
     }
 
-    burger.addEventListener('click', openDrawer);
-    drawerClose.addEventListener('click', closeDrawer);
-    drawerMask.addEventListener('click', closeDrawer);
+    burger.addEventListener('click', (e)=>{ e.preventDefault(); openNeo(); });
+    neoClose.addEventListener('click', closeNeo);
 
-    // Close drawer after clicking a link (mobile)
-    document.querySelectorAll('.drawerLink').forEach(a=>{
-      a.addEventListener('click', closeDrawer);
+    neoMenu.addEventListener('click', (e)=>{
+      if(e.target === neoMenu || e.target === neoBg) closeNeo();
+    });
+
+    document.addEventListener('keydown', (e)=>{
+      if(e.key === 'Escape') closeNeo();
+    });
+
+    function setSpot(x,y){
+      neoBg.style.setProperty('--mx', x + '%');
+      neoBg.style.setProperty('--my', y + '%');
+    }
+    neoMenu.addEventListener('mousemove', (e)=>{
+      const r = neoMenu.getBoundingClientRect();
+      setSpot(((e.clientX - r.left)/r.width)*100, ((e.clientY - r.top)/r.height)*100);
+    });
+    neoMenu.addEventListener('touchmove', (e)=>{
+      const t = e.touches[0];
+      const r = neoMenu.getBoundingClientRect();
+      setSpot(((t.clientX - r.left)/r.width)*100, ((t.clientY - r.top)/r.height)*100);
+    },{passive:true});
+
+    document.querySelectorAll('.neoLink').forEach(a=>{
+      a.addEventListener('click', closeNeo);
     });
   </script>
 </body>
