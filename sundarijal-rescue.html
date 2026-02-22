@@ -3,197 +3,586 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Nabin Bist | Sundarijal Rescue</title>
+  <title>Sundarijal Rescue | Nabin Bist</title>
+  <meta name="description" content="Sundarijal Rescue on 14th Sep 2017. A real incident, written in my voice." />
   <meta name="theme-color" content="#070A0F" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+
   <style>
     :root{
-      --bg:#070A0F;--text:rgba(255,255,255,.92);--muted:rgba(255,255,255,.72);
-      --shadow:0 24px 80px rgba(0,0,0,.55);--r2:26px;--r:18px;--max:1100px;
-      --c1:#22D3EE;--c2:#A78BFA;
-    }
-    *{box-sizing:border-box}
-    body{
-      margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--text);
-      background:
-        radial-gradient(1200px 600px at 18% 12%, rgba(34,211,238,.14), transparent 55%),
-        radial-gradient(900px 500px at 88% 22%, rgba(167,139,250,.13), transparent 50%),
-        linear-gradient(180deg,var(--bg),#05060A 55%,#04040A);
-      min-height:100vh;
-    }
-    a{color:inherit;text-decoration:none}
-    .wrap{max-width:var(--max);margin:0 auto;padding:22px 18px 60px}
+      --bg:#070A0F;
+      --bg2:#0B1020;
+      --card:rgba(255,255,255,.06);
+      --stroke:rgba(255,255,255,.12);
+      --text:rgba(255,255,255,.92);
+      --muted:rgba(255,255,255,.72);
+      --muted2:rgba(255,255,255,.56);
+      --c1:#22D3EE;
+      --c2:#A78BFA;
+      --c3:#60A5FA;
 
-    .top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0 18px;flex-wrap:wrap}
-    .brand{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:.08em}
-    .logo{
-      width:40px;height:40px;border-radius:16px;
-      background:linear-gradient(135deg, rgba(34,211,238,.95), rgba(167,139,250,.92));
-      border:1px solid rgba(255,255,255,.14);
-      box-shadow:0 14px 38px rgba(34,211,238,.18)
+      --shadow: 0 28px 90px rgba(0,0,0,.60);
+      --shadow2: 0 16px 50px rgba(0,0,0,.42);
+
+      --r:18px;
+      --r2:26px;
+      --max: 1080px;
+
+      --navH:72px;
     }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(1200px 650px at 16% 10%, rgba(34,211,238,.14), transparent 58%),
+        radial-gradient(900px 520px at 86% 18%, rgba(167,139,250,.14), transparent 55%),
+        radial-gradient(850px 520px at 62% 90%, rgba(96,165,250,.10), transparent 58%),
+        linear-gradient(180deg, var(--bg), #05060A 55%, #04040A);
+      overflow-x:hidden;
+    }
+    a{color:inherit; text-decoration:none}
+    .wrap{max-width:var(--max); margin:0 auto; padding:0 18px}
+
+    /* Top bar */
+    .nav{
+      position:sticky;
+      top:0;
+      z-index:50;
+      backdrop-filter: blur(14px);
+      background: linear-gradient(180deg, rgba(5,6,10,.80), rgba(5,6,10,.40));
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    .navIn{
+      height:var(--navH);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-weight:900;
+      letter-spacing:.05em;
+    }
+    .logo{
+      width:38px; height:38px;
+      border-radius:14px;
+      background:
+        radial-gradient(10px 10px at 30% 30%, rgba(255,255,255,.26), transparent 60%),
+        linear-gradient(135deg, rgba(34,211,238,.95), rgba(167,139,250,.95));
+      border:1px solid rgba(255,255,255,.18);
+      box-shadow: 0 16px 42px rgba(34,211,238,.18);
+    }
+    .navRight{display:flex; align-items:center; gap:10px; flex-wrap:wrap}
     .btn{
       border:1px solid rgba(255,255,255,.14);
       background:rgba(255,255,255,.06);
       color:rgba(255,255,255,.92);
-      padding:10px 14px;border-radius:999px;
-      font-weight:900;font-size:14px;cursor:pointer;transition:.18s ease
+      padding:10px 12px;
+      border-radius:14px;
+      font-weight:900;
+      font-size:14px;
+      cursor:pointer;
+      transition: transform .18s ease, background .18s ease, border-color .18s ease;
+      box-shadow: 0 10px 28px rgba(0,0,0,.22);
     }
-    .btn:hover{transform: translateY(-1px); background:rgba(255,255,255,.09)}
+    .btn:hover{transform: translateY(-1px); background:rgba(255,255,255,.09); border-color: rgba(255,255,255,.18)}
     .btn.primary{
-      background:linear-gradient(135deg, rgba(34,211,238,.95), rgba(167,139,250,.95));
-      border:1px solid rgba(255,255,255,.18);color:#061018
+      background: linear-gradient(135deg, rgba(34,211,238,.95), rgba(167,139,250,.95));
+      border:1px solid rgba(255,255,255,.20);
+      color:#061018;
     }
+    .btn.primary:hover{filter: brightness(1.03)}
 
-    .card{border-radius:var(--r2);border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.05);box-shadow:var(--shadow);overflow:hidden}
+    /* Hero */
     .hero{
-      position:relative;
-      border-bottom:1px solid rgba(255,255,255,.10);
-      min-height:320px;
-      background:#0b0f1c;
+      padding: 16px 0 18px;
     }
+    .heroCard{
+      position:relative;
+      border-radius: var(--r2);
+      border:1px solid rgba(255,255,255,.12);
+      overflow:hidden;
+      background: rgba(255,255,255,.04);
+      box-shadow: var(--shadow);
+      transform: translateY(8px);
+      opacity:0;
+      transition: opacity .7s ease, transform .7s ease;
+    }
+    .heroCard.in{opacity:1; transform: translateY(0)}
     .heroImg{
       position:absolute; inset:0;
-      background-image:url("../assets/img/sundarijal-rescue.jpg");
-      background-size:cover; background-position:center;
-      transform:scale(1.02);
-      filter:saturate(1.05) contrast(1.05);
+      background-image:url("./assets/img/sundarijal-before.jpg");
+      background-size:cover;
+      background-position:center;
+      filter: saturate(1.06) contrast(1.05);
+      transform: scale(1.03);
     }
-    .heroShade{
-      position:absolute; inset:0;
+    .heroGlow{
+      position:absolute; inset:-2px;
       background:
-        radial-gradient(900px 600px at 20% 20%, rgba(34,211,238,.18), transparent 55%),
-        radial-gradient(900px 600px at 80% 25%, rgba(167,139,250,.18), transparent 55%),
-        linear-gradient(180deg, rgba(0,0,0,.15), rgba(0,0,0,.78));
+        radial-gradient(900px 600px at 18% 20%, rgba(34,211,238,.25), transparent 60%),
+        radial-gradient(900px 600px at 86% 22%, rgba(167,139,250,.24), transparent 60%),
+        linear-gradient(180deg, rgba(0,0,0,.25), rgba(0,0,0,.78));
     }
-    .heroText{
+    .heroInner{
       position:relative;
-      padding:18px;
+      min-height: 520px;
+      padding: 26px 22px 22px;
       display:flex;
       flex-direction:column;
       justify-content:flex-end;
-      min-height:320px;
-      gap:10px;
+      gap:12px;
     }
-    .kicker{font-weight:900; letter-spacing:.22em; text-transform:uppercase; font-size:12px; color:rgba(255,255,255,.78)}
-    h1{margin:0; font-weight:900; letter-spacing:-.02em; font-size: clamp(26px, 4vw, 40px)}
-    .sub{margin:0; color:rgba(255,255,255,.78); font-weight:800; line-height:1.55; max-width:75ch}
-
-    .body{padding:18px}
-    .section{
-      border:1px solid rgba(255,255,255,.12);
-      background:rgba(255,255,255,.04);
-      border-radius:22px;
-      padding:16px;
-      margin-top:14px;
-    }
-    .section h2{margin:0 0 8px; font-weight:900; font-size:16px; letter-spacing:.02em}
-    .p{margin:0; color:rgba(255,255,255,.80); line-height:1.75; font-weight:600}
-    .p + .p{margin-top:12px}
-    .chips{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px}
+    .chipRow{display:flex; gap:10px; flex-wrap:wrap; align-items:center}
     .chip{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.06);
+      backdrop-filter: blur(10px);
+      font-weight:900;
+      font-size:12px;
+      letter-spacing:.10em;
+      text-transform:uppercase;
+      color: rgba(255,255,255,.86);
+    }
+    .dot{
+      width:10px; height:10px;
+      border-radius:999px;
+      background: linear-gradient(135deg, var(--c1), var(--c2));
+      box-shadow: 0 0 0 6px rgba(34,211,238,.10);
+    }
+    h1{
+      margin:0;
+      font-size: clamp(28px, 4.2vw, 52px);
+      line-height:1.05;
+      letter-spacing:-.03em;
+      font-weight: 950;
+      text-shadow: 0 18px 60px rgba(0,0,0,.55);
+    }
+    .sub{
+      margin:0;
+      max-width: 70ch;
+      color: rgba(255,255,255,.78);
+      line-height:1.55;
+      font-size:15px;
+    }
+    .heroMeta{
+      display:flex; gap:10px; flex-wrap:wrap;
+      margin-top:4px;
+    }
+    .metaPill{
       padding:10px 12px;
       border-radius:999px;
       border:1px solid rgba(255,255,255,.14);
-      background:rgba(255,255,255,.06);
+      background: rgba(0,0,0,.18);
+      backdrop-filter: blur(10px);
+      color: rgba(255,255,255,.84);
       font-weight:900;
-      color:rgba(255,255,255,.82);
       font-size:13px;
     }
-    .chip b{color:rgba(255,255,255,.92)}
-    .line{
-      height:1px;background:rgba(255,255,255,.10);
-      margin:14px 0;
+    .metaPill b{color:rgba(255,255,255,.94)}
+    .stamp{
+      position:absolute;
+      right:16px;
+      top:16px;
+      padding:10px 12px;
+      border-radius: 16px;
+      border:1px solid rgba(255,255,255,.18);
+      background: rgba(0,0,0,.25);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 18px 60px rgba(0,0,0,.35);
+      font-weight:950;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+      font-size:12px;
+      color: rgba(255,255,255,.90);
+    }
+
+    /* Main layout */
+    .grid{
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap:14px;
+      align-items:start;
+      padding: 14px 0 60px;
+    }
+
+    .card{
+      border-radius: var(--r2);
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+      position:relative;
+    }
+    .card::before{
+      content:"";
+      position:absolute;
+      inset:-1px;
+      border-radius: inherit;
+      background: radial-gradient(900px 260px at 20% 0%, rgba(34,211,238,.16), transparent 60%),
+                  radial-gradient(900px 260px at 90% 0%, rgba(167,139,250,.14), transparent 60%);
+      pointer-events:none;
+      opacity:.85;
+    }
+    .cardIn{position:relative; padding:16px}
+    .h2{
+      margin:0 0 10px;
+      font-size:18px;
+      font-weight:950;
+      letter-spacing:-.02em;
+    }
+    .p{
+      margin:0;
+      color: var(--muted);
+      line-height:1.7;
+      font-size:14.5px;
+    }
+    .p + .p{margin-top:10px}
+
+    /* Timeline */
+    .timeline{
+      margin-top: 8px;
+      display:grid;
+      gap:10px;
+    }
+    .step{
+      position:relative;
+      border-radius: 18px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      padding:12px 12px 12px 12px;
+      overflow:hidden;
+
+      transform: translateY(14px);
+      opacity:0;
+      transition: opacity .7s ease, transform .7s cubic-bezier(.2,.9,.2,1);
+    }
+    .step.in{opacity:1; transform: translateY(0)}
+    .stepTop{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:10px;
+      margin-bottom:8px;
+    }
+    .k{
+      display:flex; gap:10px; align-items:center;
+      font-weight:950;
+      font-size:14px;
+      color: rgba(255,255,255,.92);
+    }
+    .num{
+      width:28px; height:28px;
+      border-radius: 12px;
+      display:flex; align-items:center; justify-content:center;
+      font-weight:950;
+      background: linear-gradient(135deg, rgba(34,211,238,.90), rgba(167,139,250,.90));
+      color:#061018;
+      box-shadow: 0 14px 40px rgba(34,211,238,.16);
+      flex-shrink:0;
+    }
+    .tag{
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.16);
+      color: rgba(255,255,255,.80);
+      font-weight:900;
+      font-size:11px;
+      letter-spacing:.10em;
+      text-transform:uppercase;
+      white-space:nowrap;
+    }
+
+    /* Photo card */
+    .photo{
+      border-radius: var(--r2);
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      overflow:hidden;
+      box-shadow: var(--shadow2);
+    }
+    .ph{
+      position:relative;
+      aspect-ratio: 16/10;
+      background-image:url("./assets/img/sundarijal-rescue.jpg");
+      background-size:cover;
+      background-position:center;
+      filter:saturate(1.06) contrast(1.05);
+      transform: scale(1.02);
+    }
+    .ph::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background: linear-gradient(180deg, rgba(0,0,0,.05), rgba(0,0,0,.55));
+    }
+    .cap{
+      padding:14px 16px;
+      border-top:1px solid rgba(255,255,255,.10);
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      align-items:flex-start;
+    }
+    .cap b{display:block; font-weight:950}
+    .cap small{display:block; margin-top:6px; color: var(--muted2); font-weight:700; line-height:1.5}
+
+    /* Footer */
+    footer{
+      border-top:1px solid rgba(255,255,255,.08);
+      padding: 28px 0 40px;
+      color: rgba(255,255,255,.60);
+      font-size: 12.5px;
+    }
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .grid{grid-template-columns:1fr}
+      .heroInner{min-height: 480px}
+    }
+    @media (max-width: 520px){
+      .heroInner{min-height: 520px}
+      .stamp{display:none}
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      .heroCard, .step{transition:none !important; transform:none !important; opacity:1 !important}
     }
   </style>
 </head>
+
 <body>
-  <div class="wrap">
-    <div class="top">
-      <div class="brand">
-        <div class="logo" aria-hidden="true"></div>
-        <span>SUNDARIJAL RESCUE</span>
-      </div>
-      <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:flex-end;">
-        <a class="btn" href="./index.html">Home</a>
-        <a class="btn" href="./incidents.html">Incidents</a>
-        <a class="btn primary" href="./index.html#contact">Contact</a>
-      </div>
-    </div>
 
-    <div class="card">
-      <div class="hero">
-        <div class="heroImg"></div>
-        <div class="heroShade"></div>
-        <div class="heroText">
-          <div class="kicker">INCIDENT REPORT</div>
-          <h1>Sundarijal Rescue</h1>
-          <p class="sub">A day that started like a normal trip, then turned into a moment I will never forget.</p>
-        </div>
-      </div>
+  <div class="nav">
+    <div class="wrap">
+      <div class="navIn">
+        <a class="brand" href="./index.html" aria-label="Back to home">
+          <div class="logo" aria-hidden="true"></div>
+          <span>NABIN BIST</span>
+        </a>
 
-      <div class="body">
-        <div class="section">
-          <h2>Quick overview</h2>
-          <p class="p">
-            I went to Sundarijal with my friends Adit and Sunil. We were there to explore, take photos, and enjoy the river.
-            A group of nursing students were also nearby, taking pictures on rocks in the middle of the water.
-          </p>
-          <div class="chips">
-            <div class="chip"><b>Location:</b> Sundarijal</div>
-            <div class="chip"><b>Type:</b> River rescue</div>
-            <div class="chip"><b>Outcome:</b> Safe evacuation</div>
-          </div>
-        </div>
-
-        <div class="section">
-          <h2>What happened</h2>
-          <p class="p">
-            While I was a little away from my friends, I heard screaming. Two girls slipped into the river.
-            One drifted closer to the bank, and I pulled her to safety.
-          </p>
-          <p class="p">
-            The second girl was in a dangerous spot. The water was deep and moving hard. She was holding onto a rock and
-            her head kept going under at times. Everyone around was crying and calling for help.
-          </p>
-        </div>
-
-        <div class="section">
-          <h2>Rescue and evacuation</h2>
-          <p class="p">
-            I moved fast across the rocks. The landing hurt my foot, but there was no time to stop. I got close to her and told her
-            to stay calm and trust me. I held her hand and pulled with everything I had until she was out of the water.
-          </p>
-          <p class="p">
-            After that, the group was still stuck on the rock and too afraid to move. Adit arrived and helped from the riverbank.
-            Together, we guided them one by one until everyone was safely evacuated.
-          </p>
-        </div>
-
-        <div class="section">
-          <h2>Afterwards</h2>
-          <p class="p">
-            The girl I saved thanked me and said she felt like she got a second life. Her friends were shaking, crying, and hugging each other.
-            When the moment finally settled, the only thing I felt was relief and gratitude.
-          </p>
-          <div class="line"></div>
-          <p class="p">
-            That day reminded me that a random decision can become a serious responsibility. If I had stayed frozen for even a few seconds,
-            the outcome could have been different. I still feel proud of what we did.
-          </p>
-        </div>
-
-        <div class="section">
-          <h2>Lessons</h2>
-          <p class="p">
-            Rivers look calm until they are not. Rocks are slippery. A photo is never worth a life.
-            If people are standing on unstable rocks, it only takes one small mistake to turn it into an emergency.
-          </p>
+        <div class="navRight">
+          <a class="btn" href="./incidents.html">Incidents</a>
+          <a class="btn" href="./index.html#contact">Contact</a>
+          <a class="btn primary" href="./index.html">Home</a>
         </div>
       </div>
     </div>
   </div>
+
+  <div class="wrap">
+    <section class="hero">
+      <div class="heroCard" id="heroCard">
+        <div class="heroImg"></div>
+        <div class="heroGlow"></div>
+
+        <div class="stamp">Sundarijal | 14 Sep 2017</div>
+
+        <div class="heroInner">
+          <div class="chipRow">
+            <div class="chip"><span class="dot"></span> Incident Archive</div>
+            <div class="chip">Sundarijal</div>
+            <div class="chip">14th Sep 2017</div>
+          </div>
+
+          <h1>Sundarijal Rescue</h1>
+          <p class="sub">
+            This is a real day from my life. It happened fast. It was loud and chaotic.
+            I remember the water, the rocks, and the moment people froze.
+          </p>
+
+          <div class="heroMeta">
+            <div class="metaPill"><b>Location:</b> Sundarijal</div>
+            <div class="metaPill"><b>Type:</b> River rescue</div>
+            <div class="metaPill"><b>Note:</b> Photo taken before the incident</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid">
+
+      <!-- Left: Story + timeline -->
+      <div class="card">
+        <div class="cardIn">
+          <div class="h2">Story</div>
+
+          <p class="p">
+            On 14th September 2017, I went to Sundarijal with my friends Adit and Sunil.
+            We planned to explore, take photos, and enjoy the river area.
+            A group of nursing students were also there taking pictures on the rocks.
+          </p>
+
+          <p class="p">
+            Everything looked calm. Then it changed in seconds.
+          </p>
+
+          <div class="h2" style="margin-top:14px">Timeline</div>
+
+          <div class="timeline" id="timeline">
+
+            <div class="step">
+              <div class="stepTop">
+                <div class="k"><div class="num">1</div> The first fall</div>
+                <div class="tag">Start</div>
+              </div>
+              <p class="p">
+                I was a little away from my friends when I heard screaming.
+                Two girls slipped from the rocks and fell into the river.
+              </p>
+            </div>
+
+            <div class="step">
+              <div class="stepTop">
+                <div class="k"><div class="num">2</div> First rescue</div>
+                <div class="tag">Fast</div>
+              </div>
+              <p class="p">
+                One girl drifted closer to the riverbank. I moved quickly and pulled her out.
+                She was shaking, but she was safe.
+              </p>
+            </div>
+
+            <div class="step">
+              <div class="stepTop">
+                <div class="k"><div class="num">3</div> Critical moment</div>
+                <div class="tag">Danger</div>
+              </div>
+              <p class="p">
+                The second girl was in real danger. The current was strong and she was stuck near a rock.
+                Her head kept going under. People were panicking and crying.
+              </p>
+            </div>
+
+            <div class="step">
+              <div class="stepTop">
+                <div class="k"><div class="num">4</div> I moved</div>
+                <div class="tag">Action</div>
+              </div>
+              <p class="p">
+                There was no time to think too much. I jumped across the rocks.
+                I hurt my foot while landing, but I did not stop.
+              </p>
+            </div>
+
+            <div class="step">
+              <div class="stepTop">
+                <div class="k"><div class="num">5</div> The rescue</div>
+                <div class="tag">Hold</div>
+              </div>
+              <p class="p">
+                I reached her, told her to stay calm, and grabbed her hand firmly.
+                The water pushed hard, but I did not let go.
+                After a few intense seconds, I pulled her out onto the rock.
+              </p>
+            </div>
+
+            <div class="step">
+              <div class="stepTop">
+                <div class="k"><div class="num">6</div> Getting everyone out</div>
+                <div class="tag">Team</div>
+              </div>
+              <p class="p">
+                Others were still stranded and afraid to move.
+                Adit reached the riverbank and helped guide them.
+                We got them across one by one until everyone was safe.
+              </p>
+            </div>
+
+            <div class="step">
+              <div class="stepTop">
+                <div class="k"><div class="num">7</div> After it ended</div>
+                <div class="tag">Quiet</div>
+              </div>
+              <p class="p">
+                When things finally calmed down, it hit me.
+                If I had hesitated, the outcome could have been very different.
+                That day taught me that calm water can still be dangerous.
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Photo + notes -->
+      <div style="display:grid; gap:14px;">
+        <div class="photo">
+          <div class="ph" aria-label="Photo from the Sundarijal incident"></div>
+          <div class="cap">
+            <div>
+              <b>Photo from Sundarijal</b>
+              <small>
+                This is the second photo you added. Keeping it here as part of the archive.
+              </small>
+            </div>
+            <div class="tag" style="align-self:flex-start;">Archive</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="cardIn">
+            <div class="h2">What I learned</div>
+            <p class="p">
+              Rivers look peaceful until they are not.
+              Wet rocks are not a joke. Currents do not care if you are ready.
+            </p>
+            <p class="p">
+              That day also showed me something personal.
+              When a moment demands action, you either move or you regret it.
+              I chose to move.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <footer>
+      <div>
+        © <span id="yr"></span> Nabin Bist. Incident archive.
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById("yr").textContent = new Date().getFullYear();
+
+    // Hero reveal
+    const hero = document.getElementById("heroCard");
+    requestAnimationFrame(() => hero.classList.add("in"));
+
+    // Timeline spring reveal
+    const steps = Array.from(document.querySelectorAll(".step"));
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (!e.isIntersecting) return;
+        const el = e.target;
+        const index = steps.indexOf(el);
+        setTimeout(() => el.classList.add("in"), Math.max(0, index) * 80);
+        io.unobserve(el);
+      });
+    }, { threshold: 0.12 });
+
+    steps.forEach(s => io.observe(s));
+  </script>
 </body>
 </html>
