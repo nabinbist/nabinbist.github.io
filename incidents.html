@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nabin Bist | Incidents</title>
+  <meta name="theme-color" content="#070A0F" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#070A0F;--text:rgba(255,255,255,.92);--muted:rgba(255,255,255,.72);--shadow:0 24px 80px rgba(0,0,0,.55);--r2:26px;--max:980px;}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--text);background:radial-gradient(1200px 600px at 18% 12%, rgba(34,211,238,.14), transparent 55%),radial-gradient(900px 500px at 88% 22%, rgba(167,139,250,.13), transparent 50%),linear-gradient(180deg,var(--bg),#05060A 55%,#04040A);min-height:100vh}
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:var(--max);margin:0 auto;padding:22px 18px 60px}
+    .top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0 18px}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:.08em}
+    .logo{width:40px;height:40px;border-radius:16px;background:linear-gradient(135deg, rgba(34,211,238,.95), rgba(167,139,250,.92));border:1px solid rgba(255,255,255,.14);box-shadow:0 14px 38px rgba(34,211,238,.18)}
+    .btn{border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.06);color:rgba(255,255,255,.92);padding:10px 14px;border-radius:999px;font-weight:900;font-size:14px;cursor:pointer;transition:.18s ease}
+    .btn:hover{transform: translateY(-1px); background:rgba(255,255,255,.09)}
+    .btn.primary{background:linear-gradient(135deg, rgba(34,211,238,.95), rgba(167,139,250,.95));border:1px solid rgba(255,255,255,.18);color:#061018}
+    .card{border-radius:var(--r2);border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.05);box-shadow:var(--shadow);overflow:hidden}
+    .head{padding:18px;border-bottom:1px solid rgba(255,255,255,.10)}
+    .head h1{margin:0 0 6px;font-size:20px;font-weight:900}
+    .head p{margin:0;color:var(--muted);line-height:1.5}
+    .list{padding:16px;display:grid;gap:12px}
+    .item{padding:14px;border-radius:20px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);display:flex;align-items:center;justify-content:space-between;gap:12px;transition:.18s ease}
+    .item:hover{transform: translateY(-1px); background:rgba(255,255,255,.06); border-color:rgba(255,255,255,.16)}
+    .meta b{display:block;font-weight:900}
+    .meta small{display:block;color:rgba(255,255,255,.70);font-weight:800;margin-top:4px}
+    .go{opacity:.65;font-weight:900}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="top">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <span>INCIDENTS</span>
+      </div>
+      <div style="display:flex;gap:10px;align-items:center;">
+        <a class="btn" href="./index.html">Home</a>
+        <a class="btn primary" href="./sundarijal-rescue.html">Sundarijal Rescue</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="head">
+        <h1>Incident Archive</h1>
+        <p>When something serious happens, I document it clearly so the story stays accurate.</p>
+      </div>
+
+      <div class="list">
+        <a class="item" href="./sundarijal-rescue.html">
+          <div class="meta">
+            <b>Sundarijal Rescue</b>
+            <small>Story and details</small>
+          </div>
+          <span class="go">↗</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
