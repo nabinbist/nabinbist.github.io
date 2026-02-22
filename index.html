@@ -93,19 +93,32 @@
       letter-spacing:.05em;
       flex:0 0 auto;
     }
+   
    .logo{
   width:44px;
   height:44px;
   border-radius:14px;
+  display:grid;
+  place-items:center;
+  overflow:hidden;
 
-  background: rgba(255,255,255,.06) url("./nb-logo.png") center/78% no-repeat;
-  border:1px solid rgba(255,255,255,.14);
+  /* clean glass background */
+  background: rgba(255,255,255,.04);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 
-  /* glow ring */
+  border:1px solid rgba(255,255,255,.12);
+
+  /* subtle elegant glow */
   box-shadow:
-    0 0 0 6px rgba(96,165,250,.16),
-    0 0 0 12px rgba(167,139,250,.10),
-    0 14px 40px rgba(0,0,0,.35);
+    0 6px 20px rgba(0,0,0,.35),
+    0 0 0 1px rgba(255,255,255,.05);
+}
+
+.logo img{
+  width:88%;
+  height:88%;
+  object-fit:contain;
 }
 
 .logo img{
