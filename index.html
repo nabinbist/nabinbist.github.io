@@ -530,6 +530,92 @@
     @media (prefers-reduced-motion: reduce){
       .neoMenu, .neoMenu__panel, .neoLink, .neoMenu__bg::before, .reveal{transition:none; animation:none}
     }
+    
+    .contactGrid{
+  display:grid;
+  gap:16px;
+  grid-template-columns:1fr;
+}
+
+.socialCard{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  padding:18px;
+  border-radius:22px;
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.12);
+  transition:.25s ease;
+  position:relative;
+  overflow:hidden;
+}
+
+.socialCard:hover{
+  transform:translateY(-4px);
+  box-shadow:0 0 60px rgba(34,211,238,.2);
+}
+
+.icon{
+  width:52px;
+  height:52px;
+  border-radius:16px;
+  flex-shrink:0;
+  background:linear-gradient(135deg,#22D3EE,#A78BFA);
+  box-shadow:0 0 40px rgba(34,211,238,.35);
+}
+
+.icon.ig{background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);}
+.icon.tt{background:linear-gradient(135deg,#00f2ea,#ff0050);}
+.icon.fb{background:linear-gradient(135deg,#1877f2,#5f9bff);}
+
+.socialInfo h3{
+  margin:0;
+  font-weight:900;
+}
+
+.socialInfo p{
+  margin:4px 0 0;
+  color:rgba(255,255,255,.7);
+}
+
+.arrow{
+  margin-left:auto;
+  font-weight:900;
+  opacity:.6;
+}
+
+.emailCard{
+  padding:22px;
+  border-radius:22px;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.12);
+}
+
+.emailCard h3{
+  margin:0 0 8px;
+  font-weight:900;
+}
+
+.emailCard p{
+  margin:0 0 14px;
+  color:rgba(255,255,255,.75);
+}
+
+.emailButtons{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+/* Logo breathing animation */
+.logo{
+  animation: breathe 4s ease-in-out infinite;
+}
+
+@keyframes breathe{
+  0%,100%{transform:scale(1);}
+  50%{transform:scale(1.05);}
+}
   </style>
 </head>
 
@@ -859,42 +945,56 @@
   </section>
 
   <!-- CONTACT -->
-  <section id="contact">
-    <div class="wrap">
-      <div class="sectionHead reveal">
-        <div>
-          <h2 class="h2">Contact</h2>
-          <p class="lead">Collaborate, hire, or say hi.</p>
-        </div>
-      </div>
-
-      <div class="grid3">
-        <div class="card reveal">
-          <div class="tag"><i></i> Email</div>
-          <h3>Write to me</h3>
-          <p>Update with your real email.</p>
-          <div style="margin-top:12px">
-            <a class="btn" href="mailto:your-email@example.com">Send Email</a>
-          </div>
-        </div>
-
-        <div class="card reveal">
-          <div class="tag"><i></i> Social</div>
-          <h3>Instagram / TikTok / YouTube</h3>
-          <p>Add your handles when ready.</p>
-        </div>
-
-        <div class="card reveal">
-          <div class="tag"><i></i> Gym</div>
-          <h3>My Program</h3>
-          <p>Interactive weekly tracker with saved progress.</p>
-          <div style="margin-top:12px">
-            <a class="btn primary" href="/gym.html">Open Gym Schedule</a>
-          </div>
-        </div>
+ <section id="contact">
+  <div class="wrap">
+    <div class="sectionHead reveal">
+      <div>
+        <h2 class="h2">Connect With Me</h2>
+        <p class="lead">Follow the journey. Discipline. Growth. Real life.</p>
       </div>
     </div>
-  </section>
+
+    <div class="contactGrid">
+
+      <a class="socialCard" href="https://www.instagram.com/nabinbeast" target="_blank">
+        <div class="icon ig"></div>
+        <div class="socialInfo">
+          <h3>Instagram</h3>
+          <p>@nabinbeast</p>
+        </div>
+        <span class="arrow">↗</span>
+      </a>
+
+      <a class="socialCard" href="https://www.tiktok.com/@nabinbeast" target="_blank">
+        <div class="icon tt"></div>
+        <div class="socialInfo">
+          <h3>TikTok</h3>
+          <p>@nabinbeast</p>
+        </div>
+        <span class="arrow">↗</span>
+      </a>
+
+      <a class="socialCard" href="https://www.facebook.com/share/1BoRSqe9YV/?mibextid=wwXIfr" target="_blank">
+        <div class="icon fb"></div>
+        <div class="socialInfo">
+          <h3>Facebook</h3>
+          <p>Profile</p>
+        </div>
+        <span class="arrow">↗</span>
+      </a>
+
+      <div class="emailCard">
+        <h3>Email Me</h3>
+        <p>nabinbisht@icloud.com</p>
+        <div class="emailButtons">
+          <a class="btn primary" href="mailto:nabinbisht@icloud.com">Send Email</a>
+          <button class="btn" id="copyEmail">Copy</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
 
   <footer>
     <div class="wrap">
@@ -1026,6 +1126,14 @@
     document.querySelectorAll('.neoLink').forEach(a=>{
       a.addEventListener('click', closeNeo);
     });
+    const copyBtn = document.getElementById("copyEmail");
+if(copyBtn){
+  copyBtn.addEventListener("click",()=>{
+    navigator.clipboard.writeText("nabinbisht@icloud.com");
+    copyBtn.textContent="Copied ✓";
+    setTimeout(()=>copyBtn.textContent="Copy",1500);
+  });
+}
   </script>
 </body>
 </html>
