@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Nabin Bist — Stories • Travel • Fitness</title>
-  <meta name="description" content="Nabin Bist — stories, travel, fitness, photos, and a living memo." />
+  <title>Nabin Bist | Stories • Travel • Fitness</title>
+  <meta name="description" content="Nabin Bist. Stories, travel, fitness, and real moments documented with intention." />
   <meta name="theme-color" content="#070A0F" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,18 +13,17 @@
 
   <style>
     :root{
-      --bg:#06070D;
+      --bg:#070A0F;
       --bg2:#0B1020;
-      --card:rgba(255,255,255,.05);
+      --card:rgba(255,255,255,.06);
       --stroke:rgba(255,255,255,.10);
       --text:rgba(255,255,255,.92);
-      --muted:rgba(255,255,255,.70);
+      --muted:rgba(255,255,255,.72);
       --muted2:rgba(255,255,255,.55);
       --c1:#22D3EE;
       --c2:#A78BFA;
-      --c3:#60A5FA;
-      --shadow: 0 30px 120px rgba(0,0,0,.65);
-      --shadow2: 0 16px 50px rgba(0,0,0,.45);
+      --shadow: 0 24px 80px rgba(0,0,0,.55);
+      --shadow2: 0 14px 45px rgba(0,0,0,.40);
       --r:18px;
       --r2:26px;
       --max:1120px;
@@ -39,64 +38,107 @@
       font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
       color:var(--text);
       background:
-        radial-gradient(1200px 700px at 18% 12%, rgba(34,211,238,.16), transparent 55%),
-        radial-gradient(1000px 650px at 88% 18%, rgba(167,139,250,.14), transparent 55%),
-        radial-gradient(900px 650px at 60% 92%, rgba(96,165,250,.10), transparent 55%),
-        linear-gradient(180deg, var(--bg), #04050A 60%, #03040A);
+        radial-gradient(1200px 600px at 18% 12%, rgba(34,211,238,.14), transparent 55%),
+        radial-gradient(900px 500px at 88% 22%, rgba(167,139,250,.13), transparent 50%),
+        radial-gradient(800px 500px at 60% 90%, rgba(245,158,11,.10), transparent 55%),
+        linear-gradient(180deg, var(--bg), #05060A 55%, #04040A);
       overflow-x:hidden;
     }
-    body.lock{overflow:hidden; touch-action:none}
     a{color:inherit; text-decoration:none}
     .wrap{max-width:var(--max); margin:0 auto; padding:0 20px}
-    section, main, footer{scroll-margin-top: calc(var(--navH) + 16px);}
 
-    /* subtle noise */
-    .noise{
+    /* Apple-level glass */
+    .glass{
+      background: rgba(10,12,18,.58);
+      border:1px solid rgba(255,255,255,.10);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+    .glow{
+      position:relative;
+    }
+    .glow:before{
+      content:"";
+      position:absolute;
+      inset:-1px;
+      border-radius:inherit;
+      padding:1px;
+      background: linear-gradient(135deg, rgba(34,211,238,.35), rgba(167,139,250,.35));
+      -webkit-mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
       pointer-events:none;
-      position:fixed;
-      inset:0;
-      opacity:.06;
-      mix-blend-mode: overlay;
-      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E");
-      z-index:1;
+      opacity:.7;
     }
 
     /* NAV */
     .nav{
       position:fixed; left:0; right:0; top:0;
-      z-index:50;
-      backdrop-filter: blur(16px);
-      background: linear-gradient(180deg, rgba(5,6,10,.78), rgba(5,6,10,.30));
-      border-bottom:1px solid rgba(255,255,255,.08);
+      z-index:60;
+      border-bottom:1px solid rgba(255,255,255,.06);
+      height:var(--navH);
+      display:flex; align-items:center;
+      background: linear-gradient(180deg, rgba(5,6,10,.78), rgba(5,6,10,.35));
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
     }
     .nav .inner{
       display:flex; align-items:center; justify-content:space-between;
-      gap:12px; padding:14px 0;
-      min-height:var(--navH);
+      gap:12px;
+      width:100%;
     }
-    .brand{display:flex; align-items:center; gap:10px; font-weight:900; letter-spacing:.08em}
+
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      font-weight:900; letter-spacing:.08em;
+      user-select:none;
+    }
     .logo{
-      width:38px; height:38px; border-radius:14px;
+      width:40px; height:40px; border-radius:16px;
       background:
-        radial-gradient(12px 12px at 30% 30%, rgba(255,255,255,.25), transparent 60%),
+        radial-gradient(12px 12px at 30% 30%, rgba(255,255,255,.28), transparent 60%),
         linear-gradient(135deg, rgba(34,211,238,.95), rgba(167,139,250,.92));
       border:1px solid rgba(255,255,255,.14);
-      box-shadow: 0 12px 40px rgba(34,211,238,.22);
+      box-shadow: 0 14px 38px rgba(34,211,238,.18);
+      position:relative;
+      overflow:hidden;
     }
+    .logo:after{
+      content:"";
+      position:absolute;
+      inset:-30%;
+      background: linear-gradient(120deg, transparent 35%, rgba(255,255,255,.22), transparent 65%);
+      transform: translateX(-40%) rotate(18deg);
+      animation: shine 3.8s ease-in-out infinite;
+      opacity:.85;
+    }
+    @keyframes shine{
+      0%,55%{transform: translateX(-55%) rotate(18deg); opacity:.0}
+      60%{opacity:.75}
+      100%{transform: translateX(75%) rotate(18deg); opacity:.0}
+    }
+
     .menu{
-      display:flex; align-items:center; gap:10px;
-      font-weight:800; font-size:13px;
+      display:flex; align-items:center; gap:8px;
+      font-weight:800; font-size:14px;
       color:rgba(255,255,255,.82);
     }
-    .menu a{
-      padding:10px 10px; border-radius:12px;
-      transition:.18s ease;
-      border:1px solid transparent;
+    .pillLink, .dropBtn{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:10px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      transition: transform .18s ease, background .18s ease, border-color .18s ease;
+      cursor:pointer;
+      user-select:none;
     }
-    .menu a:hover{
-      background:rgba(255,255,255,.06);
-      border-color: rgba(255,255,255,.10);
-      box-shadow: 0 0 30px rgba(34,211,238,.10);
+    .pillLink:hover, .dropBtn:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,.06);
+      border-color: rgba(255,255,255,.16);
     }
 
     .cta{display:flex; align-items:center; gap:10px}
@@ -104,16 +146,13 @@
       border:1px solid rgba(255,255,255,.14);
       background:rgba(255,255,255,.06);
       color:rgba(255,255,255,.92);
-      padding:10px 12px;
-      border-radius:14px;
+      padding:10px 14px;
+      border-radius:999px;
       font-weight:900;
       font-size:14px;
-      transition:.18s ease;
+      transition: transform .18s ease, filter .18s ease, background .18s ease;
       cursor:pointer;
-      -webkit-tap-highlight-color: transparent;
-      touch-action: manipulation;
-      user-select:none;
-      box-shadow: 0 10px 28px rgba(0,0,0,.18);
+      box-shadow: 0 10px 28px rgba(0,0,0,.22);
     }
     .btn:hover{transform: translateY(-1px); background:rgba(255,255,255,.09)}
     .btn.primary{
@@ -121,52 +160,151 @@
       border:1px solid rgba(255,255,255,.18);
       color:#061018;
     }
-    .btn.primary:hover{filter:brightness(1.05)}
+    .btn.primary:hover{filter:brightness(1.03)}
     .burger{display:none}
 
-    /* HERO */
-    .hero{padding-top:calc(var(--navH) + 18px); min-height:100vh; display:grid; align-items:center; position:relative; z-index:2;}
-    .heroGrid{display:grid; grid-template-columns: 1.1fr .9fr; gap:18px; align-items:stretch}
-    .cardBig{
+    /* Desktop dropdown with spring feel */
+    .dropdown{position:relative}
+    .dropMenu{
+      position:absolute;
+      top:calc(100% + 12px);
+      left:0;
+      width:260px;
+      border-radius: 18px;
+      overflow:hidden;
+      box-shadow: var(--shadow);
+      transform: translateY(-8px) scale(.98);
+      opacity:0;
+      pointer-events:none;
+      transition: transform .22s cubic-bezier(.2,1,.2,1), opacity .18s ease;
+      background: rgba(10,12,18,.72);
+      border:1px solid rgba(255,255,255,.12);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+    .dropdown.open .dropMenu{
+      transform: translateY(0) scale(1);
+      opacity:1;
+      pointer-events:auto;
+    }
+    .dropMenu a{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:12px 12px;
+      font-weight:900;
+      color: rgba(255,255,255,.88);
+      border-top:1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.04);
+      transition:.18s ease;
+    }
+    .dropMenu a:first-child{border-top:none}
+    .dropMenu a:hover{background: rgba(255,255,255,.08)}
+    .kbd{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 12px;
+      background: rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.12);
+      padding: 2px 8px;
+      border-radius: 10px;
+      color: rgba(255,255,255,.86);
+    }
+
+    /* Mobile drawer */
+    .drawerMask{
+      position:fixed; inset:0; z-index:80;
+      display:none;
+      background:rgba(0,0,0,.55);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+    }
+    .drawerMask.open{display:block}
+    .drawer{
+      position:fixed; top:0; right:-420px; height:100vh; width:min(420px, 88vw);
+      z-index:90;
+      padding:16px;
+      display:flex; flex-direction:column; gap:10px;
+      border-left:1px solid rgba(255,255,255,.10);
+      background: rgba(10,12,18,.78);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      box-shadow: var(--shadow);
+      transition: right .32s cubic-bezier(.2,1,.2,1);
+    }
+    .drawer.open{right:0}
+    .drawerTop{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:6px 6px 12px;
+      border-bottom:1px solid rgba(255,255,255,.10);
+    }
+    .drawerTop b{font-weight:900; letter-spacing:.12em}
+    .drawer a, .drawer button{
+      padding:12px 12px;
+      border-radius:16px;
       border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.05);
+      font-weight:900;
+      color: rgba(255,255,255,.86);
+      transition: transform .16s ease, background .16s ease, border-color .16s ease;
+      cursor:pointer;
+      text-align:left;
+    }
+    .drawer a:hover, .drawer button:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,.08);
+      border-color: rgba(255,255,255,.16);
+    }
+    .drawer .row{display:flex; gap:10px}
+    .drawer .row a{flex:1; text-align:center}
+
+    .subWrap{display:none; gap:10px; flex-direction:column; padding-left:10px}
+    .subWrap.open{display:flex}
+    .subWrap a{background: rgba(255,255,255,.04)}
+
+    /* HERO */
+    .hero{
+      padding-top: calc(var(--navH) + 12px);
+      min-height:100vh;
+      display:grid; align-items:center;
+    }
+    .heroGrid{display:grid; grid-template-columns: 1.1fr .9fr; gap:18px; align-items:stretch}
+    .heroCard{
       border-radius: var(--r2);
       overflow:hidden;
       box-shadow: var(--shadow);
       background: rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.10);
       position:relative;
-      min-height:540px;
-      transform: translateY(12px);
-      opacity:0;
-      transition:.7s ease;
+      transform: translateY(8px);
+      animation: floatIn .85s cubic-bezier(.2,1,.2,1) forwards;
     }
-    .cardBig.in{transform: translateY(0); opacity:1}
-    .bgImg{position:absolute; inset:0; background-size:cover; background-position:center; transform: scale(1.04); filter:saturate(1.05) contrast(1.06)}
-    .shade{
+    @keyframes floatIn{to{transform: translateY(0)}}
+    .heroCard.big{min-height:540px}
+    .heroImg{position:absolute; inset:0; background-size:cover; background-position:center; transform: scale(1.03); filter:saturate(1.05) contrast(1.06)}
+    .heroOverlay{
       position:absolute; inset:0;
       background:
-        radial-gradient(900px 650px at 20% 16%, rgba(34,211,238,.25), transparent 55%),
-        radial-gradient(900px 650px at 80% 26%, rgba(167,139,250,.22), transparent 55%),
+        radial-gradient(900px 600px at 20% 18%, rgba(34,211,238,.22), transparent 55%),
+        radial-gradient(900px 600px at 80% 28%, rgba(167,139,250,.22), transparent 55%),
         linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.78));
     }
-    .content{
+    .heroContent{
       position:relative;
       padding:34px 32px;
-      display:flex;
-      flex-direction:column;
+      display:flex; flex-direction:column;
       justify-content:flex-end;
       gap:16px;
-      min-height:540px;
+      min-height:540px
     }
     .kicker{
       display:inline-flex; align-items:center; gap:10px;
       font-size:12px; font-weight:900;
-      letter-spacing:.24em; text-transform:uppercase;
-      color: rgba(255,255,255,.80);
+      letter-spacing:.22em;
+      text-transform:uppercase;
+      color: rgba(255,255,255,.78)
     }
     .dot{
       width:10px; height:10px; border-radius:999px;
       background: linear-gradient(135deg, var(--c1), var(--c2));
-      box-shadow: 0 0 0 6px rgba(34,211,238,.10), 0 0 26px rgba(34,211,238,.18);
+      box-shadow: 0 0 0 6px rgba(34,211,238,.10)
     }
     .title{
       font-size: clamp(38px, 5vw, 64px);
@@ -174,22 +312,22 @@
       letter-spacing:-.03em;
       margin:0;
       font-weight: 900;
-      text-shadow: 0 18px 70px rgba(0,0,0,.60);
+      text-shadow: 0 18px 60px rgba(0,0,0,.55)
     }
-    .grad{
-      background: linear-gradient(135deg, rgba(34,211,238,.98), rgba(167,139,250,.98));
+    .title span{
+      background: linear-gradient(135deg, rgba(34,211,238,.95), rgba(167,139,250,.95));
       -webkit-background-clip:text; background-clip:text;
-      color:transparent;
+      color:transparent
     }
     .sub{
       margin:0;
       max-width:60ch;
       font-size:16px;
       line-height:1.55;
-      color: rgba(255,255,255,.80);
+      color: rgba(255,255,255,.82)
     }
     .heroActions{display:flex; flex-wrap:wrap; gap:10px; margin-top:6px}
-    .pills{display:flex; gap:10px; flex-wrap:wrap; margin-top:8px}
+    .pillRow{display:flex; gap:10px; flex-wrap:wrap; margin-top:8px}
     .pill{
       display:inline-flex; align-items:center; gap:8px;
       padding:10px 12px;
@@ -197,431 +335,157 @@
       border:1px solid rgba(255,255,255,.14);
       background: rgba(255,255,255,.06);
       font-weight:900;
-      color: rgba(255,255,255,.84);
+      color: rgba(255,255,255,.82);
       font-size:13px
     }
-    .pStrong{color:rgba(255,255,255,.94)}
-
+    .pill b{color:rgba(255,255,255,.92)}
     .heroSide{display:grid; grid-template-rows: 1fr 1fr; gap:18px}
-    .side{
+    .sideCard{
       border-radius: var(--r2);
       border:1px solid rgba(255,255,255,.10);
       overflow:hidden;
       background: rgba(255,255,255,.04);
       box-shadow: var(--shadow2);
       position:relative;
-      min-height:260px;
-      transform: translateY(12px);
-      opacity:0;
-      transition:.7s ease;
+      min-height:260px
     }
-    .side.in{transform: translateY(0); opacity:1}
-    .sideOverlay{
-      position:absolute; inset:0; padding:22px;
-      display:flex; flex-direction:column; justify-content:flex-end; gap:10px;
-      background: linear-gradient(180deg, rgba(0,0,0,.10), rgba(0,0,0,.78));
+    .sideContent{
+      position:absolute; inset:0;
+      padding:22px;
+      display:flex; flex-direction:column;
+      justify-content:flex-end;
+      gap:10px;
+      background: linear-gradient(180deg, rgba(0,0,0,.12), rgba(0,0,0,.78))
     }
     .sideTitle{margin:0; font-size:18px; font-weight:900; letter-spacing:-.02em}
     .sideText{margin:0; color: rgba(255,255,255,.76); font-size:14px; line-height:1.45}
 
-    /* SECTIONS */
-    section{padding: 84px 0; position:relative; z-index:2}
+    /* Sections */
+    section{padding: 80px 0}
     .sectionHead{display:flex; align-items:flex-end; justify-content:space-between; gap:14px; margin-bottom:18px}
     .h2{margin:0; font-size: clamp(26px, 3.2vw, 40px); letter-spacing:-.03em; font-weight: 900}
-    .lead{margin:0; color: var(--muted); max-width: 62ch; line-height:1.55; font-size:15px}
+    .lead{margin:0; color: var(--muted); max-width: 70ch; line-height:1.55; font-size:15px}
 
     .grid3{display:grid; grid-template-columns: repeat(3, 1fr); gap:14px}
     .card{
-      border-radius: var(--r);
+      border-radius: var(--r2);
       border:1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.05);
       padding:18px;
-      box-shadow: 0 18px 60px rgba(0,0,0,.32);
-      transition: .22s ease;
+      box-shadow: 0 18px 50px rgba(0,0,0,.30);
+      transition: transform .22s cubic-bezier(.2,1,.2,1), background .18s ease, border-color .18s ease;
       position:relative;
       overflow:hidden;
       min-height: 170px;
     }
-    .card::before{
-      content:"";
-      position:absolute; inset:-2px;
-      background: radial-gradient(500px 300px at 30% 0%, rgba(34,211,238,.18), transparent 55%);
-      opacity:.9;
-      pointer-events:none;
-    }
     .card:hover{
-      transform: translateY(-4px);
+      transform: translateY(-3px);
       background: rgba(255,255,255,.07);
-      border-color: rgba(255,255,255,.14);
-      box-shadow: 0 28px 90px rgba(0,0,0,.44), 0 0 40px rgba(34,211,238,.10);
+      border-color: rgba(255,255,255,.14)
     }
     .tag{display:inline-flex; align-items:center; gap:8px; font-size:12px; font-weight:900; letter-spacing:.14em; text-transform:uppercase; color: rgba(255,255,255,.72)}
     .tag i{width:10px; height:10px; border-radius:999px; display:inline-block; background: linear-gradient(135deg, var(--c1), var(--c2))}
-    .card h3{margin:10px 0 6px; font-size:18px; font-weight:900; letter-spacing:-.02em; position:relative}
-    .card p{margin:0; color: var(--muted); font-size:14px; line-height:1.55; position:relative}
+    .card h3{margin:10px 0 6px; font-size:18px; font-weight:900; letter-spacing:-.02em}
+    .card p{margin:0; color: var(--muted); font-size:14px; line-height:1.55}
 
-    .story{display:grid; grid-template-columns: 1fr 1fr; gap:16px}
-    .storyBlock{
-      border-radius: var(--r2);
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.04);
-      overflow:hidden;
-      min-height: 360px;
-      position:relative;
-      box-shadow: var(--shadow2);
-      cursor:pointer;
-      transition: transform .22s ease, box-shadow .22s ease;
-    }
-    .storyBlock:hover{
-      transform: translateY(-4px);
-      box-shadow: 0 30px 100px rgba(0,0,0,.55), 0 0 40px rgba(167,139,250,.12);
-    }
-    .storyShade{position:absolute; inset:0; background: linear-gradient(180deg, rgba(0,0,0,.10), rgba(0,0,0,.82))}
-    .storyText{position:relative; padding:22px; display:flex; flex-direction:column; justify-content:flex-end; gap:10px; min-height:360px}
-    .storyText h3{margin:0; font-size:22px; font-weight:900; letter-spacing:-.02em}
-    .quote{margin:0; color: rgba(255,255,255,.80); line-height:1.6; font-size:14.5px; max-width: 58ch}
-    .mini{display:flex; gap:10px; flex-wrap:wrap; margin-top:8px}
-    .mini .pill{padding:8px 10px; font-size:12px; background: rgba(255,255,255,.05)}
-
-    .gallery{display:grid; grid-template-columns: 1.25fr .75fr .75fr; grid-template-rows: 240px 240px; gap:14px}
-    .g{
-      border-radius: var(--r2);
-      border:1px solid rgba(255,255,255,.10);
-      overflow:hidden;
-      position:relative;
-      cursor:pointer;
-      box-shadow: var(--shadow2);
-      background: rgba(255,255,255,.03);
-      transition: transform .22s ease, box-shadow .22s ease;
-    }
-    .g:hover{transform: translateY(-4px); box-shadow: 0 30px 100px rgba(0,0,0,.55), 0 0 40px rgba(34,211,238,.12)}
-    .g .img{position:absolute; inset:0; background-size:cover; background-position:center; transition: transform .45s ease, filter .45s ease; filter:saturate(1.02) contrast(1.03)}
-    .g:hover .img{transform: scale(1.07); filter:saturate(1.12) contrast(1.08)}
-    .g .cap{
-      position:absolute; left:14px; right:14px; bottom:14px;
-      padding:12px; border-radius: 16px;
+    /* Contact - icon logos */
+    .contactGrid{display:grid; gap:14px; grid-template-columns: 1fr}
+    .socialCard{
+      display:flex; align-items:center; gap:14px;
+      padding:16px;
+      border-radius: 24px;
       border:1px solid rgba(255,255,255,.12);
-      background: linear-gradient(180deg, rgba(0,0,0,.20), rgba(0,0,0,.55));
-      backdrop-filter: blur(12px);
-      font-weight:900;
-      display:flex; justify-content:space-between; align-items:center; gap:10px
+      background: rgba(255,255,255,.05);
+      box-shadow: var(--shadow2);
+      transition: transform .22s cubic-bezier(.2,1,.2,1), background .18s ease, border-color .18s ease;
     }
-    .cap small{font-weight:800; color: rgba(255,255,255,.70)}
-    .g.big{grid-row: span 2}
+    .socialCard:hover{
+      transform: translateY(-2px);
+      background: rgba(255,255,255,.07);
+      border-color: rgba(255,255,255,.16)
+    }
+    .icon{
+      width:54px; height:54px;
+      border-radius:18px;
+      display:flex; align-items:center; justify-content:center;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      flex-shrink:0;
+      overflow:hidden;
+    }
+    .icon svg{width:26px; height:26px; color:rgba(255,255,255,.98)}
+    .icon.ig{background: linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)}
+    .icon.tt{background: linear-gradient(135deg,#00f2ea,#ff0050)}
+    .icon.fb{background: linear-gradient(135deg,#1877f2,#5f9bff)}
+    .icon.mail{background: linear-gradient(135deg, rgba(34,211,238,.95), rgba(167,139,250,.95))}
+    .socialInfo{display:flex; flex-direction:column; gap:4px; min-width:0}
+    .socialInfo h3{margin:0; font-weight:900; font-size:20px}
+    .socialInfo p{margin:0; color:rgba(255,255,255,.74); font-weight:800}
+    .arrow{margin-left:auto; font-weight:900; opacity:.65}
 
-    .twoCol{display:grid; grid-template-columns: 1fr 1fr; gap:14px; align-items:stretch}
-    .list{margin: 10px 0 0; padding-left:18px; color: rgba(255,255,255,.78); line-height:1.65; font-size:14px}
-    .list li{margin: 8px 0}
-    .kbd{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size: 12.5px; background: rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.12); padding: 2px 8px; border-radius: 10px}
+    .emailCard{
+      padding:18px;
+      border-radius: 24px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      box-shadow: var(--shadow2);
+    }
+    .emailCard h3{margin:0 0 8px; font-weight:900; font-size:20px}
+    .emailCard p{margin:0 0 12px; color:rgba(255,255,255,.74); font-weight:800}
+    .emailBtns{display:flex; gap:10px; flex-wrap:wrap}
 
+    /* Footer */
     footer{
       padding: 34px 0 50px;
       border-top:1px solid rgba(255,255,255,.08);
       background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(0,0,0,.35));
-      position:relative; z-index:2;
     }
     .footGrid{display:grid; grid-template-columns: 1.2fr .8fr; gap:14px}
     .footCard{border-radius: var(--r2); border:1px solid rgba(255,255,255,.10); background: rgba(255,255,255,.04); padding:18px}
     .footCard h3{margin:0 0 10px; font-size:16px; font-weight:900}
     .footCard p{margin:0; color:var(--muted); line-height:1.6; font-size:14px}
     .footLinks{display:flex; flex-wrap:wrap; gap:10px; margin-top:12px}
-    .footLinks a{padding:10px 12px; border-radius:14px; border:1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.05); font-weight:900; font-size:13px; color: rgba(255,255,255,.84)}
+    .footLinks a{padding:10px 12px; border-radius:999px; border:1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.05); font-weight:900; font-size:13px; color: rgba(255,255,255,.84)}
     .copyright{margin-top:14px; color: rgba(255,255,255,.55); font-size: 12.5px}
 
-    /* MODAL */
-    .modal{position:fixed; inset:0; z-index:1200; display:none; background: rgba(0,0,0,.72); backdrop-filter: blur(10px); align-items:center; justify-content:center; padding:18px}
+    /* Modal */
+    .modal{position:fixed; inset:0; z-index:100; display:none; background: rgba(0,0,0,.72); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); align-items:center; justify-content:center; padding:18px}
     .modal.open{display:flex}
     .modalBox{width:min(980px, 100%); border-radius: 22px; border:1px solid rgba(255,255,255,.14); background: rgba(10,12,18,.75); overflow:hidden; box-shadow: var(--shadow)}
     .modalTop{display:flex; align-items:center; justify-content:space-between; padding:14px; border-bottom:1px solid rgba(255,255,255,.10)}
     .modalTop b{font-weight:900}
-    .close{border:1px solid rgba(255,255,255,.14); background: rgba(255,255,255,.06); color: rgba(255,255,255,.88); border-radius: 14px; padding:10px 12px; font-weight:900; cursor:pointer}
+    .close{border:1px solid rgba(255,255,255,.14); background: rgba(255,255,255,.06); color: rgba(255,255,255,.88); border-radius: 999px; padding:10px 14px; font-weight:900; cursor:pointer}
     .modalImg{width:100%; aspect-ratio: 16/9; background-size:cover; background-position:center}
 
-    /* REVEAL */
-    .reveal{opacity:0; transform: translateY(18px); transition: .8s cubic-bezier(.22,.61,.36,1)}
+    /* Reveal */
+    .reveal{opacity:0; transform: translateY(18px); transition: .7s cubic-bezier(.2,1,.2,1)}
     .reveal.in{opacity:1; transform: translateY(0)}
 
-    /* ============= CYBER NEON MENU + GLITCH ============= */
-    .neoMenu{
-      position:fixed; inset:0; z-index:1100;
-      display:flex; align-items:center; justify-content:center;
-      opacity:0; pointer-events:none; transition:.35s ease;
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      *{animation:none !important; transition:none !important}
+      html{scroll-behavior:auto}
     }
-    .neoMenu.open{opacity:1; pointer-events:auto}
-    .neoMenu__bg{
-      position:absolute; inset:0;
-      background:
-        radial-gradient(650px 650px at var(--mx,50%) var(--my,40%), rgba(34,211,238,.22), transparent 60%),
-        radial-gradient(900px 800px at 85% 75%, rgba(167,139,250,.18), transparent 60%),
-        rgba(6,8,14,.88);
-      backdrop-filter: blur(18px);
-      transition:.25s ease;
-    }
-    .neoMenu__bg::before{
-      content:""; position:absolute; inset:-2px;
-      background: repeating-linear-gradient(to bottom, rgba(255,255,255,.06) 0px, rgba(255,255,255,.06) 1px, transparent 2px, transparent 7px);
-      opacity:.06; mix-blend-mode: overlay;
-      animation: scan 7s linear infinite;
-    }
-    @keyframes scan{from{transform: translateY(-12px)}to{transform: translateY(12px)}}
-    .neoMenu__bg::after{
-      content:""; position:absolute; inset:0;
-      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='.25'/%3E%3C/svg%3E");
-      opacity:.07; mix-blend-mode: overlay; pointer-events:none;
-    }
-
-    .neoMenu__panel{
-      position:relative;
-      width:min(520px, 92vw);
-      border-radius: 24px;
-      padding:18px 18px 16px;
-      border:1px solid rgba(255,255,255,.10);
-      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
-      box-shadow: 0 40px 120px rgba(0,0,0,.65), 0 0 80px rgba(34,211,238,.10);
-      transform: translateY(14px) scale(.98);
-      opacity:0;
-      transition: .38s cubic-bezier(.22,.61,.36,1);
-      overflow:hidden;
-    }
-    .neoMenu__panel::before{
-      content:""; position:absolute; inset:-2px;
-      background: linear-gradient(135deg, rgba(34,211,238,.55), rgba(167,139,250,.45), rgba(34,211,238,.25));
-      opacity:.22; filter: blur(14px); pointer-events:none;
-    }
-    .neoMenu.open .neoMenu__panel{transform: translateY(0) scale(1); opacity:1}
-
-    .neoMenu__top{
-      display:flex; align-items:center; justify-content:space-between;
-      gap:14px; padding:8px 6px 14px;
-      border-bottom:1px solid rgba(255,255,255,.10);
-    }
-    .neoMenu__brand{display:flex; align-items:center; gap:10px}
-    .neoDot{
-      width:10px; height:10px; border-radius:999px;
-      background: linear-gradient(135deg, rgba(34,211,238,.95), rgba(167,139,250,.95));
-      box-shadow: 0 0 0 6px rgba(34,211,238,.10), 0 0 26px rgba(34,211,238,.25);
-    }
-    .neoMenu__label{
-      font-weight:900; letter-spacing:.22em; font-size:11px;
-      color: rgba(255,255,255,.70); text-transform:uppercase;
-      position:relative;
-    }
-
-    /* glitch text */
-    .glitch{
-      position:relative;
-      display:inline-block;
-    }
-    .glitch::before, .glitch::after{
-      content: attr(data-text);
-      position:absolute; left:0; top:0;
-      width:100%;
-      opacity:.45;
-      pointer-events:none;
-      mix-blend-mode: screen;
-    }
-    .glitch::before{transform: translate(1px,0); color: rgba(34,211,238,.95); clip-path: inset(0 0 52% 0);}
-    .glitch::after{transform: translate(-1px,0); color: rgba(167,139,250,.95); clip-path: inset(48% 0 0 0);}
-    .neoMenu.open .glitch::before{animation: glitch1 1.6s infinite linear;}
-    .neoMenu.open .glitch::after{animation: glitch2 1.2s infinite linear;}
-    @keyframes glitch1{
-      0%,100%{clip-path: inset(0 0 52% 0); transform: translate(1px,0)}
-      20%{clip-path: inset(10% 0 35% 0); transform: translate(2px,-1px)}
-      40%{clip-path: inset(2% 0 60% 0); transform: translate(1px,1px)}
-      60%{clip-path: inset(15% 0 30% 0); transform: translate(3px,0)}
-      80%{clip-path: inset(0 0 52% 0); transform: translate(2px,1px)}
-    }
-    @keyframes glitch2{
-      0%,100%{clip-path: inset(48% 0 0 0); transform: translate(-1px,0)}
-      25%{clip-path: inset(55% 0 0 0); transform: translate(-3px,1px)}
-      50%{clip-path: inset(40% 0 10% 0); transform: translate(-2px,-1px)}
-      75%{clip-path: inset(60% 0 0 0); transform: translate(-4px,0)}
-    }
-
-    .neoClose{
-      border:1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.06);
-      color: rgba(255,255,255,.90);
-      border-radius: 999px;
-      padding:10px 14px;
-      font-weight:900;
-      cursor:pointer;
-      transition:.18s ease;
-    }
-    .neoClose:hover{
-      transform: translateY(-1px);
-      background: rgba(255,255,255,.09);
-      box-shadow: 0 0 28px rgba(34,211,238,.14);
-    }
-
-    .neoLinks{
-      display:flex; flex-direction:column; gap:10px;
-      padding:16px 4px 10px;
-    }
-    .neoLink{
-      position:relative;
-      display:flex; align-items:center; justify-content:space-between;
-      gap:16px; padding:14px 14px;
-      border-radius: 18px;
-      background: rgba(255,255,255,.03);
-      border:1px solid rgba(255,255,255,.08);
-      font-weight:900; color: rgba(255,255,255,.90);
-      transform: translateY(14px); opacity:0;
-      transition: .35s cubic-bezier(.22,.61,.36,1), border-color .2s ease, background .2s ease;
-    }
-    .neoLink span{font-size:20px}
-    .neoLink i{font-style:normal; font-weight:900; font-size:12px; letter-spacing:.18em; opacity:.55}
-    .neoLink::after{
-      content:""; position:absolute; left:14px; right:14px; bottom:8px;
-      height:2px; border-radius:999px;
-      background: linear-gradient(90deg, rgba(34,211,238,.0), rgba(34,211,238,.95), rgba(167,139,250,.95), rgba(34,211,238,.0));
-      opacity:0; transform: translateY(4px); transition:.25s ease;
-    }
-    .neoLink:hover{
-      background: rgba(255,255,255,.06);
-      border-color: rgba(255,255,255,.16);
-      transform: translateY(-1px);
-      box-shadow: 0 18px 60px rgba(0,0,0,.35);
-    }
-    .neoLink:hover::after{opacity:1; transform: translateY(0)}
-    .neoMenu.open .neoLink{opacity:1; transform: translateY(0)}
-    .neoMenu.open .neoLink:nth-child(1){transition-delay:.06s}
-    .neoMenu.open .neoLink:nth-child(2){transition-delay:.10s}
-    .neoMenu.open .neoLink:nth-child(3){transition-delay:.14s}
-    .neoMenu.open .neoLink:nth-child(4){transition-delay:.18s}
-    .neoMenu.open .neoLink:nth-child(5){transition-delay:.22s}
-    .neoMenu.open .neoLink:nth-child(6){transition-delay:.26s}
-    .neoMenu.open .neoLink:nth-child(7){transition-delay:.30s}
-
-    .neoMenu__footer{
-      display:flex; justify-content:space-between; align-items:center;
-      gap:12px; padding:12px 6px 2px;
-      border-top:1px solid rgba(255,255,255,.10);
-      margin-top:8px;
-    }
-    .neoChip{
-      padding:8px 10px; border-radius:999px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.05);
-      font-weight:900; letter-spacing:.12em; font-size:10.5px;
-      color: rgba(255,255,255,.78); text-transform:uppercase;
-    }
-    .neoHint{color: rgba(255,255,255,.55); font-weight:800; font-size:12px}
 
     /* Responsive */
     @media (max-width: 980px){
       .heroGrid{grid-template-columns: 1fr}
       .heroSide{grid-template-rows:auto; grid-template-columns: 1fr 1fr}
       .grid3{grid-template-columns: 1fr}
-      .story{grid-template-columns: 1fr}
-      .twoCol{grid-template-columns: 1fr}
-      .gallery{grid-template-columns: 1fr 1fr; grid-template-rows: 220px 220px 220px}
-      .g.big{grid-row: span 1}
       .footGrid{grid-template-columns: 1fr}
       .menu{display:none}
       .burger{display:inline-flex}
     }
     @media (max-width: 520px){
-      .content{padding:26px 20px}
-      .cardBig{min-height:560px}
-      .content{min-height:560px}
+      .heroContent{padding:26px 20px}
+      .heroCard.big{min-height: 560px}
+      .heroContent{min-height: 560px}
       .heroSide{grid-template-columns: 1fr}
     }
-    @media (prefers-reduced-motion: reduce){
-      .neoMenu, .neoMenu__panel, .neoLink, .neoMenu__bg::before, .reveal{transition:none; animation:none}
-    }
-    
-    .contactGrid{
-  display:grid;
-  gap:16px;
-  grid-template-columns:1fr;
-}
-
-.socialCard{
-  display:flex;
-  align-items:center;
-  gap:16px;
-  padding:18px;
-  border-radius:22px;
-  background:rgba(255,255,255,.05);
-  border:1px solid rgba(255,255,255,.12);
-  transition:.25s ease;
-  position:relative;
-  overflow:hidden;
-}
-
-.socialCard:hover{
-  transform:translateY(-4px);
-  box-shadow:0 0 60px rgba(34,211,238,.2);
-}
-
-.icon{
-  width:52px;
-  height:52px;
-  border-radius:16px;
-  flex-shrink:0;
-  background:linear-gradient(135deg,#22D3EE,#A78BFA);
-  box-shadow:0 0 40px rgba(34,211,238,.35);
-}
-
-.icon.ig{background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);}
-.icon.tt{background:linear-gradient(135deg,#00f2ea,#ff0050);}
-.icon.fb{background:linear-gradient(135deg,#1877f2,#5f9bff);}
-
-.socialInfo h3{
-  margin:0;
-  font-weight:900;
-}
-
-.socialInfo p{
-  margin:4px 0 0;
-  color:rgba(255,255,255,.7);
-}
-
-.arrow{
-  margin-left:auto;
-  font-weight:900;
-  opacity:.6;
-}
-
-.emailCard{
-  padding:22px;
-  border-radius:22px;
-  background:rgba(255,255,255,.04);
-  border:1px solid rgba(255,255,255,.12);
-}
-
-.emailCard h3{
-  margin:0 0 8px;
-  font-weight:900;
-}
-
-.emailCard p{
-  margin:0 0 14px;
-  color:rgba(255,255,255,.75);
-}
-
-.emailButtons{
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-}
-
-/* Logo breathing animation */
-.logo{
-  animation: breathe 4s ease-in-out infinite;
-}
-
-@keyframes breathe{
-  0%,100%{transform:scale(1);}
-  50%{transform:scale(1.05);}
-}
   </style>
 </head>
 
 <body>
-  <div class="noise" aria-hidden="true"></div>
-
   <!-- NAV -->
   <div class="nav">
     <div class="wrap">
@@ -632,98 +496,109 @@
         </a>
 
         <nav class="menu" aria-label="Primary navigation">
-          <a href="#about">About</a>
-          <a href="#journey">Journey</a>
-          <a href="#gallery">Gallery</a>
-          <a href="#tips">Tips</a>
-          <a href="#memo">Memo</a>
-          <a href="/gym.html">Gym</a>
-          <a href="#contact">Contact</a>
+          <a class="pillLink" href="#about">About</a>
+          <a class="pillLink" href="#journey">Journey</a>
+          <a class="pillLink" href="#gallery">Gallery</a>
+
+          <div class="dropdown" id="incDrop">
+            <button class="dropBtn" id="incBtn" aria-haspopup="true" aria-expanded="false">
+              Incidents <span class="kbd">I</span>
+            </button>
+            <div class="dropMenu glow" role="menu" aria-label="Incidents submenu">
+              <a href="./incidents.html" role="menuitem">All Incidents <span>↗</span></a>
+              <a href="./sundarijal-rescue.html" role="menuitem">Sundarijal Rescue <span>↗</span></a>
+            </div>
+          </div>
+
+          <a class="pillLink" href="#tips">Tips</a>
+          <a class="pillLink" href="#memo">Memo</a>
+          <a class="pillLink" href="./gym.html">Gym</a>
+          <a class="pillLink" href="#contact">Contact</a>
         </nav>
 
         <div class="cta">
           <a class="btn" href="#gallery">View Photos</a>
           <a class="btn primary" href="#contact">Work With Me</a>
-          <button class="btn burger" id="burger" aria-haspopup="dialog" aria-expanded="false">Menu</button>
+          <button class="btn burger" id="burger" aria-haspopup="dialog" aria-controls="drawer" aria-expanded="false">Menu</button>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- CYBER MENU -->
-  <div class="neoMenu" id="neoMenu" aria-hidden="true">
-    <div class="neoMenu__bg" id="neoBg"></div>
-
-    <div class="neoMenu__panel" role="dialog" aria-modal="true" aria-label="Menu">
-      <div class="neoMenu__top">
-        <div class="neoMenu__brand">
-          <span class="neoDot"></span>
-          <span class="neoMenu__label glitch" data-text="NAVIGATION">NAVIGATION</span>
-        </div>
-        <button class="neoClose" id="neoClose">Close</button>
-      </div>
-
-      <nav class="neoLinks" aria-label="Mobile navigation">
-        <a class="neoLink" href="#about"><span>About</span><i>01</i></a>
-        <a class="neoLink" href="#journey"><span>Journey</span><i>02</i></a>
-        <a class="neoLink" href="#gallery"><span>Gallery</span><i>03</i></a>
-        <a class="neoLink" href="#tips"><span>Tips</span><i>04</i></a>
-        <a class="neoLink" href="#memo"><span>Memo</span><i>05</i></a>
-        <a class="neoLink" href="/gym.html"><span>Gym Schedule</span><i>06</i></a>
-        <a class="neoLink" href="#contact"><span>Contact</span><i>07</i></a>
-      </nav>
-
-      <div class="neoMenu__footer">
-        <div class="neoChip">CYBER • GLASS • NEON</div>
-        <div class="neoHint">Tap outside or press ESC</div>
-      </div>
+  <!-- Mobile Drawer -->
+  <div class="drawerMask" id="drawerMask" aria-hidden="true"></div>
+  <aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-label="Mobile menu">
+    <div class="drawerTop">
+      <b>MENU</b>
+      <button class="btn" id="drawerClose">Close</button>
     </div>
-  </div>
+
+    <a class="drawerLink" href="#about">About</a>
+    <a class="drawerLink" href="#journey">Journey</a>
+    <a class="drawerLink" href="#gallery">Gallery</a>
+
+    <button id="incToggle" type="button">Incidents</button>
+    <div class="subWrap" id="incSub">
+      <a class="drawerLink" href="./incidents.html">All Incidents</a>
+      <a class="drawerLink" href="./sundarijal-rescue.html">Sundarijal Rescue</a>
+    </div>
+
+    <a class="drawerLink" href="#tips">Tips</a>
+    <a class="drawerLink" href="#memo">Memo</a>
+    <a class="drawerLink" href="./gym.html">Gym</a>
+    <a class="drawerLink" href="#contact">Contact</a>
+
+    <div class="row">
+      <a href="#gallery">Photos</a>
+      <a href="#contact">Work</a>
+    </div>
+  </aside>
 
   <!-- HERO -->
   <main id="top" class="hero">
     <div class="wrap">
       <div class="heroGrid">
-        <div class="cardBig reveal">
-          <div class="bgImg" style="background-image:url('/assets/hero-eiffel.jpg')"></div>
-          <div class="shade"></div>
+        <div class="heroCard big reveal glow">
+          <div class="heroImg" style="background-image:url('./assets/hero-eiffel.jpg')"></div>
+          <div class="heroOverlay"></div>
 
-          <div class="content">
-            <div class="kicker"><span class="dot"></span> STORIES • TRAVEL • FITNESS • LIFE SYSTEMS</div>
-            <h1 class="title">Building a life that feels <span class="grad">legendary</span>.</h1>
+          <div class="heroContent">
+            <div class="kicker"><span class="dot"></span> STORIES • TRAVEL • FITNESS • REAL LIFE</div>
+
+            <h1 class="title">I build my life with <span>discipline</span>.</h1>
+
             <p class="sub">
-              I’m Nabin. This is my digital home — stories, photos, discipline, and lessons across countries.
-              No fake motivation. Only real progress.
+              This is my space. Real moments, real work, and the kind of progress you can feel over time.
             </p>
 
             <div class="heroActions">
-              <a class="btn primary" href="#journey">Start the Journey</a>
-              <a class="btn" href="/gym.html">Gym Schedule</a>
-              <a class="btn" href="#memo">My Memo</a>
+              <a class="btn primary" href="#journey">Start Here</a>
+              <a class="btn" href="./sundarijal-rescue.html">Sundarijal Rescue</a>
+              <a class="btn" href="./gym.html">Gym Schedule</a>
             </div>
 
-            <div class="pills">
-              <div class="pill"><span class="pStrong">Now:</span> Europe • Growth Mode</div>
-              <div class="pill"><span class="pStrong">Focus:</span> Discipline + Skills</div>
-              <div class="pill"><span class="pStrong">Energy:</span> Quiet confidence</div>
+            <div class="pillRow">
+              <div class="pill"><b>Now:</b> Europe, growth mode</div>
+              <div class="pill"><b>Focus:</b> skills and strength</div>
+              <div class="pill"><b>Rule:</b> consistency first</div>
             </div>
           </div>
         </div>
 
         <div class="heroSide">
-          <div class="side reveal">
-            <div class="bgImg" style="background-image:url('/assets/hero-lake.jpg')"></div>
-            <div class="sideOverlay">
-              <h3 class="sideTitle">Nature is therapy.</h3>
-              <p class="sideText">When the world is loud, mountains teach silence — and silence builds strength.</p>
+          <div class="sideCard reveal glow">
+            <div class="heroImg" style="background-image:url('./assets/hero-lake.jpg')"></div>
+            <div class="sideContent">
+              <h3 class="sideTitle">Nature clears my head.</h3>
+              <p class="sideText">When everything feels loud, I step outside and reset properly.</p>
             </div>
           </div>
 
-          <div class="side reveal">
-            <div class="bgImg" style="background-image:url('/assets/travel-plane.jpg')"></div>
-            <div class="sideOverlay">
-              <h3 class="sideTitle">Movement creates momentum.</h3>
-              <p class="sideText">New cities. New lessons. Same discipline. That’s how a story upgrades.</p>
+          <div class="sideCard reveal glow">
+            <div class="heroImg" style="background-image:url('./assets/travel-plane.jpg')"></div>
+            <div class="sideContent">
+              <h3 class="sideTitle">Movement builds momentum.</h3>
+              <p class="sideText">New places teach new lessons. My discipline stays the same.</p>
             </div>
           </div>
         </div>
@@ -737,27 +612,27 @@
       <div class="sectionHead reveal">
         <div>
           <h2 class="h2">Who I am</h2>
-          <p class="lead">Clean structure, premium look, real stories. Minimal noise. Maximum direction.</p>
+          <p class="lead">A clean site with real energy. Nothing random. Nothing fake. Just the story.</p>
         </div>
       </div>
 
       <div class="grid3">
-        <div class="card reveal">
+        <div class="card reveal glow">
           <div class="tag"><i></i> Identity</div>
-          <h3>Not perfect. Real.</h3>
-          <p>Travel, learning, habits, wins, failures — I share the process, not the fake highlight reel.</p>
+          <h3>Real life, documented.</h3>
+          <p>I share what actually happens. The wins, the pressure, the habits, and the mindset.</p>
         </div>
 
-        <div class="card reveal">
+        <div class="card reveal glow">
           <div class="tag"><i></i> Fitness</div>
-          <h3>Discipline beats motivation.</h3>
-          <p>Gym + steps + simple nutrition. Repeat until it becomes your identity.</p>
+          <h3>Simple, consistent training.</h3>
+          <p>I do the basics well. Train, walk, eat smart, sleep. Repeat until it becomes normal.</p>
         </div>
 
-        <div class="card reveal">
-          <div class="tag"><i></i> Systems</div>
-          <h3>Simple rules, repeated.</h3>
-          <p>Small upgrades daily. That’s how a life becomes legendary.</p>
+        <div class="card reveal glow">
+          <div class="tag"><i></i> Incidents</div>
+          <h3>When it matters, I write it down.</h3>
+          <p>Some moments deserve proper documentation. Clear words. No confusion.</p>
         </div>
       </div>
     </div>
@@ -769,65 +644,25 @@
       <div class="sectionHead reveal">
         <div>
           <h2 class="h2">My journey</h2>
-          <p class="lead">Each image is a chapter. Tap to preview.</p>
+          <p class="lead">Every photo is a chapter. Tap to preview.</p>
         </div>
       </div>
 
-      <div class="story">
-        <div class="storyBlock reveal" data-modal-title="Paris — The Lights">
-          <div class="bgImg" style="background-image:url('/assets/hero-eiffel.jpg')"></div>
-          <div class="storyShade"></div>
-          <div class="storyText">
-            <h3>Paris — the lights</h3>
-            <p class="quote">“The distance between dreams and reality is discipline.”</p>
-            <div class="mini">
-              <div class="pill">Confidence</div>
-              <div class="pill">Ambition</div>
-              <div class="pill">Story</div>
-            </div>
-          </div>
+      <div class="grid3">
+        <div class="card reveal glow" onclick="openModal('./assets/hero-eiffel.jpg','Paris')">
+          <div class="tag"><i></i> Travel</div>
+          <h3>Paris</h3>
+          <p>Ambition feels different when you back it up with action.</p>
         </div>
-
-        <div class="storyBlock reveal" data-modal-title="Mountains — The Silence">
-          <div class="bgImg" style="background-image:url('/assets/hero-lake.jpg')"></div>
-          <div class="storyShade"></div>
-          <div class="storyText">
-            <h3>Mountains — the silence</h3>
-            <p class="quote">“When you stop chasing noise, you hear yourself clearly.”</p>
-            <div class="mini">
-              <div class="pill">Clarity</div>
-              <div class="pill">Peace</div>
-              <div class="pill">Focus</div>
-            </div>
-          </div>
+        <div class="card reveal glow" onclick="openModal('./assets/hero-lake.jpg','Mountains')">
+          <div class="tag"><i></i> Nature</div>
+          <h3>Mountains</h3>
+          <p>Peace is not lazy. Peace is sharp focus without noise.</p>
         </div>
-
-        <div class="storyBlock reveal" data-modal-title="Airport — The Takeoff">
-          <div class="bgImg" style="background-image:url('/assets/travel-plane.jpg')"></div>
-          <div class="storyShade"></div>
-          <div class="storyText">
-            <h3>Airport — the takeoff</h3>
-            <p class="quote">“Dreams don’t take off by luck. They take off when you show up.”</p>
-            <div class="mini">
-              <div class="pill">Consistency</div>
-              <div class="pill">Work</div>
-              <div class="pill">Progress</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="storyBlock reveal" data-modal-title="Home — The Soft Side">
-          <div class="bgImg" style="background-image:url('/assets/cat.jpg')"></div>
-          <div class="storyShade"></div>
-          <div class="storyText">
-            <h3>Home — the soft side</h3>
-            <p class="quote">“Rest is part of the plan.”</p>
-            <div class="mini">
-              <div class="pill">Balance</div>
-              <div class="pill">Real life</div>
-              <div class="pill">Reset</div>
-            </div>
-          </div>
+        <div class="card reveal glow" onclick="openModal('./assets/travel-plane.jpg','Takeoff')">
+          <div class="tag"><i></i> Growth</div>
+          <h3>Takeoff</h3>
+          <p>Progress starts the moment you stop waiting for the perfect day.</p>
         </div>
       </div>
     </div>
@@ -839,34 +674,25 @@
       <div class="sectionHead reveal">
         <div>
           <h2 class="h2">Gallery</h2>
-          <p class="lead">Tap any image for cinematic preview.</p>
+          <p class="lead">Tap any photo for a clean preview.</p>
         </div>
       </div>
 
-      <div class="gallery">
-        <div class="g big reveal" data-img="/assets/portrait-2.jpg" data-title="Portrait — Calm Power">
-          <div class="img" style="background-image:url('/assets/portrait-2.jpg')"></div>
-          <div class="cap"><span>Portrait — Calm Power</span><small>Tap</small></div>
+      <div class="grid3">
+        <div class="card reveal glow" onclick="openModal('./assets/portrait-2.jpg','Portrait')">
+          <div class="tag"><i></i> Portrait</div>
+          <h3>Calm power</h3>
+          <p>Quiet confidence looks better than loud talk.</p>
         </div>
-
-        <div class="g reveal" data-img="/assets/city.jpg" data-title="City — Movement">
-          <div class="img" style="background-image:url('/assets/city.jpg')"></div>
-          <div class="cap"><span>City — Movement</span><small>Tap</small></div>
+        <div class="card reveal glow" onclick="openModal('./assets/city.jpg','City')">
+          <div class="tag"><i></i> City</div>
+          <h3>Movement</h3>
+          <p>Different streets, same mindset.</p>
         </div>
-
-        <div class="g reveal" data-img="/assets/forest.jpg" data-title="Forest — Work Ethic">
-          <div class="img" style="background-image:url('/assets/forest.jpg')"></div>
-          <div class="cap"><span>Forest — Work Ethic</span><small>Tap</small></div>
-        </div>
-
-        <div class="g reveal" data-img="/assets/mirror.jpg" data-title="Mirror — Real Life">
-          <div class="img" style="background-image:url('/assets/mirror.jpg')"></div>
-          <div class="cap"><span>Mirror — Real Life</span><small>Tap</small></div>
-        </div>
-
-        <div class="g reveal" data-img="/assets/portrait-1.jpg" data-title="Portrait — Identity">
-          <div class="img" style="background-image:url('/assets/portrait-1.jpg')"></div>
-          <div class="cap"><span>Portrait — Identity</span><small>Tap</small></div>
+        <div class="card reveal glow" onclick="openModal('./assets/forest.jpg','Forest')">
+          <div class="tag"><i></i> Nature</div>
+          <h3>Work ethic</h3>
+          <p>Results come from the boring days done correctly.</p>
         </div>
       </div>
     </div>
@@ -877,32 +703,28 @@
     <div class="wrap">
       <div class="sectionHead reveal">
         <div>
-          <h2 class="h2">Tips & tricks</h2>
-          <p class="lead">Short rules that actually change your life.</p>
+          <h2 class="h2">Tips</h2>
+          <p class="lead">No drama. No hype. Just rules that work.</p>
         </div>
       </div>
 
-      <div class="twoCol">
-        <div class="card reveal">
+      <div class="grid3">
+        <div class="card reveal glow">
           <div class="tag"><i></i> Fitness</div>
-          <h3>Simple fat-loss rules</h3>
-          <ul class="list">
-            <li>Daily: <span class="kbd">8k–12k steps</span> + water + sleep.</li>
-            <li>Protein first: every meal has protein.</li>
-            <li>Train 4–6 days/week. Consistency beats perfect.</li>
-            <li>Track weekly, not daily panic.</li>
-          </ul>
+          <h3>Keep it simple</h3>
+          <p>Walk daily, eat enough protein, train with intention, sleep like it matters.</p>
         </div>
 
-        <div class="card reveal">
-          <div class="tag"><i></i> Mindset</div>
-          <h3>Upgrade mentality</h3>
-          <ul class="list">
-            <li>Minimum day plan: even on bad days, do something.</li>
-            <li>Remove distractions: focus is a skill.</li>
-            <li>Document your life: photos + notes become legacy.</li>
-            <li>Growth = tiny changes repeated for months.</li>
-          </ul>
+        <div class="card reveal glow">
+          <div class="tag"><i></i> Focus</div>
+          <h3>Minimum day still counts</h3>
+          <p>Even on bad days, do something small. It keeps the engine warm.</p>
+        </div>
+
+        <div class="card reveal glow">
+          <div class="tag"><i></i> Growth</div>
+          <h3>Document your life</h3>
+          <p>Photos and notes become proof. Proof becomes confidence.</p>
         </div>
       </div>
     </div>
@@ -913,114 +735,119 @@
     <div class="wrap">
       <div class="sectionHead reveal">
         <div>
-          <h2 class="h2">My memo</h2>
-          <p class="lead">A living notebook.</p>
+          <h2 class="h2">Memo</h2>
+          <p class="lead">A short checklist that keeps me grounded.</p>
         </div>
       </div>
 
-      <div class="twoCol">
-        <div class="card reveal">
-          <div class="tag"><i></i> THIS WEEK</div>
-          <h3>Focus</h3>
-          <ul class="list">
-            <li>One hard thing every day.</li>
-            <li>Train + steps + protein.</li>
-            <li>Create: 1 story + 3 photos.</li>
-            <li>Write one lesson here.</li>
-          </ul>
+      <div class="grid3">
+        <div class="card reveal glow">
+          <div class="tag"><i></i> This week</div>
+          <h3>One hard thing per day</h3>
+          <p>If I do one difficult thing daily, the week always improves.</p>
         </div>
-
-        <div class="card reveal">
-          <div class="tag"><i></i> QUOTES</div>
-          <h3>Lines I live by</h3>
-          <ul class="list">
-            <li>“Discipline is self-respect in action.”</li>
-            <li>“Consistency is a superpower.”</li>
-            <li>“Nature is therapy.”</li>
-            <li>“No excuses. Only upgrades.”</li>
-          </ul>
+        <div class="card reveal glow">
+          <div class="tag"><i></i> Reminder</div>
+          <h3>Rest is part of progress</h3>
+          <p>Recovery is not optional. It is what lets you stay consistent.</p>
+        </div>
+        <div class="card reveal glow">
+          <div class="tag"><i></i> Quote</div>
+          <h3>Consistency wins</h3>
+          <p>Motivation comes and goes. Discipline stays.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- CONTACT -->
- <section id="contact">
-  <div class="wrap">
-    <div class="sectionHead reveal">
-      <div>
-        <h2 class="h2">Connect With Me</h2>
-        <p class="lead">Follow the journey. Discipline. Growth. Real life.</p>
-      </div>
-    </div>
-
-    <div class="contactGrid">
-
-      <a class="socialCard" href="https://www.instagram.com/nabinbeast" target="_blank">
-        <div class="icon ig" aria-hidden="true">
-  <svg viewBox="0 0 24 24" fill="none">
-    <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Z" stroke="currentColor" stroke-width="2"/>
-    <path d="M12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10Z" stroke="currentColor" stroke-width="2"/>
-    <path d="M17.6 6.4h.01" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-  </svg>
-</div>
-        <span class="arrow">↗</span>
-      </a>
-
-      <a class="socialCard" href="https://www.tiktok.com/@nabinbeast" target="_blank">
-        <div class="icon tt"></div>
-        <div class="socialInfo">
-          <h3>TikTok</h3>
-          <p>@nabinbeast</p>
-        </div>
-        <span class="arrow">↗</span>
-      </a>
-
-      <a class="socialCard" href="https://www.facebook.com/share/1BoRSqe9YV/?mibextid=wwXIfr" target="_blank">
-        <div class="icon fb"></div>
-        <div class="socialInfo">
-          <h3>Facebook</h3>
-          <p>Profile</p>
-        </div>
-        <span class="arrow">↗</span>
-      </a>
-
-      <div class="emailCard">
-        <h3>Email Me</h3>
-        <p>nabinbisht@icloud.com</p>
-        <div class="emailButtons">
-          <a class="btn primary" href="mailto:nabinbisht@icloud.com">Send Email</a>
-          <button class="btn" id="copyEmail">Copy</button>
+  <section id="contact">
+    <div class="wrap">
+      <div class="sectionHead reveal">
+        <div>
+          <h2 class="h2">Connect with me</h2>
+          <p class="lead">Follow the journey and reach out anytime.</p>
         </div>
       </div>
 
+      <div class="contactGrid">
+        <a class="socialCard reveal glow" href="https://www.instagram.com/nabinbeast" target="_blank" rel="noopener">
+          <div class="icon ig" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Z" stroke="currentColor" stroke-width="2"/>
+              <path d="M12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10Z" stroke="currentColor" stroke-width="2"/>
+              <path d="M17.6 6.4h.01" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="socialInfo">
+            <h3>Instagram</h3>
+            <p>@nabinbeast</p>
+          </div>
+          <span class="arrow">↗</span>
+        </a>
+
+        <a class="socialCard reveal glow" href="https://www.tiktok.com/@nabinbeast" target="_blank" rel="noopener">
+          <div class="icon tt" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M14 3v11.2a4.2 4.2 0 1 1-3-4V7.3c1.2-.2 2.2-.7 3-1.4Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+              <path d="M14 3c.8 2.8 2.8 4.8 6 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="socialInfo">
+            <h3>TikTok</h3>
+            <p>@nabinbeast</p>
+          </div>
+          <span class="arrow">↗</span>
+        </a>
+
+        <a class="socialCard reveal glow" href="https://www.facebook.com/share/1BoRSqe9YV/?mibextid=wwXIfr" target="_blank" rel="noopener">
+          <div class="icon fb" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M14 8h3V5h-3c-2.2 0-4 1.8-4 4v3H7v3h3v7h3v-7h3l1-3h-4V9c0-.6.4-1 1-1Z" fill="currentColor"/>
+            </svg>
+          </div>
+          <div class="socialInfo">
+            <h3>Facebook</h3>
+            <p>Profile</p>
+          </div>
+          <span class="arrow">↗</span>
+        </a>
+
+        <div class="emailCard reveal glow">
+          <h3>Email me</h3>
+          <p id="emailText">nabinbisht@icloud.com</p>
+          <div class="emailBtns">
+            <a class="btn primary" href="mailto:nabinbisht@icloud.com">Send Email</a>
+            <button class="btn" type="button" id="copyEmail">Copy</button>
+            <a class="btn" href="./incidents.html">Incidents</a>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
   <footer>
     <div class="wrap">
       <div class="footGrid">
-        <div class="footCard">
+        <div class="footCard glow">
           <h3>KEY RULES</h3>
-          <p>• Show up daily • Track progress • Keep it simple • Respect the process • Build legacy.</p>
+          <p>Show up daily. Keep it simple. Track progress. Respect the process.</p>
           <div class="footLinks">
             <a href="#top">Top</a>
-            <a href="#journey">Journey</a>
             <a href="#gallery">Gallery</a>
-            <a href="#memo">Memo</a>
-            <a href="/gym.html">Gym</a>
+            <a href="./incidents.html">Incidents</a>
+            <a href="./gym.html">Gym</a>
           </div>
-          <div class="copyright">© <span id="yr"></span> Nabin Bist. Built with discipline.</div>
+          <div class="copyright">© <span id="yr"></span> Nabin Bist.</div>
         </div>
 
-        <div class="footCard">
+        <div class="footCard glow">
           <h3>Next upgrades</h3>
           <p>
-            • real blog posts page<br>
-            • vlog page (video embeds)<br>
-            • fitness programs page<br>
-            • private journal (password)
+            Real blog page<br>
+            Vlog page<br>
+            Fitness programs page<br>
+            Private journal
           </p>
         </div>
       </div>
@@ -1064,78 +891,80 @@
       modalImg.style.backgroundImage = `url('${img}')`;
       modalTitle.textContent = title || 'Preview';
     }
+    window.openModal = openModal;
+
     function closeModal(){ modal.classList.remove('open'); }
-
-    document.querySelectorAll('[data-img]').forEach(el=>{
-      el.addEventListener('click', ()=> openModal(el.dataset.img, el.dataset.title));
-    });
-    document.querySelectorAll('.storyBlock').forEach(el=>{
-      el.addEventListener('click', ()=>{
-        const bg = el.querySelector('.bgImg').style.backgroundImage;
-        const img = bg.slice(5,-2);
-        openModal(img, el.dataset.modalTitle || 'Story');
-      });
-    });
-
     closeBtn.addEventListener('click', closeModal);
     modal.addEventListener('click', (e)=>{ if(e.target === modal) closeModal(); });
     document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeModal(); });
 
-    // CYBER MENU
+    // Mobile drawer
     const burger = document.getElementById('burger');
-    const neoMenu = document.getElementById('neoMenu');
-    const neoClose = document.getElementById('neoClose');
-    const neoBg = document.getElementById('neoBg');
+    const drawer = document.getElementById('drawer');
+    const drawerMask = document.getElementById('drawerMask');
+    const drawerClose = document.getElementById('drawerClose');
 
-    function openNeo(){
-      neoMenu.classList.add('open');
-      document.body.classList.add('lock');
-      burger?.setAttribute('aria-expanded','true');
-      neoMenu.setAttribute('aria-hidden','false');
+    function openDrawer(){
+      drawer.classList.add('open');
+      drawerMask.classList.add('open');
+      burger.setAttribute('aria-expanded','true');
     }
-    function closeNeo(){
-      neoMenu.classList.remove('open');
-      document.body.classList.remove('lock');
-      burger?.setAttribute('aria-expanded','false');
-      neoMenu.setAttribute('aria-hidden','true');
+    function closeDrawer(){
+      drawer.classList.remove('open');
+      drawerMask.classList.remove('open');
+      burger.setAttribute('aria-expanded','false');
     }
+    burger.addEventListener('click', openDrawer);
+    drawerClose.addEventListener('click', closeDrawer);
+    drawerMask.addEventListener('click', closeDrawer);
 
-    burger.addEventListener('click', (e)=>{ e.preventDefault(); openNeo(); });
-    neoClose.addEventListener('click', closeNeo);
-
-    neoMenu.addEventListener('click', (e)=>{
-      if(e.target === neoMenu || e.target === neoBg) closeNeo();
+    document.querySelectorAll('.drawerLink').forEach(a=>{
+      a.addEventListener('click', closeDrawer);
     });
 
+    // Mobile incidents submenu toggle
+    const incToggle = document.getElementById('incToggle');
+    const incSub = document.getElementById('incSub');
+    incToggle.addEventListener('click', ()=>{
+      incSub.classList.toggle('open');
+    });
+
+    // Desktop incidents dropdown
+    const incDrop = document.getElementById('incDrop');
+    const incBtn = document.getElementById('incBtn');
+
+    incBtn.addEventListener('click', (e)=>{
+      e.preventDefault();
+      incDrop.classList.toggle('open');
+      incBtn.setAttribute('aria-expanded', incDrop.classList.contains('open') ? 'true' : 'false');
+    });
+
+    document.addEventListener('click', (e)=>{
+      if(!incDrop.contains(e.target)){
+        incDrop.classList.remove('open');
+        incBtn.setAttribute('aria-expanded','false');
+      }
+    });
+
+    // Keyboard shortcut: I opens Incidents dropdown
     document.addEventListener('keydown', (e)=>{
-      if(e.key === 'Escape') closeNeo();
+      if(e.key.toLowerCase() === 'i'){
+        incDrop.classList.toggle('open');
+        incBtn.setAttribute('aria-expanded', incDrop.classList.contains('open') ? 'true' : 'false');
+      }
     });
 
-    function setSpot(x,y){
-      neoBg.style.setProperty('--mx', x + '%');
-      neoBg.style.setProperty('--my', y + '%');
-    }
-    neoMenu.addEventListener('mousemove', (e)=>{
-      const r = neoMenu.getBoundingClientRect();
-      setSpot(((e.clientX - r.left)/r.width)*100, ((e.clientY - r.top)/r.height)*100);
+    // Copy email
+    const copyEmail = document.getElementById('copyEmail');
+    copyEmail.addEventListener('click', async ()=>{
+      try{
+        await navigator.clipboard.writeText('nabinbisht@icloud.com');
+        copyEmail.textContent = 'Copied';
+        setTimeout(()=> copyEmail.textContent = 'Copy', 1200);
+      }catch{
+        alert('Copy failed. Email: nabinbisht@icloud.com');
+      }
     });
-    neoMenu.addEventListener('touchmove', (e)=>{
-      const t = e.touches[0];
-      const r = neoMenu.getBoundingClientRect();
-      setSpot(((t.clientX - r.left)/r.width)*100, ((t.clientY - r.top)/r.height)*100);
-    },{passive:true});
-
-    document.querySelectorAll('.neoLink').forEach(a=>{
-      a.addEventListener('click', closeNeo);
-    });
-    const copyBtn = document.getElementById("copyEmail");
-if(copyBtn){
-  copyBtn.addEventListener("click",()=>{
-    navigator.clipboard.writeText("nabinbisht@icloud.com");
-    copyBtn.textContent="Copied ✓";
-    setTimeout(()=>copyBtn.textContent="Copy",1500);
-  });
-}
   </script>
 </body>
 </html>
