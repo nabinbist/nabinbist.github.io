@@ -1,18 +1,19 @@
 <!doctype html>
 <html lang="en">
 <head>
- <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
-<link rel="manifest" href="/site.webmanifest">
-<meta name="theme-color" content="#070A0F">
-  
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <title>Nabin Bist | Stories, Travel, Fitness</title>
   <meta name="description" content="Nabin Bist. Stories, travel, fitness, and real life. Photos, discipline, and lessons written like a human." />
   <meta name="theme-color" content="#070A0F" />
+
+  <!-- ✅ Favicons (use RELATIVE paths so it works everywhere) -->
+  <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="48x48" href="./favicon-48x48.png">
+  <link rel="manifest" href="./site.webmanifest">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -93,42 +94,34 @@
       letter-spacing:.05em;
       flex:0 0 auto;
     }
-   
- .logo{
-  width:56px;
-  height:56px;
-  border-radius:18px;
 
-  background: url("./nb-logo.png") center/72% no-repeat, rgba(255,255,255,.06);
-  border:1px solid rgba(255,255,255,.14);
+    /* ✅ FIXED LOGO (circle container + NB inside) */
+    .logo{
+      width:58px;
+      height:58px;
+      border-radius:22px;
+      position:relative;
+      overflow:hidden;
+      display:grid;
+      place-items:center;
 
-  box-shadow: 0 12px 28px rgba(0,0,0,.35);
-}
-
-.logo img{
-  width:70%;        /* logo smaller inside circle */
-  height:70%;
-  object-fit:contain;
-}
-   
-.logo img{
-  width:88%;
-  height:88%;
-  object-fit:contain;
-}
-
-.logo img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  transform: scale(1.28); /* makes it look bigger */
-}
+      background: rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.14);
+      box-shadow: 0 12px 28px rgba(0,0,0,.35);
+    }
+    .logo img{
+      width:78%;
+      height:78%;
+      object-fit:contain;
+      display:block;
+    }
     .logo::after{
       content:"";
       position:absolute; inset:-40%;
       background: linear-gradient(120deg, transparent, rgba(255,255,255,.22), transparent);
       transform: rotate(20deg) translateX(-60%);
       animation: shine 3.6s ease-in-out infinite;
+      pointer-events:none;
     }
     @keyframes shine{
       0%{transform: rotate(20deg) translateX(-60%)}
@@ -470,6 +463,7 @@
       position:relative;
       overflow:hidden;
       min-height: 170px;
+      cursor: pointer;
     }
     .card:hover{
       transform: translateY(-2px);
@@ -674,9 +668,6 @@
     .footCard p{margin:0; color:var(--muted); line-height:1.7; font-size:14px}
     .footLinks{display:flex; flex-wrap:wrap; gap:10px; margin-top:12px}
     .copyright{margin-top:14px; color: rgba(255,255,255,.55); font-size: 12.5px}
-
-    /* safety: if any old css styles <i>, kill it */
-    i{display:none !important;}
   </style>
 </head>
 
@@ -688,9 +679,10 @@
     <div class="wrap">
       <div class="navIn">
         <a class="brand" href="#top" aria-label="Home">
+          <!-- ✅ Use an icon you ALREADY HAVE in main -->
           <div class="logo" aria-hidden="true">
-  <img src="./apple-touch-icon.png?v=7" alt="">
-</div>
+            <img src="./android-chrome-192x192.png?v=1" alt="NB">
+          </div>
           <span>NABIN BIST</span>
         </a>
 
@@ -972,7 +964,7 @@
           <p>Discipline is self respect in action. Consistency is power.</p>
         </div>
 
-        <div class="card">
+        <div class="card" style="cursor:default">
           <div class="tag"><i></i> Incidents</div>
           <h3>Real stories</h3>
           <p>Some days change you. I write them down so I never forget.</p>
@@ -998,7 +990,6 @@
 
         <div style="display:grid; gap:12px">
 
-          <!-- Instagram -->
           <a class="socialCard" href="https://www.instagram.com/nabinbeast" target="_blank" rel="noopener">
             <div class="sLeft">
               <div class="iconBox" aria-hidden="true">
@@ -1016,7 +1007,6 @@
             <div class="go">↗</div>
           </a>
 
-          <!-- TikTok -->
           <a class="socialCard" href="https://www.tiktok.com/@nabinbeast" target="_blank" rel="noopener">
             <div class="sLeft">
               <div class="iconBox" aria-hidden="true">
@@ -1033,7 +1023,6 @@
             <div class="go">↗</div>
           </a>
 
-          <!-- Facebook -->
           <a class="socialCard" href="https://www.facebook.com/share/1BoRSqe9YV/?mibextid=wwXIfr" target="_blank" rel="noopener">
             <div class="sLeft">
               <div class="iconBox" aria-hidden="true">
@@ -1051,7 +1040,6 @@
 
         </div>
 
-        <!-- Email -->
         <div class="emailCard">
           <h3>Email me</h3>
           <div class="emailLine" id="emailText">nabinbisht@icloud.com</div>
@@ -1066,7 +1054,6 @@
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer>
     <div class="wrap">
       <div class="footGrid">
@@ -1097,7 +1084,6 @@
     </div>
   </footer>
 
-  <!-- MODAL -->
   <div class="modal" id="modal" aria-hidden="true">
     <div class="modalBox">
       <div class="modalTop">
@@ -1109,7 +1095,6 @@
   </div>
 
   <script>
-    // year
     document.getElementById("yr").textContent = new Date().getFullYear();
 
     // gallery modal
