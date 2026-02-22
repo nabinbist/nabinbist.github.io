@@ -3,27 +3,27 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Nabin Bist | Stories • Travel • Fitness</title>
-  <meta name="description" content="Nabin Bist. Stories, travel, fitness, and real moments documented with intention." />
+  <title>Nabin Bist | Stories, Travel, Fitness</title>
+  <meta name="description" content="Nabin Bist. Stories, travel, fitness, and real life. Photos, discipline, and lessons written like a human." />
   <meta name="theme-color" content="#070A0F" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
 
   <style>
     :root{
       --bg:#070A0F;
       --bg2:#0B1020;
       --card:rgba(255,255,255,.06);
-      --stroke:rgba(255,255,255,.10);
+      --stroke:rgba(255,255,255,.12);
       --text:rgba(255,255,255,.92);
       --muted:rgba(255,255,255,.72);
-      --muted2:rgba(255,255,255,.55);
+      --muted2:rgba(255,255,255,.56);
       --c1:#22D3EE;
       --c2:#A78BFA;
-      --shadow: 0 24px 80px rgba(0,0,0,.55);
-      --shadow2: 0 14px 45px rgba(0,0,0,.40);
+      --shadow: 0 26px 90px rgba(0,0,0,.60);
+      --shadow2: 0 16px 50px rgba(0,0,0,.42);
       --r:18px;
       --r2:26px;
       --max:1120px;
@@ -38,570 +38,752 @@
       font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
       color:var(--text);
       background:
-        radial-gradient(1200px 600px at 18% 12%, rgba(34,211,238,.14), transparent 55%),
-        radial-gradient(900px 500px at 88% 22%, rgba(167,139,250,.13), transparent 50%),
-        radial-gradient(800px 500px at 60% 90%, rgba(245,158,11,.10), transparent 55%),
+        radial-gradient(1200px 650px at 16% 10%, rgba(34,211,238,.14), transparent 58%),
+        radial-gradient(900px 520px at 86% 18%, rgba(167,139,250,.14), transparent 55%),
+        radial-gradient(900px 520px at 60% 92%, rgba(245,158,11,.10), transparent 55%),
         linear-gradient(180deg, var(--bg), #05060A 55%, #04040A);
       overflow-x:hidden;
     }
     a{color:inherit; text-decoration:none}
-    .wrap{max-width:var(--max); margin:0 auto; padding:0 20px}
+    .wrap{max-width:var(--max); margin:0 auto; padding:0 18px}
 
-    /* Apple-level glass */
-    .glass{
-      background: rgba(10,12,18,.58);
-      border:1px solid rgba(255,255,255,.10);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-    }
+    /* subtle animated glow */
     .glow{
-      position:relative;
-    }
-    .glow:before{
-      content:"";
-      position:absolute;
-      inset:-1px;
-      border-radius:inherit;
-      padding:1px;
-      background: linear-gradient(135deg, rgba(34,211,238,.35), rgba(167,139,250,.35));
-      -webkit-mask:
-        linear-gradient(#000 0 0) content-box,
-        linear-gradient(#000 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
+      position:fixed; inset:-40vh -30vw auto -30vw;
+      height:70vh;
       pointer-events:none;
-      opacity:.7;
+      background: radial-gradient(circle at 50% 50%, rgba(34,211,238,.16), transparent 55%);
+      filter: blur(10px);
+      opacity:.8;
+      animation: drift 8s ease-in-out infinite;
+    }
+    @keyframes drift{
+      0%{transform: translate3d(0,0,0)}
+      50%{transform: translate3d(80px,20px,0)}
+      100%{transform: translate3d(0,0,0)}
     }
 
     /* NAV */
     .nav{
       position:fixed; left:0; right:0; top:0;
       z-index:60;
-      border-bottom:1px solid rgba(255,255,255,.06);
-      height:var(--navH);
-      display:flex; align-items:center;
-      background: linear-gradient(180deg, rgba(5,6,10,.78), rgba(5,6,10,.35));
       backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
+      background: linear-gradient(180deg, rgba(5,6,10,.82), rgba(5,6,10,.40));
+      border-bottom:1px solid rgba(255,255,255,.08);
     }
-    .nav .inner{
-      display:flex; align-items:center; justify-content:space-between;
+    .navIn{
+      height:var(--navH);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
       gap:12px;
-      width:100%;
     }
-
     .brand{
-      display:flex; align-items:center; gap:10px;
-      font-weight:900; letter-spacing:.08em;
-      user-select:none;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-weight:950;
+      letter-spacing:.05em;
+      flex:0 0 auto;
     }
     .logo{
-      width:40px; height:40px; border-radius:16px;
+      width:38px; height:38px;
+      border-radius:14px;
       background:
-        radial-gradient(12px 12px at 30% 30%, rgba(255,255,255,.28), transparent 60%),
-        linear-gradient(135deg, rgba(34,211,238,.95), rgba(167,139,250,.92));
-      border:1px solid rgba(255,255,255,.14);
-      box-shadow: 0 14px 38px rgba(34,211,238,.18);
+        radial-gradient(10px 10px at 30% 30%, rgba(255,255,255,.26), transparent 60%),
+        linear-gradient(135deg, rgba(34,211,238,.95), rgba(167,139,250,.95));
+      border:1px solid rgba(255,255,255,.18);
+      box-shadow: 0 16px 42px rgba(34,211,238,.18);
       position:relative;
       overflow:hidden;
     }
-    .logo:after{
+    .logo::after{
       content:"";
-      position:absolute;
-      inset:-30%;
-      background: linear-gradient(120deg, transparent 35%, rgba(255,255,255,.22), transparent 65%);
-      transform: translateX(-40%) rotate(18deg);
-      animation: shine 3.8s ease-in-out infinite;
-      opacity:.85;
+      position:absolute; inset:-40%;
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,.22), transparent);
+      transform: rotate(20deg) translateX(-60%);
+      animation: shine 3.6s ease-in-out infinite;
     }
     @keyframes shine{
-      0%,55%{transform: translateX(-55%) rotate(18deg); opacity:.0}
-      60%{opacity:.75}
-      100%{transform: translateX(75%) rotate(18deg); opacity:.0}
+      0%{transform: rotate(20deg) translateX(-60%)}
+      45%{transform: rotate(20deg) translateX(90%)}
+      100%{transform: rotate(20deg) translateX(90%)}
     }
 
-    .menu{
-      display:flex; align-items:center; gap:8px;
-      font-weight:800; font-size:14px;
-      color:rgba(255,255,255,.82);
-    }
-    .pillLink, .dropBtn{
-      display:inline-flex; align-items:center; gap:8px;
-      padding:10px 12px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.04);
-      transition: transform .18s ease, background .18s ease, border-color .18s ease;
-      cursor:pointer;
-      user-select:none;
-    }
-    .pillLink:hover, .dropBtn:hover{
-      transform: translateY(-1px);
-      background: rgba(255,255,255,.06);
-      border-color: rgba(255,255,255,.16);
+    .navRight{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      justify-content:flex-end;
+      flex:1 1 auto;
+      min-width:0;
     }
 
-    .cta{display:flex; align-items:center; gap:10px}
     .btn{
       border:1px solid rgba(255,255,255,.14);
       background:rgba(255,255,255,.06);
       color:rgba(255,255,255,.92);
-      padding:10px 14px;
-      border-radius:999px;
+      padding:10px 12px;
+      border-radius:14px;
       font-weight:900;
       font-size:14px;
-      transition: transform .18s ease, filter .18s ease, background .18s ease;
       cursor:pointer;
+      transition: transform .18s ease, background .18s ease, border-color .18s ease;
       box-shadow: 0 10px 28px rgba(0,0,0,.22);
+      white-space:nowrap;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      user-select:none;
     }
-    .btn:hover{transform: translateY(-1px); background:rgba(255,255,255,.09)}
+    .btn:hover{
+      transform: translateY(-1px);
+      background:rgba(255,255,255,.09);
+      border-color: rgba(255,255,255,.18);
+    }
+    .btn:active{transform: translateY(0px) scale(.99)}
     .btn.primary{
       background: linear-gradient(135deg, rgba(34,211,238,.95), rgba(167,139,250,.95));
-      border:1px solid rgba(255,255,255,.18);
+      border:1px solid rgba(255,255,255,.20);
       color:#061018;
     }
-    .btn.primary:hover{filter:brightness(1.03)}
-    .burger{display:none}
+    .btn.primary:hover{filter: brightness(1.03)}
 
-    /* Desktop dropdown with spring feel */
-    .dropdown{position:relative}
-    .dropMenu{
+    /* Incidents popover */
+    .popWrap{position:relative}
+    .popover{
       position:absolute;
-      top:calc(100% + 12px);
-      left:0;
-      width:260px;
+      top: calc(100% + 10px);
+      right:0;
+      width: 260px;
       border-radius: 18px;
-      overflow:hidden;
-      box-shadow: var(--shadow);
-      transform: translateY(-8px) scale(.98);
-      opacity:0;
-      pointer-events:none;
-      transition: transform .22s cubic-bezier(.2,1,.2,1), opacity .18s ease;
-      background: rgba(10,12,18,.72);
-      border:1px solid rgba(255,255,255,.12);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-    }
-    .dropdown.open .dropMenu{
-      transform: translateY(0) scale(1);
-      opacity:1;
-      pointer-events:auto;
-    }
-    .dropMenu a{
-      display:flex; align-items:center; justify-content:space-between;
-      padding:12px 12px;
-      font-weight:900;
-      color: rgba(255,255,255,.88);
-      border-top:1px solid rgba(255,255,255,.08);
-      background: rgba(255,255,255,.04);
-      transition:.18s ease;
-    }
-    .dropMenu a:first-child{border-top:none}
-    .dropMenu a:hover{background: rgba(255,255,255,.08)}
-    .kbd{
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      font-size: 12px;
-      background: rgba(255,255,255,.06);
-      border:1px solid rgba(255,255,255,.12);
-      padding: 2px 8px;
-      border-radius: 10px;
-      color: rgba(255,255,255,.86);
-    }
-
-    /* Mobile drawer */
-    .drawerMask{
-      position:fixed; inset:0; z-index:80;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(12,14,20,.86);
+      backdrop-filter: blur(14px);
+      box-shadow: var(--shadow2);
+      padding:10px;
       display:none;
-      background:rgba(0,0,0,.55);
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
+      transform-origin: top right;
+      animation: popIn .22s ease;
     }
-    .drawerMask.open{display:block}
-    .drawer{
-      position:fixed; top:0; right:-420px; height:100vh; width:min(420px, 88vw);
-      z-index:90;
-      padding:16px;
-      display:flex; flex-direction:column; gap:10px;
-      border-left:1px solid rgba(255,255,255,.10);
-      background: rgba(10,12,18,.78);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      box-shadow: var(--shadow);
-      transition: right .32s cubic-bezier(.2,1,.2,1);
+    @keyframes popIn{
+      from{transform: translateY(8px) scale(.98); opacity:0}
+      to{transform: translateY(0) scale(1); opacity:1}
     }
-    .drawer.open{right:0}
-    .drawerTop{
-      display:flex; align-items:center; justify-content:space-between;
-      padding:6px 6px 12px;
-      border-bottom:1px solid rgba(255,255,255,.10);
-    }
-    .drawerTop b{font-weight:900; letter-spacing:.12em}
-    .drawer a, .drawer button{
-      padding:12px 12px;
-      border-radius:16px;
+    .popover.open{display:block}
+    .pItem{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding:12px;
+      border-radius: 14px;
       border:1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.05);
       font-weight:900;
-      color: rgba(255,255,255,.86);
       transition: transform .16s ease, background .16s ease, border-color .16s ease;
-      cursor:pointer;
-      text-align:left;
     }
-    .drawer a:hover, .drawer button:hover{
+    .pItem:hover{
       transform: translateY(-1px);
       background: rgba(255,255,255,.08);
       border-color: rgba(255,255,255,.16);
     }
-    .drawer .row{display:flex; gap:10px}
-    .drawer .row a{flex:1; text-align:center}
+    .pItem small{
+      display:block;
+      font-weight:800;
+      color: rgba(255,255,255,.66);
+      margin-top:2px;
+    }
+    .chev{opacity:.8}
 
-    .subWrap{display:none; gap:10px; flex-direction:column; padding-left:10px}
-    .subWrap.open{display:flex}
-    .subWrap a{background: rgba(255,255,255,.04)}
+    /* Mobile */
+    .menuBtn{display:none}
+    @media (max-width: 880px){
+      .navRight{display:none}
+      .menuBtn{display:inline-flex}
+    }
+
+    /* Drawer */
+    .mask{
+      position:fixed; inset:0; z-index:80;
+      display:none;
+      background:rgba(0,0,0,.55);
+      backdrop-filter: blur(6px);
+    }
+    .mask.open{display:block}
+    .drawer{
+      position:fixed; top:0; right:-360px;
+      height:100vh; width:min(360px, 86vw);
+      z-index:90;
+      background: rgba(12,14,20,.90);
+      border-left:1px solid rgba(255,255,255,.12);
+      box-shadow: var(--shadow);
+      transition: right .28s cubic-bezier(.2,.85,.2,1);
+      padding:14px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+    .drawer.open{right:0}
+    .drawerTop{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:8px 6px 12px;
+      border-bottom:1px solid rgba(255,255,255,.10);
+    }
+    .drawerTop b{font-weight:950; letter-spacing:.08em}
+    .dLink{
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.05);
+      font-weight:900;
+      color: rgba(255,255,255,.88);
+      transition: transform .16s ease, background .16s ease, border-color .16s ease;
+    }
+    .dLink:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,.08);
+      border-color: rgba(255,255,255,.16);
+    }
+    .dGroup{
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      overflow:hidden;
+    }
+    .dGroupHead{
+      padding:12px;
+      display:flex; align-items:center; justify-content:space-between;
+      font-weight:950;
+    }
+    .dSub{
+      display:none;
+      padding:0 12px 12px;
+      gap:8px;
+    }
+    .dSub.open{display:grid}
+    .tiny{
+      font-size:12px;
+      color: rgba(255,255,255,.68);
+      font-weight:800;
+    }
 
     /* HERO */
     .hero{
-      padding-top: calc(var(--navH) + 12px);
-      min-height:100vh;
-      display:grid; align-items:center;
+      padding-top: calc(var(--navH) + 18px);
+      min-height: 100vh;
+      display:grid;
+      align-items:center;
     }
-    .heroGrid{display:grid; grid-template-columns: 1.1fr .9fr; gap:18px; align-items:stretch}
+    .heroGrid{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:16px;
+      align-items:stretch;
+    }
+    @media (max-width: 980px){
+      .heroGrid{grid-template-columns:1fr}
+    }
+
     .heroCard{
+      border:1px solid rgba(255,255,255,.12);
       border-radius: var(--r2);
       overflow:hidden;
       box-shadow: var(--shadow);
       background: rgba(255,255,255,.04);
-      border:1px solid rgba(255,255,255,.10);
       position:relative;
-      transform: translateY(8px);
-      animation: floatIn .85s cubic-bezier(.2,1,.2,1) forwards;
     }
-    @keyframes floatIn{to{transform: translateY(0)}}
-    .heroCard.big{min-height:540px}
-    .heroImg{position:absolute; inset:0; background-size:cover; background-position:center; transform: scale(1.03); filter:saturate(1.05) contrast(1.06)}
-    .heroOverlay{
+    .heroCard.big{min-height:560px}
+    .heroImg{
+      position:absolute; inset:0;
+      background-size:cover;
+      background-position:center;
+      transform: scale(1.03);
+      filter:saturate(1.06) contrast(1.06);
+    }
+    .heroShade{
       position:absolute; inset:0;
       background:
-        radial-gradient(900px 600px at 20% 18%, rgba(34,211,238,.22), transparent 55%),
-        radial-gradient(900px 600px at 80% 28%, rgba(167,139,250,.22), transparent 55%),
-        linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.78));
+        radial-gradient(900px 550px at 20% 18%, rgba(34,211,238,.20), transparent 60%),
+        radial-gradient(900px 550px at 80% 26%, rgba(167,139,250,.18), transparent 60%),
+        linear-gradient(180deg, rgba(0,0,0,.25), rgba(0,0,0,.78));
     }
-    .heroContent{
+    .heroIn{
       position:relative;
-      padding:34px 32px;
-      display:flex; flex-direction:column;
+      padding:28px 24px;
+      min-height:560px;
+      display:flex;
+      flex-direction:column;
       justify-content:flex-end;
-      gap:16px;
-      min-height:540px
+      gap:14px;
     }
     .kicker{
-      display:inline-flex; align-items:center; gap:10px;
-      font-size:12px; font-weight:900;
-      letter-spacing:.22em;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      font-size:12px;
+      font-weight:950;
+      letter-spacing:.20em;
       text-transform:uppercase;
-      color: rgba(255,255,255,.78)
+      color: rgba(255,255,255,.80);
     }
     .dot{
       width:10px; height:10px; border-radius:999px;
       background: linear-gradient(135deg, var(--c1), var(--c2));
-      box-shadow: 0 0 0 6px rgba(34,211,238,.10)
+      box-shadow: 0 0 0 6px rgba(34,211,238,.10);
     }
     .title{
-      font-size: clamp(38px, 5vw, 64px);
+      margin:0;
+      font-size: clamp(34px, 5vw, 62px);
       line-height: 1.02;
       letter-spacing:-.03em;
-      margin:0;
-      font-weight: 900;
-      text-shadow: 0 18px 60px rgba(0,0,0,.55)
+      font-weight:950;
+      text-shadow: 0 18px 60px rgba(0,0,0,.55);
     }
     .title span{
       background: linear-gradient(135deg, rgba(34,211,238,.95), rgba(167,139,250,.95));
-      -webkit-background-clip:text; background-clip:text;
-      color:transparent
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
     }
     .sub{
       margin:0;
-      max-width:60ch;
-      font-size:16px;
-      line-height:1.55;
-      color: rgba(255,255,255,.82)
+      max-width: 60ch;
+      color: rgba(255,255,255,.80);
+      line-height:1.6;
+      font-size:15.5px;
     }
-    .heroActions{display:flex; flex-wrap:wrap; gap:10px; margin-top:6px}
-    .pillRow{display:flex; gap:10px; flex-wrap:wrap; margin-top:8px}
+    .actions{display:flex; flex-wrap:wrap; gap:10px}
+
+    .pillRow{display:flex; flex-wrap:wrap; gap:10px}
     .pill{
-      display:inline-flex; align-items:center; gap:8px;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
       padding:10px 12px;
       border-radius:999px;
       border:1px solid rgba(255,255,255,.14);
       background: rgba(255,255,255,.06);
       font-weight:900;
-      color: rgba(255,255,255,.82);
-      font-size:13px
+      color: rgba(255,255,255,.84);
+      font-size:13px;
     }
-    .pill b{color:rgba(255,255,255,.92)}
-    .heroSide{display:grid; grid-template-rows: 1fr 1fr; gap:18px}
+
+    .side{
+      display:grid;
+      grid-template-rows: 1fr 1fr;
+      gap:16px;
+    }
+    @media (max-width: 980px){
+      .side{grid-template-rows:auto; grid-template-columns:1fr 1fr}
+    }
+    @media (max-width: 560px){
+      .side{grid-template-columns:1fr}
+    }
     .sideCard{
       border-radius: var(--r2);
-      border:1px solid rgba(255,255,255,.10);
+      border:1px solid rgba(255,255,255,.12);
       overflow:hidden;
       background: rgba(255,255,255,.04);
       box-shadow: var(--shadow2);
       position:relative;
-      min-height:260px
+      min-height: 260px;
+      transition: transform .18s ease;
     }
-    .sideContent{
+    .sideCard:hover{transform: translateY(-2px)}
+    .sideIn{
       position:absolute; inset:0;
-      padding:22px;
-      display:flex; flex-direction:column;
+      padding:18px;
+      display:flex;
+      flex-direction:column;
       justify-content:flex-end;
       gap:10px;
-      background: linear-gradient(180deg, rgba(0,0,0,.12), rgba(0,0,0,.78))
+      background: linear-gradient(180deg, rgba(0,0,0,.15), rgba(0,0,0,.80));
     }
-    .sideTitle{margin:0; font-size:18px; font-weight:900; letter-spacing:-.02em}
+    .sideTitle{margin:0; font-weight:950; letter-spacing:-.02em; font-size:18px}
     .sideText{margin:0; color: rgba(255,255,255,.76); font-size:14px; line-height:1.45}
 
-    /* Sections */
-    section{padding: 80px 0}
-    .sectionHead{display:flex; align-items:flex-end; justify-content:space-between; gap:14px; margin-bottom:18px}
-    .h2{margin:0; font-size: clamp(26px, 3.2vw, 40px); letter-spacing:-.03em; font-weight: 900}
-    .lead{margin:0; color: var(--muted); max-width: 70ch; line-height:1.55; font-size:15px}
+    /* SECTIONS */
+    section{padding: 78px 0}
+    .headRow{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:14px;
+      margin-bottom:18px;
+    }
+    .h2{
+      margin:0;
+      font-size: clamp(26px, 3.2vw, 40px);
+      letter-spacing:-.03em;
+      font-weight:950;
+    }
+    .lead{
+      margin:0;
+      color: var(--muted);
+      max-width: 66ch;
+      line-height:1.6;
+      font-size:15px;
+    }
 
-    .grid3{display:grid; grid-template-columns: repeat(3, 1fr); gap:14px}
+    .grid3{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:14px;
+    }
+    @media (max-width: 980px){ .grid3{grid-template-columns:1fr} }
+
     .card{
       border-radius: var(--r2);
-      border:1px solid rgba(255,255,255,.10);
+      border:1px solid rgba(255,255,255,.12);
       background: rgba(255,255,255,.05);
       padding:18px;
-      box-shadow: 0 18px 50px rgba(0,0,0,.30);
-      transition: transform .22s cubic-bezier(.2,1,.2,1), background .18s ease, border-color .18s ease;
+      box-shadow: var(--shadow2);
+      transition: transform .18s ease, background .18s ease, border-color .18s ease;
       position:relative;
       overflow:hidden;
       min-height: 170px;
     }
     .card:hover{
-      transform: translateY(-3px);
+      transform: translateY(-2px);
       background: rgba(255,255,255,.07);
-      border-color: rgba(255,255,255,.14)
+      border-color: rgba(255,255,255,.16);
     }
-    .tag{display:inline-flex; align-items:center; gap:8px; font-size:12px; font-weight:900; letter-spacing:.14em; text-transform:uppercase; color: rgba(255,255,255,.72)}
-    .tag i{width:10px; height:10px; border-radius:999px; display:inline-block; background: linear-gradient(135deg, var(--c1), var(--c2))}
-    .card h3{margin:10px 0 6px; font-size:18px; font-weight:900; letter-spacing:-.02em}
-    .card p{margin:0; color: var(--muted); font-size:14px; line-height:1.55}
+    .tag{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      font-size:12px;
+      font-weight:950;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      color: rgba(255,255,255,.74);
+    }
+    .tag i{
+      width:10px; height:10px; border-radius:999px;
+      display:inline-block;
+      background: linear-gradient(135deg, var(--c1), var(--c2));
+    }
+    .card h3{margin:10px 0 6px; font-size:18px; font-weight:950; letter-spacing:-.02em}
+    .card p{margin:0; color: var(--muted); font-size:14px; line-height:1.6}
 
-    /* Contact - icon logos */
-    .contactGrid{display:grid; gap:14px; grid-template-columns: 1fr}
+    /* Gallery */
+    .gallery{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr .75fr;
+      grid-template-rows: 240px 240px;
+      gap:14px;
+    }
+    @media (max-width: 980px){
+      .gallery{grid-template-columns: 1fr 1fr; grid-template-rows: 220px 220px 220px}
+      .g.big{grid-row: span 1}
+    }
+    @media (max-width: 560px){
+      .gallery{grid-template-columns:1fr; grid-template-rows: 220px 220px 220px 220px 220px}
+    }
+    .g{
+      border-radius: var(--r2);
+      border:1px solid rgba(255,255,255,.12);
+      overflow:hidden;
+      position:relative;
+      cursor:pointer;
+      box-shadow: var(--shadow2);
+      background: rgba(255,255,255,.03);
+      transition: transform .18s ease;
+    }
+    .g:hover{transform: translateY(-2px)}
+    .g .img{
+      position:absolute; inset:0;
+      background-size:cover;
+      background-position:center;
+      transition: transform .35s ease, filter .35s ease;
+      filter:saturate(1.03) contrast(1.03);
+    }
+    .g:hover .img{
+      transform: scale(1.06);
+      filter:saturate(1.10) contrast(1.08);
+    }
+    .g .cap{
+      position:absolute; left:14px; right:14px; bottom:14px;
+      padding:12px;
+      border-radius: 16px;
+      border:1px solid rgba(255,255,255,.14);
+      background: linear-gradient(180deg, rgba(0,0,0,.22), rgba(0,0,0,.56));
+      backdrop-filter: blur(10px);
+      font-weight:950;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:10px;
+    }
+    .cap small{font-weight:800; color: rgba(255,255,255,.72)}
+    .g.big{grid-row: span 2}
+
+    /* Contact */
+    .contactGrid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+    }
+    @media (max-width: 980px){ .contactGrid{grid-template-columns:1fr} }
+
     .socialCard{
-      display:flex; align-items:center; gap:14px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
       padding:16px;
-      border-radius: 24px;
+      border-radius: var(--r2);
       border:1px solid rgba(255,255,255,.12);
       background: rgba(255,255,255,.05);
       box-shadow: var(--shadow2);
-      transition: transform .22s cubic-bezier(.2,1,.2,1), background .18s ease, border-color .18s ease;
+      transition: transform .18s ease, background .18s ease, border-color .18s ease;
     }
     .socialCard:hover{
       transform: translateY(-2px);
       background: rgba(255,255,255,.07);
-      border-color: rgba(255,255,255,.16)
+      border-color: rgba(255,255,255,.16);
     }
-    .icon{
-      width:54px; height:54px;
-      border-radius:18px;
-      display:flex; align-items:center; justify-content:center;
+    .sLeft{display:flex; align-items:center; gap:12px}
+    .iconBox{
+      width:52px; height:52px;
+      border-radius: 18px;
       border:1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.06);
-      flex-shrink:0;
+      background: rgba(0,0,0,.18);
+      display:grid;
+      place-items:center;
+      box-shadow: 0 14px 40px rgba(0,0,0,.35);
       overflow:hidden;
+      position:relative;
     }
-    .icon svg{width:26px; height:26px; color:rgba(255,255,255,.98)}
-    .icon.ig{background: linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)}
-    .icon.tt{background: linear-gradient(135deg,#00f2ea,#ff0050)}
-    .icon.fb{background: linear-gradient(135deg,#1877f2,#5f9bff)}
-    .icon.mail{background: linear-gradient(135deg, rgba(34,211,238,.95), rgba(167,139,250,.95))}
-    .socialInfo{display:flex; flex-direction:column; gap:4px; min-width:0}
-    .socialInfo h3{margin:0; font-weight:900; font-size:20px}
-    .socialInfo p{margin:0; color:rgba(255,255,255,.74); font-weight:800}
-    .arrow{margin-left:auto; font-weight:900; opacity:.65}
+    .iconBox::after{
+      content:"";
+      position:absolute; inset:-60%;
+      background: radial-gradient(circle at 40% 30%, rgba(34,211,238,.18), transparent 55%);
+      filter: blur(8px);
+      opacity:.9;
+    }
+    .iconBox svg{width:26px; height:26px; position:relative; z-index:1}
+    .sText b{display:block; font-weight:950; font-size:16px; letter-spacing:-.01em}
+    .sText small{display:block; color: rgba(255,255,255,.66); margin-top:2px; font-weight:800}
+    .go{opacity:.8; font-weight:950}
 
     .emailCard{
-      padding:18px;
-      border-radius: 24px;
+      border-radius: var(--r2);
       border:1px solid rgba(255,255,255,.12);
       background: rgba(255,255,255,.05);
       box-shadow: var(--shadow2);
+      padding:16px;
     }
-    .emailCard h3{margin:0 0 8px; font-weight:900; font-size:20px}
-    .emailCard p{margin:0 0 12px; color:rgba(255,255,255,.74); font-weight:800}
-    .emailBtns{display:flex; gap:10px; flex-wrap:wrap}
+    .emailCard h3{margin:0 0 10px; font-weight:950; letter-spacing:-.02em}
+    .emailLine{
+      color: rgba(255,255,255,.80);
+      font-weight:900;
+      font-size:16px;
+      word-break:break-word;
+      margin-bottom:12px;
+    }
+    .rowBtns{display:flex; gap:10px; flex-wrap:wrap}
 
-    /* Footer */
+    /* Modal */
+    .modal{
+      position:fixed; inset:0; z-index:100;
+      display:none;
+      background: rgba(0,0,0,.72);
+      backdrop-filter: blur(10px);
+      align-items:center;
+      justify-content:center;
+      padding:18px;
+    }
+    .modal.open{display:flex}
+    .modalBox{
+      width:min(980px, 100%);
+      border-radius: 22px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(10,12,18,.75);
+      overflow:hidden;
+      box-shadow: var(--shadow);
+    }
+    .modalTop{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px;
+      border-bottom:1px solid rgba(255,255,255,.10);
+    }
+    .modalTop b{font-weight:950}
+    .closeBtn{
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      color: rgba(255,255,255,.88);
+      border-radius: 14px;
+      padding:10px 12px;
+      font-weight:900;
+      cursor:pointer;
+    }
+    .modalImg{
+      width:100%;
+      aspect-ratio: 16/9;
+      background-size:cover;
+      background-position:center;
+    }
+
     footer{
       padding: 34px 0 50px;
       border-top:1px solid rgba(255,255,255,.08);
       background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(0,0,0,.35));
     }
-    .footGrid{display:grid; grid-template-columns: 1.2fr .8fr; gap:14px}
-    .footCard{border-radius: var(--r2); border:1px solid rgba(255,255,255,.10); background: rgba(255,255,255,.04); padding:18px}
-    .footCard h3{margin:0 0 10px; font-size:16px; font-weight:900}
-    .footCard p{margin:0; color:var(--muted); line-height:1.6; font-size:14px}
+    .footGrid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:14px;
+    }
+    @media (max-width: 980px){ .footGrid{grid-template-columns:1fr} }
+    .footCard{
+      border-radius: var(--r2);
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      padding:18px;
+    }
+    .footCard h3{margin:0 0 10px; font-size:16px; font-weight:950}
+    .footCard p{margin:0; color:var(--muted); line-height:1.7; font-size:14px}
     .footLinks{display:flex; flex-wrap:wrap; gap:10px; margin-top:12px}
-    .footLinks a{padding:10px 12px; border-radius:999px; border:1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.05); font-weight:900; font-size:13px; color: rgba(255,255,255,.84)}
     .copyright{margin-top:14px; color: rgba(255,255,255,.55); font-size: 12.5px}
 
-    /* Modal */
-    .modal{position:fixed; inset:0; z-index:100; display:none; background: rgba(0,0,0,.72); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); align-items:center; justify-content:center; padding:18px}
-    .modal.open{display:flex}
-    .modalBox{width:min(980px, 100%); border-radius: 22px; border:1px solid rgba(255,255,255,.14); background: rgba(10,12,18,.75); overflow:hidden; box-shadow: var(--shadow)}
-    .modalTop{display:flex; align-items:center; justify-content:space-between; padding:14px; border-bottom:1px solid rgba(255,255,255,.10)}
-    .modalTop b{font-weight:900}
-    .close{border:1px solid rgba(255,255,255,.14); background: rgba(255,255,255,.06); color: rgba(255,255,255,.88); border-radius: 999px; padding:10px 14px; font-weight:900; cursor:pointer}
-    .modalImg{width:100%; aspect-ratio: 16/9; background-size:cover; background-position:center}
-
-    /* Reveal */
-    .reveal{opacity:0; transform: translateY(18px); transition: .7s cubic-bezier(.2,1,.2,1)}
-    .reveal.in{opacity:1; transform: translateY(0)}
-
-    /* Reduced motion */
-    @media (prefers-reduced-motion: reduce){
-      *{animation:none !important; transition:none !important}
-      html{scroll-behavior:auto}
-    }
-
-    /* Responsive */
-    @media (max-width: 980px){
-      .heroGrid{grid-template-columns: 1fr}
-      .heroSide{grid-template-rows:auto; grid-template-columns: 1fr 1fr}
-      .grid3{grid-template-columns: 1fr}
-      .footGrid{grid-template-columns: 1fr}
-      .menu{display:none}
-      .burger{display:inline-flex}
-    }
-    @media (max-width: 520px){
-      .heroContent{padding:26px 20px}
-      .heroCard.big{min-height: 560px}
-      .heroContent{min-height: 560px}
-      .heroSide{grid-template-columns: 1fr}
-    }
+    /* safety: if any old css styles <i>, kill it */
+    i{display:none !important;}
   </style>
 </head>
 
 <body>
+  <div class="glow" aria-hidden="true"></div>
+
   <!-- NAV -->
   <div class="nav">
     <div class="wrap">
-      <div class="inner">
+      <div class="navIn">
         <a class="brand" href="#top" aria-label="Home">
           <div class="logo" aria-hidden="true"></div>
           <span>NABIN BIST</span>
         </a>
 
-        <nav class="menu" aria-label="Primary navigation">
-          <a class="pillLink" href="#about">About</a>
-          <a class="pillLink" href="#journey">Journey</a>
-          <a class="pillLink" href="#gallery">Gallery</a>
+        <!-- Desktop nav -->
+        <div class="navRight" aria-label="Primary navigation">
+          <a class="btn" href="#journey">Journey</a>
+          <a class="btn" href="#gallery">Gallery</a>
 
-          <div class="dropdown" id="incDrop">
-            <button class="dropBtn" id="incBtn" aria-haspopup="true" aria-expanded="false">
-              Incidents <span class="kbd">I</span>
-            </button>
-            <div class="dropMenu glow" role="menu" aria-label="Incidents submenu">
-              <a href="./incidents.html" role="menuitem">All Incidents <span>↗</span></a>
-              <a href="./sundarijal-rescue.html" role="menuitem">Sundarijal Rescue <span>↗</span></a>
+          <div class="popWrap">
+            <button class="btn" id="incBtn" aria-haspopup="menu" aria-expanded="false">Incidents</button>
+            <div class="popover" id="incPop" role="menu" aria-label="Incidents menu">
+              <a class="pItem" href="./incidents.html" role="menuitem">
+                <div>
+                  Incident archive
+                  <small>All incidents</small>
+                </div>
+                <span class="chev">↗</span>
+              </a>
+              <div style="height:8px"></div>
+              <a class="pItem" href="./sundarijal-rescue.html" role="menuitem">
+                <div>
+                  Sundarijal Rescue
+                  <small>14 Sep 2017</small>
+                </div>
+                <span class="chev">↗</span>
+              </a>
             </div>
           </div>
 
-          <a class="pillLink" href="#tips">Tips</a>
-          <a class="pillLink" href="#memo">Memo</a>
-          <a class="pillLink" href="./gym.html">Gym</a>
-          <a class="pillLink" href="#contact">Contact</a>
-        </nav>
-
-        <div class="cta">
-          <a class="btn" href="#gallery">View Photos</a>
-          <a class="btn primary" href="#contact">Work With Me</a>
-          <button class="btn burger" id="burger" aria-haspopup="dialog" aria-controls="drawer" aria-expanded="false">Menu</button>
+          <a class="btn" href="#tips">Tips</a>
+          <a class="btn" href="#memo">Memo</a>
+          <a class="btn" href="./gym.html">Gym</a>
+          <a class="btn primary" href="#contact">Contact</a>
         </div>
+
+        <!-- Mobile menu button -->
+        <button class="btn menuBtn" id="menuBtn" aria-haspopup="dialog" aria-expanded="false">Menu</button>
       </div>
     </div>
   </div>
 
-  <!-- Mobile Drawer -->
-  <div class="drawerMask" id="drawerMask" aria-hidden="true"></div>
-  <aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-label="Mobile menu">
+  <!-- Drawer -->
+  <div class="mask" id="mask" aria-hidden="true"></div>
+  <aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-label="Menu">
     <div class="drawerTop">
       <b>MENU</b>
-      <button class="btn" id="drawerClose">Close</button>
+      <button class="btn" id="closeDrawer">Close</button>
     </div>
 
-    <a class="drawerLink" href="#about">About</a>
-    <a class="drawerLink" href="#journey">Journey</a>
-    <a class="drawerLink" href="#gallery">Gallery</a>
+    <a class="dLink" href="#journey">Journey</a>
+    <a class="dLink" href="#gallery">Gallery</a>
 
-    <button id="incToggle" type="button">Incidents</button>
-    <div class="subWrap" id="incSub">
-      <a class="drawerLink" href="./incidents.html">All Incidents</a>
-      <a class="drawerLink" href="./sundarijal-rescue.html">Sundarijal Rescue</a>
+    <div class="dGroup">
+      <div class="dGroupHead">
+        <span>Incidents</span>
+        <button class="btn" id="incToggle" style="padding:8px 10px; font-size:12px">Open</button>
+      </div>
+      <div class="dSub" id="incSub">
+        <a class="dLink" href="./incidents.html">Incident archive</a>
+        <a class="dLink" href="./sundarijal-rescue.html">Sundarijal Rescue</a>
+        <div class="tiny">14 Sep 2017</div>
+      </div>
     </div>
 
-    <a class="drawerLink" href="#tips">Tips</a>
-    <a class="drawerLink" href="#memo">Memo</a>
-    <a class="drawerLink" href="./gym.html">Gym</a>
-    <a class="drawerLink" href="#contact">Contact</a>
-
-    <div class="row">
-      <a href="#gallery">Photos</a>
-      <a href="#contact">Work</a>
-    </div>
+    <a class="dLink" href="#tips">Tips</a>
+    <a class="dLink" href="#memo">Memo</a>
+    <a class="dLink" href="./gym.html">Gym</a>
+    <a class="dLink" href="#contact">Contact</a>
   </aside>
 
   <!-- HERO -->
   <main id="top" class="hero">
     <div class="wrap">
       <div class="heroGrid">
-        <div class="heroCard big reveal glow">
-          <div class="heroImg" style="background-image:url('../assets/hero-eiffel.jpg')"></div>
-          <div class="heroOverlay"></div>
 
-          <div class="heroContent">
-            <div class="kicker"><span class="dot"></span> STORIES • TRAVEL • FITNESS • REAL LIFE</div>
+        <div class="heroCard big">
+          <div class="heroImg" style="background-image:url('./assets/hero-eiffel.jpg')"></div>
+          <div class="heroShade"></div>
+
+          <div class="heroIn">
+            <div class="kicker"><span class="dot"></span> STORIES  TRAVEL  FITNESS  REAL LIFE</div>
 
             <h1 class="title">I build my life with <span>discipline</span>.</h1>
 
             <p class="sub">
-              This is my space. Real moments, real work, and the kind of progress you can feel over time.
+              This is my personal site. I keep my stories here, my photos, and the lessons I learn.
+              It is not perfect. It is real.
             </p>
 
-            <div class="heroActions">
-              <a class="btn primary" href="#journey">Start Here</a>
-              <a class="btn" href="./sundarijal-rescue.html">Sundarijal Rescue</a>
-              <a class="btn" href="./gym.html">Gym Schedule</a>
+            <div class="actions">
+              <a class="btn primary" href="#journey">Start here</a>
+              <a class="btn" href="#gallery">View photos</a>
+              <a class="btn" href="./gym.html">Gym schedule</a>
             </div>
 
             <div class="pillRow">
-              <div class="pill"><b>Now:</b> Europe, growth mode</div>
-              <div class="pill"><b>Focus:</b> skills and strength</div>
-              <div class="pill"><b>Rule:</b> consistency first</div>
+              <div class="pill"><b>Now</b> Europe and growth mode</div>
+              <div class="pill"><b>Focus</b> skills and consistency</div>
+              <div class="pill"><b>Energy</b> calm confidence</div>
             </div>
           </div>
         </div>
 
-        <div class="heroSide">
-          <div class="sideCard reveal glow">
-            <div class="heroImg" style="background-image:url('../assets/hero-lake.jpg')"></div>
-            <div class="sideContent">
-              <h3 class="sideTitle">Nature clears my head.</h3>
-              <p class="sideText">When everything feels loud, I step outside and reset properly.</p>
+        <div class="side">
+          <div class="sideCard">
+            <div class="heroImg" style="background-image:url('./assets/hero-lake.jpg')"></div>
+            <div class="sideIn">
+              <h3 class="sideTitle">Nature is therapy.</h3>
+              <p class="sideText">When life gets loud, I go outside and reset.</p>
             </div>
           </div>
 
-          <div class="sideCard reveal glow">
-            <div class="heroImg" style="background-image:url('../assets/travel-plane.jpg')"></div>
-            <div class="sideContent">
-              <h3 class="sideTitle">Movement builds momentum.</h3>
-              <p class="sideText">New places teach new lessons. My discipline stays the same.</p>
+          <div class="sideCard">
+            <div class="heroImg" style="background-image:url('./assets/travel-plane.jpg')"></div>
+            <div class="sideIn">
+              <h3 class="sideTitle">Movement creates momentum.</h3>
+              <p class="sideText">New places teach me new versions of myself.</p>
             </div>
           </div>
         </div>
+
       </div>
     </div>
   </main>
@@ -609,30 +791,30 @@
   <!-- ABOUT -->
   <section id="about">
     <div class="wrap">
-      <div class="sectionHead reveal">
+      <div class="headRow">
         <div>
           <h2 class="h2">Who I am</h2>
-          <p class="lead">A clean site with real energy. Nothing random. Nothing fake. Just the story.</p>
+          <p class="lead">A clean place for my memories, my progress, and the life I am building.</p>
         </div>
       </div>
 
       <div class="grid3">
-        <div class="card reveal glow">
+        <div class="card">
           <div class="tag"><i></i> Identity</div>
-          <h3>Real life, documented.</h3>
-          <p>I share what actually happens. The wins, the pressure, the habits, and the mindset.</p>
+          <h3>Real life, not a highlight reel.</h3>
+          <p>I share wins and failures, because the process is the truth.</p>
         </div>
 
-        <div class="card reveal glow">
+        <div class="card">
           <div class="tag"><i></i> Fitness</div>
-          <h3>Simple, consistent training.</h3>
-          <p>I do the basics well. Train, walk, eat smart, sleep. Repeat until it becomes normal.</p>
+          <h3>Discipline beats motivation.</h3>
+          <p>I train, I walk, I eat simple, and I stay consistent.</p>
         </div>
 
-        <div class="card reveal glow">
-          <div class="tag"><i></i> Incidents</div>
-          <h3>When it matters, I write it down.</h3>
-          <p>Some moments deserve proper documentation. Clear words. No confusion.</p>
+        <div class="card">
+          <div class="tag"><i></i> Notes</div>
+          <h3>Stories, photos, lessons.</h3>
+          <p>This site is my archive. One day it will be my legacy.</p>
         </div>
       </div>
     </div>
@@ -641,28 +823,30 @@
   <!-- JOURNEY -->
   <section id="journey">
     <div class="wrap">
-      <div class="sectionHead reveal">
+      <div class="headRow">
         <div>
           <h2 class="h2">My journey</h2>
-          <p class="lead">Every photo is a chapter. Tap to preview.</p>
+          <p class="lead">Each photo is a chapter. Tap to preview.</p>
         </div>
       </div>
 
       <div class="grid3">
-        <div class="card reveal glow" onclick="openModal('./assets/hero-eiffel.jpg','Paris')">
-          <div class="tag"><i></i> Travel</div>
+        <div class="card" data-img="./assets/hero-eiffel.jpg" data-title="Paris">
+          <div class="tag"><i></i> Chapter</div>
           <h3>Paris</h3>
-          <p>Ambition feels different when you back it up with action.</p>
+          <p>I learned that confidence is built by showing up again and again.</p>
         </div>
-        <div class="card reveal glow" onclick="openModal('./assets/hero-lake.jpg','Mountains')">
-          <div class="tag"><i></i> Nature</div>
+
+        <div class="card" data-img="./assets/hero-lake.jpg" data-title="Mountains">
+          <div class="tag"><i></i> Chapter</div>
           <h3>Mountains</h3>
-          <p>Peace is not lazy. Peace is sharp focus without noise.</p>
+          <p>Silence is not empty. It is where strength grows.</p>
         </div>
-        <div class="card reveal glow" onclick="openModal('./assets/travel-plane.jpg','Takeoff')">
-          <div class="tag"><i></i> Growth</div>
+
+        <div class="card" data-img="./assets/travel-plane.jpg" data-title="Takeoff">
+          <div class="tag"><i></i> Chapter</div>
           <h3>Takeoff</h3>
-          <p>Progress starts the moment you stop waiting for the perfect day.</p>
+          <p>I choose progress even when it is uncomfortable.</p>
         </div>
       </div>
     </div>
@@ -671,28 +855,37 @@
   <!-- GALLERY -->
   <section id="gallery">
     <div class="wrap">
-      <div class="sectionHead reveal">
+      <div class="headRow">
         <div>
           <h2 class="h2">Gallery</h2>
-          <p class="lead">Tap any photo for a clean preview.</p>
+          <p class="lead">Tap any photo for cinematic preview.</p>
         </div>
       </div>
 
-      <div class="grid3">
-        <div class="card reveal glow" onclick="openModal('./assets/portrait-2.jpg','Portrait')">
-          <div class="tag"><i></i> Portrait</div>
-          <h3>Calm power</h3>
-          <p>Quiet confidence looks better than loud talk.</p>
+      <div class="gallery">
+        <div class="g big" data-img="./assets/portrait-2.jpg" data-title="Portrait">
+          <div class="img" style="background-image:url('./assets/portrait-2.jpg')"></div>
+          <div class="cap"><span>Portrait</span><small>Tap</small></div>
         </div>
-        <div class="card reveal glow" onclick="openModal('./assets/city.jpg','City')">
-          <div class="tag"><i></i> City</div>
-          <h3>Movement</h3>
-          <p>Different streets, same mindset.</p>
+
+        <div class="g" data-img="./assets/city.jpg" data-title="City">
+          <div class="img" style="background-image:url('./assets/city.jpg')"></div>
+          <div class="cap"><span>City</span><small>Tap</small></div>
         </div>
-        <div class="card reveal glow" onclick="openModal('./assets/forest.jpg','Forest')">
-          <div class="tag"><i></i> Nature</div>
-          <h3>Work ethic</h3>
-          <p>Results come from the boring days done correctly.</p>
+
+        <div class="g" data-img="./assets/forest.jpg" data-title="Forest">
+          <div class="img" style="background-image:url('./assets/forest.jpg')"></div>
+          <div class="cap"><span>Forest</span><small>Tap</small></div>
+        </div>
+
+        <div class="g" data-img="./assets/mirror.jpg" data-title="Mirror">
+          <div class="img" style="background-image:url('./assets/mirror.jpg')"></div>
+          <div class="cap"><span>Mirror</span><small>Tap</small></div>
+        </div>
+
+        <div class="g" data-img="./assets/portrait-1.jpg" data-title="Identity">
+          <div class="img" style="background-image:url('./assets/portrait-1.jpg')"></div>
+          <div class="cap"><span>Identity</span><small>Tap</small></div>
         </div>
       </div>
     </div>
@@ -701,30 +894,28 @@
   <!-- TIPS -->
   <section id="tips">
     <div class="wrap">
-      <div class="sectionHead reveal">
+      <div class="headRow">
         <div>
           <h2 class="h2">Tips</h2>
-          <p class="lead">No drama. No hype. Just rules that work.</p>
+          <p class="lead">Short rules that keep me consistent.</p>
         </div>
       </div>
 
       <div class="grid3">
-        <div class="card reveal glow">
+        <div class="card">
           <div class="tag"><i></i> Fitness</div>
-          <h3>Keep it simple</h3>
-          <p>Walk daily, eat enough protein, train with intention, sleep like it matters.</p>
+          <h3>Simple fat loss</h3>
+          <p>Walk daily. Drink water. Sleep. Eat protein first. Stay patient.</p>
         </div>
-
-        <div class="card reveal glow">
+        <div class="card">
           <div class="tag"><i></i> Focus</div>
-          <h3>Minimum day still counts</h3>
-          <p>Even on bad days, do something small. It keeps the engine warm.</p>
+          <h3>Minimum day rule</h3>
+          <p>Even on bad days, do something small. That keeps the chain alive.</p>
         </div>
-
-        <div class="card reveal glow">
-          <div class="tag"><i></i> Growth</div>
-          <h3>Document your life</h3>
-          <p>Photos and notes become proof. Proof becomes confidence.</p>
+        <div class="card">
+          <div class="tag"><i></i> Life</div>
+          <h3>Document everything</h3>
+          <p>Photos and notes become your story. Later you will be glad you saved it.</p>
         </div>
       </div>
     </div>
@@ -733,28 +924,33 @@
   <!-- MEMO -->
   <section id="memo">
     <div class="wrap">
-      <div class="sectionHead reveal">
+      <div class="headRow">
         <div>
-          <h2 class="h2">Memo</h2>
-          <p class="lead">A short checklist that keeps me grounded.</p>
+          <h2 class="h2">My memo</h2>
+          <p class="lead">A living notebook that keeps me sharp.</p>
         </div>
       </div>
 
       <div class="grid3">
-        <div class="card reveal glow">
+        <div class="card">
           <div class="tag"><i></i> This week</div>
-          <h3>One hard thing per day</h3>
-          <p>If I do one difficult thing daily, the week always improves.</p>
+          <h3>Focus</h3>
+          <p>One hard thing every day. Train. Walk. Eat clean. Repeat.</p>
         </div>
-        <div class="card reveal glow">
-          <div class="tag"><i></i> Reminder</div>
-          <h3>Rest is part of progress</h3>
-          <p>Recovery is not optional. It is what lets you stay consistent.</p>
+
+        <div class="card">
+          <div class="tag"><i></i> Quotes</div>
+          <h3>Lines I live by</h3>
+          <p>Discipline is self respect in action. Consistency is power.</p>
         </div>
-        <div class="card reveal glow">
-          <div class="tag"><i></i> Quote</div>
-          <h3>Consistency wins</h3>
-          <p>Motivation comes and goes. Discipline stays.</p>
+
+        <div class="card">
+          <div class="tag"><i></i> Incidents</div>
+          <h3>Real stories</h3>
+          <p>Some days change you. I write them down so I never forget.</p>
+          <div style="margin-top:12px">
+            <a class="btn primary" href="./incidents.html">Open incidents</a>
+          </div>
         </div>
       </div>
     </div>
@@ -763,91 +959,110 @@
   <!-- CONTACT -->
   <section id="contact">
     <div class="wrap">
-      <div class="sectionHead reveal">
+      <div class="headRow">
         <div>
           <h2 class="h2">Connect with me</h2>
-          <p class="lead">Follow the journey and reach out anytime.</p>
+          <p class="lead">Follow the journey. Discipline. Growth. Real life.</p>
         </div>
       </div>
 
       <div class="contactGrid">
-        <a class="socialCard reveal glow" href="https://www.instagram.com/nabinbeast" target="_blank" rel="noopener">
-          <div class="icon ig" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none">
-              <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Z" stroke="currentColor" stroke-width="2"/>
-              <path d="M12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10Z" stroke="currentColor" stroke-width="2"/>
-              <path d="M17.6 6.4h.01" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <div class="socialInfo">
-            <h3>Instagram</h3>
-            <p>@nabinbeast</p>
-          </div>
-          <span class="arrow">↗</span>
-        </a>
 
-        <a class="socialCard reveal glow" href="https://www.tiktok.com/@nabinbeast" target="_blank" rel="noopener">
-          <div class="icon tt" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none">
-              <path d="M14 3v11.2a4.2 4.2 0 1 1-3-4V7.3c1.2-.2 2.2-.7 3-1.4Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-              <path d="M14 3c.8 2.8 2.8 4.8 6 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <div class="socialInfo">
-            <h3>TikTok</h3>
-            <p>@nabinbeast</p>
-          </div>
-          <span class="arrow">↗</span>
-        </a>
+        <div style="display:grid; gap:12px">
 
-        <a class="socialCard reveal glow" href="https://www.facebook.com/share/1BoRSqe9YV/?mibextid=wwXIfr" target="_blank" rel="noopener">
-          <div class="icon fb" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none">
-              <path d="M14 8h3V5h-3c-2.2 0-4 1.8-4 4v3H7v3h3v7h3v-7h3l1-3h-4V9c0-.6.4-1 1-1Z" fill="currentColor"/>
-            </svg>
-          </div>
-          <div class="socialInfo">
-            <h3>Facebook</h3>
-            <p>Profile</p>
-          </div>
-          <span class="arrow">↗</span>
-        </a>
+          <!-- Instagram -->
+          <a class="socialCard" href="https://www.instagram.com/nabinbeast" target="_blank" rel="noopener">
+            <div class="sLeft">
+              <div class="iconBox" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M7.5 2.5h9A5 5 0 0 1 21.5 7.5v9a5 5 0 0 1-5 5h-9a5 5 0 0 1-5-5v-9a5 5 0 0 1 5-5Z" stroke="white" stroke-opacity=".92" stroke-width="1.6"/>
+                  <path d="M12 8.3a3.7 3.7 0 1 0 0 7.4 3.7 3.7 0 0 0 0-7.4Z" stroke="white" stroke-opacity=".92" stroke-width="1.6"/>
+                  <path d="M17.3 6.8h.01" stroke="white" stroke-opacity=".92" stroke-width="3.2" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <div class="sText">
+                <b>Instagram</b>
+                <small>@nabinbeast</small>
+              </div>
+            </div>
+            <div class="go">↗</div>
+          </a>
 
-        <div class="emailCard reveal glow">
-          <h3>Email me</h3>
-          <p id="emailText">nabinbisht@icloud.com</p>
-          <div class="emailBtns">
-            <a class="btn primary" href="mailto:nabinbisht@icloud.com">Send Email</a>
-            <button class="btn" type="button" id="copyEmail">Copy</button>
-            <a class="btn" href="./incidents.html">Incidents</a>
-          </div>
+          <!-- TikTok -->
+          <a class="socialCard" href="https://www.tiktok.com/@nabinbeast" target="_blank" rel="noopener">
+            <div class="sLeft">
+              <div class="iconBox" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M14 3v10.2a3.8 3.8 0 1 1-3.2-3.74" stroke="white" stroke-opacity=".92" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M14 3c1.1 2.7 3 4.2 6 4.7" stroke="white" stroke-opacity=".92" stroke-width="1.6" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <div class="sText">
+                <b>TikTok</b>
+                <small>@nabinbeast</small>
+              </div>
+            </div>
+            <div class="go">↗</div>
+          </a>
+
+          <!-- Facebook -->
+          <a class="socialCard" href="https://www.facebook.com/share/1BoRSqe9YV/?mibextid=wwXIfr" target="_blank" rel="noopener">
+            <div class="sLeft">
+              <div class="iconBox" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M14 8h2V5h-2c-2.2 0-4 1.8-4 4v2H8v3h2v7h3v-7h2.3l.7-3H13V9c0-.6.4-1 1-1Z" stroke="white" stroke-opacity=".92" stroke-width="1.6" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <div class="sText">
+                <b>Facebook</b>
+                <small>Profile</small>
+              </div>
+            </div>
+            <div class="go">↗</div>
+          </a>
+
         </div>
+
+        <!-- Email -->
+        <div class="emailCard">
+          <h3>Email me</h3>
+          <div class="emailLine" id="emailText">nabinbisht@icloud.com</div>
+          <div class="rowBtns">
+            <a class="btn primary" href="mailto:nabinbisht@icloud.com">Send email</a>
+            <button class="btn" id="copyEmail">Copy</button>
+          </div>
+          <div style="margin-top:10px; color:rgba(255,255,255,.62); font-weight:800; font-size:12.5px" id="copyMsg"></div>
+        </div>
+
       </div>
     </div>
   </section>
 
+  <!-- FOOTER -->
   <footer>
     <div class="wrap">
       <div class="footGrid">
-        <div class="footCard glow">
-          <h3>KEY RULES</h3>
-          <p>Show up daily. Keep it simple. Track progress. Respect the process.</p>
+        <div class="footCard">
+          <h3>Key rules</h3>
+          <p>Show up daily. Track progress. Keep it simple. Respect the process. Build legacy.</p>
           <div class="footLinks">
-            <a href="#top">Top</a>
-            <a href="#gallery">Gallery</a>
-            <a href="./incidents.html">Incidents</a>
-            <a href="./gym.html">Gym</a>
+            <a class="btn" href="#top">Top</a>
+            <a class="btn" href="#journey">Journey</a>
+            <a class="btn" href="#gallery">Gallery</a>
+            <a class="btn" href="./incidents.html">Incidents</a>
+            <a class="btn" href="./gym.html">Gym</a>
+            <a class="btn primary" href="#contact">Contact</a>
           </div>
-          <div class="copyright">© <span id="yr"></span> Nabin Bist.</div>
+          <div class="copyright">© <span id="yr"></span> Nabin Bist. Built with discipline.</div>
         </div>
 
-        <div class="footCard glow">
+        <div class="footCard">
           <h3>Next upgrades</h3>
           <p>
-            Real blog page<br>
-            Vlog page<br>
-            Fitness programs page<br>
-            Private journal
+            Real blog posts page<br>
+            Video page with embeds<br>
+            More fitness programs<br>
+            Private journal page
           </p>
         </div>
       </div>
@@ -855,114 +1070,112 @@
   </footer>
 
   <!-- MODAL -->
-  <div class="modal" id="modal">
+  <div class="modal" id="modal" aria-hidden="true">
     <div class="modalBox">
       <div class="modalTop">
-        <b id="modalTitle">Preview</b>
-        <button class="close" id="close">Close</button>
+        <b id="mTitle">Preview</b>
+        <button class="closeBtn" id="mClose">Close</button>
       </div>
-      <div class="modalImg" id="modalImg"></div>
+      <div class="modalImg" id="mImg"></div>
     </div>
   </div>
 
   <script>
-    // Year
-    document.getElementById('yr').textContent = new Date().getFullYear();
+    // year
+    document.getElementById("yr").textContent = new Date().getFullYear();
 
-    // Reveal on scroll
-    const io = new IntersectionObserver((entries)=>{
-      entries.forEach(e=>{
-        if(e.isIntersecting){
-          e.target.classList.add('in');
-          io.unobserve(e.target);
-        }
-      })
-    },{threshold:.14});
-    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-
-    // Modal
-    const modal = document.getElementById('modal');
-    const modalImg = document.getElementById('modalImg');
-    const modalTitle = document.getElementById('modalTitle');
-    const closeBtn = document.getElementById('close');
+    // gallery modal
+    const modal = document.getElementById("modal");
+    const mImg = document.getElementById("mImg");
+    const mTitle = document.getElementById("mTitle");
+    const mClose = document.getElementById("mClose");
 
     function openModal(img, title){
-      modal.classList.add('open');
-      modalImg.style.backgroundImage = `url('${img}')`;
-      modalTitle.textContent = title || 'Preview';
+      modal.classList.add("open");
+      modal.setAttribute("aria-hidden","false");
+      mImg.style.backgroundImage = "url('" + img + "')";
+      mTitle.textContent = title || "Preview";
     }
-    window.openModal = openModal;
+    function closeModal(){
+      modal.classList.remove("open");
+      modal.setAttribute("aria-hidden","true");
+    }
 
-    function closeModal(){ modal.classList.remove('open'); }
-    closeBtn.addEventListener('click', closeModal);
-    modal.addEventListener('click', (e)=>{ if(e.target === modal) closeModal(); });
-    document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeModal(); });
+    document.querySelectorAll("[data-img]").forEach(el=>{
+      el.addEventListener("click", ()=> openModal(el.dataset.img, el.dataset.title));
+    });
+    mClose.addEventListener("click", closeModal);
+    modal.addEventListener("click", (e)=>{ if(e.target === modal) closeModal(); });
+    document.addEventListener("keydown", (e)=>{ if(e.key === "Escape") closeModal(); });
 
-    // Mobile drawer
-    const burger = document.getElementById('burger');
-    const drawer = document.getElementById('drawer');
-    const drawerMask = document.getElementById('drawerMask');
-    const drawerClose = document.getElementById('drawerClose');
+    // desktop incidents popover
+    const incBtn = document.getElementById("incBtn");
+    const incPop = document.getElementById("incPop");
+
+    function closePop(){
+      incPop.classList.remove("open");
+      incBtn.setAttribute("aria-expanded","false");
+    }
+    function togglePop(){
+      const open = incPop.classList.contains("open");
+      if(open){ closePop(); return; }
+      incPop.classList.add("open");
+      incBtn.setAttribute("aria-expanded","true");
+    }
+    incBtn.addEventListener("click", (e)=>{
+      e.stopPropagation();
+      togglePop();
+    });
+    document.addEventListener("click", closePop);
+    incPop.addEventListener("click", (e)=> e.stopPropagation());
+
+    // mobile drawer
+    const menuBtn = document.getElementById("menuBtn");
+    const drawer = document.getElementById("drawer");
+    const mask = document.getElementById("mask");
+    const closeDrawerBtn = document.getElementById("closeDrawer");
 
     function openDrawer(){
-      drawer.classList.add('open');
-      drawerMask.classList.add('open');
-      burger.setAttribute('aria-expanded','true');
+      drawer.classList.add("open");
+      mask.classList.add("open");
+      menuBtn.setAttribute("aria-expanded","true");
     }
     function closeDrawer(){
-      drawer.classList.remove('open');
-      drawerMask.classList.remove('open');
-      burger.setAttribute('aria-expanded','false');
+      drawer.classList.remove("open");
+      mask.classList.remove("open");
+      menuBtn.setAttribute("aria-expanded","false");
     }
-    burger.addEventListener('click', openDrawer);
-    drawerClose.addEventListener('click', closeDrawer);
-    drawerMask.addEventListener('click', closeDrawer);
+    menuBtn.addEventListener("click", openDrawer);
+    closeDrawerBtn.addEventListener("click", closeDrawer);
+    mask.addEventListener("click", closeDrawer);
 
-    document.querySelectorAll('.drawerLink').forEach(a=>{
-      a.addEventListener('click', closeDrawer);
+    // incidents submenu in drawer
+    const incToggle = document.getElementById("incToggle");
+    const incSub = document.getElementById("incSub");
+    incToggle.addEventListener("click", ()=>{
+      const open = incSub.classList.contains("open");
+      incSub.classList.toggle("open", !open);
+      incToggle.textContent = open ? "Open" : "Close";
     });
 
-    // Mobile incidents submenu toggle
-    const incToggle = document.getElementById('incToggle');
-    const incSub = document.getElementById('incSub');
-    incToggle.addEventListener('click', ()=>{
-      incSub.classList.toggle('open');
+    // close drawer when clicking links
+    document.querySelectorAll(".drawer a").forEach(a=>{
+      a.addEventListener("click", closeDrawer);
     });
 
-    // Desktop incidents dropdown
-    const incDrop = document.getElementById('incDrop');
-    const incBtn = document.getElementById('incBtn');
+    // copy email
+    const copyBtn = document.getElementById("copyEmail");
+    const emailText = document.getElementById("emailText").textContent.trim();
+    const copyMsg = document.getElementById("copyMsg");
 
-    incBtn.addEventListener('click', (e)=>{
-      e.preventDefault();
-      incDrop.classList.toggle('open');
-      incBtn.setAttribute('aria-expanded', incDrop.classList.contains('open') ? 'true' : 'false');
-    });
-
-    document.addEventListener('click', (e)=>{
-      if(!incDrop.contains(e.target)){
-        incDrop.classList.remove('open');
-        incBtn.setAttribute('aria-expanded','false');
-      }
-    });
-
-    // Keyboard shortcut: I opens Incidents dropdown
-    document.addEventListener('keydown', (e)=>{
-      if(e.key.toLowerCase() === 'i'){
-        incDrop.classList.toggle('open');
-        incBtn.setAttribute('aria-expanded', incDrop.classList.contains('open') ? 'true' : 'false');
-      }
-    });
-
-    // Copy email
-    const copyEmail = document.getElementById('copyEmail');
-    copyEmail.addEventListener('click', async ()=>{
+    copyBtn.addEventListener("click", async ()=>{
       try{
-        await navigator.clipboard.writeText('nabinbisht@icloud.com');
-        copyEmail.textContent = 'Copied';
-        setTimeout(()=> copyEmail.textContent = 'Copy', 1200);
+        await navigator.clipboard.writeText(emailText);
+        copyMsg.textContent = "Copied.";
+        setTimeout(()=> copyMsg.textContent = "", 1200);
       }catch{
-        alert('Copy failed. Email: nabinbisht@icloud.com');
+        copyMsg.textContent = "Copy failed. Hold and copy manually.";
+        setTimeout(()=> copyMsg.textContent = "", 2000);
       }
     });
   </script>
