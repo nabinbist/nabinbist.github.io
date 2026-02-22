@@ -4,63 +4,384 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Nabin Bist | Incidents</title>
+  <meta name="description" content="Incident archive by Nabin Bist. Real moments and stories written in my voice." />
   <meta name="theme-color" content="#070A0F" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+
   <style>
-    :root{--bg:#070A0F;--text:rgba(255,255,255,.92);--muted:rgba(255,255,255,.72);--shadow:0 24px 80px rgba(0,0,0,.55);--r2:26px;--max:980px;}
+    :root{
+      --bg:#070A0F;
+      --bg2:#0B1020;
+      --card:rgba(255,255,255,.06);
+      --stroke:rgba(255,255,255,.12);
+      --text:rgba(255,255,255,.92);
+      --muted:rgba(255,255,255,.72);
+      --muted2:rgba(255,255,255,.56);
+      --c1:#22D3EE;
+      --c2:#A78BFA;
+      --shadow: 0 26px 90px rgba(0,0,0,.60);
+      --shadow2: 0 16px 50px rgba(0,0,0,.42);
+      --r:18px;
+      --r2:26px;
+      --max: 1100px;
+      --navH:72px;
+    }
+
     *{box-sizing:border-box}
-    body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--text);background:radial-gradient(1200px 600px at 18% 12%, rgba(34,211,238,.14), transparent 55%),radial-gradient(900px 500px at 88% 22%, rgba(167,139,250,.13), transparent 50%),linear-gradient(180deg,var(--bg),#05060A 55%,#04040A);min-height:100vh}
-    a{color:inherit;text-decoration:none}
-    .wrap{max-width:var(--max);margin:0 auto;padding:22px 18px 60px}
-    .top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0 18px}
-    .brand{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:.08em}
-    .logo{width:40px;height:40px;border-radius:16px;background:linear-gradient(135deg, rgba(34,211,238,.95), rgba(167,139,250,.92));border:1px solid rgba(255,255,255,.14);box-shadow:0 14px 38px rgba(34,211,238,.18)}
-    .btn{border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.06);color:rgba(255,255,255,.92);padding:10px 14px;border-radius:999px;font-weight:900;font-size:14px;cursor:pointer;transition:.18s ease}
-    .btn:hover{transform: translateY(-1px); background:rgba(255,255,255,.09)}
-    .btn.primary{background:linear-gradient(135deg, rgba(34,211,238,.95), rgba(167,139,250,.95));border:1px solid rgba(255,255,255,.18);color:#061018}
-    .card{border-radius:var(--r2);border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.05);box-shadow:var(--shadow);overflow:hidden}
-    .head{padding:18px;border-bottom:1px solid rgba(255,255,255,.10)}
-    .head h1{margin:0 0 6px;font-size:20px;font-weight:900}
-    .head p{margin:0;color:var(--muted);line-height:1.5}
-    .list{padding:16px;display:grid;gap:12px}
-    .item{padding:14px;border-radius:20px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);display:flex;align-items:center;justify-content:space-between;gap:12px;transition:.18s ease}
-    .item:hover{transform: translateY(-1px); background:rgba(255,255,255,.06); border-color:rgba(255,255,255,.16)}
-    .meta b{display:block;font-weight:900}
-    .meta small{display:block;color:rgba(255,255,255,.70);font-weight:800;margin-top:4px}
-    .go{opacity:.65;font-weight:900}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(1200px 650px at 16% 10%, rgba(34,211,238,.14), transparent 58%),
+        radial-gradient(900px 520px at 86% 18%, rgba(167,139,250,.14), transparent 55%),
+        linear-gradient(180deg, var(--bg), #05060A 55%, #04040A);
+      overflow-x:hidden;
+    }
+    a{color:inherit; text-decoration:none}
+    .wrap{max-width:var(--max); margin:0 auto; padding:0 18px}
+
+    /* NAV */
+    .nav{
+      position:sticky;
+      top:0;
+      z-index:50;
+      backdrop-filter: blur(14px);
+      background: linear-gradient(180deg, rgba(5,6,10,.80), rgba(5,6,10,.40));
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    .navIn{
+      height:var(--navH);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-weight:900;
+      letter-spacing:.05em;
+      flex:0 0 auto;
+    }
+    .logo{
+      width:38px; height:38px;
+      border-radius:14px;
+      background:
+        radial-gradient(10px 10px at 30% 30%, rgba(255,255,255,.26), transparent 60%),
+        linear-gradient(135deg, rgba(34,211,238,.95), rgba(167,139,250,.95));
+      border:1px solid rgba(255,255,255,.18);
+      box-shadow: 0 16px 42px rgba(34,211,238,.18);
+    }
+
+    .navRight{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      justify-content:flex-end;
+      flex:1 1 auto;
+      min-width:0;
+    }
+
+    .btn{
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.06);
+      color:rgba(255,255,255,.92);
+      padding:10px 12px;
+      border-radius:14px;
+      font-weight:900;
+      font-size:14px;
+      cursor:pointer;
+      transition: transform .18s ease, background .18s ease, border-color .18s ease;
+      box-shadow: 0 10px 28px rgba(0,0,0,.22);
+      white-space:nowrap;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+    }
+    .btn:hover{
+      transform: translateY(-1px);
+      background:rgba(255,255,255,.09);
+      border-color: rgba(255,255,255,.18);
+    }
+    .btn.primary{
+      background: linear-gradient(135deg, rgba(34,211,238,.95), rgba(167,139,250,.95));
+      border:1px solid rgba(255,255,255,.20);
+      color:#061018;
+    }
+    .btn.primary:hover{filter: brightness(1.03)}
+
+    /* Mobile nav becomes horizontal scroll */
+    @media (max-width: 820px){
+      .navRight{
+        overflow-x:auto;
+        gap:8px;
+        padding-bottom:4px;
+        scrollbar-width:none;
+      }
+      .navRight::-webkit-scrollbar{display:none}
+      .btn{
+        flex:0 0 auto;
+        font-size:13px;
+        padding:8px 12px;
+      }
+    }
+
+    /* Page */
+    .hero{
+      padding:18px 0 10px;
+    }
+    .heroCard{
+      border-radius: var(--r2);
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .heroCard::before{
+      content:"";
+      position:absolute;
+      inset:-1px;
+      border-radius: inherit;
+      background:
+        radial-gradient(900px 260px at 20% 0%, rgba(34,211,238,.16), transparent 60%),
+        radial-gradient(900px 260px at 90% 0%, rgba(167,139,250,.14), transparent 60%);
+      pointer-events:none;
+      opacity:.85;
+    }
+    .heroIn{
+      position:relative;
+      padding:18px;
+      display:grid;
+      gap:10px;
+    }
+    h1{
+      margin:0;
+      font-size: clamp(26px, 3.5vw, 40px);
+      letter-spacing:-.03em;
+      font-weight:950;
+    }
+    .lead{
+      margin:0;
+      color: var(--muted);
+      line-height:1.6;
+      font-size:14.5px;
+      max-width: 70ch;
+    }
+
+    /* Incident list */
+    .grid{
+      padding:14px 0 60px;
+      display:grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap:14px;
+    }
+    @media (max-width: 900px){
+      .grid{grid-template-columns:1fr}
+    }
+
+    .incident{
+      border-radius: var(--r2);
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+      position:relative;
+      transition: transform .18s ease, background .18s ease, border-color .18s ease;
+    }
+    .incident:hover{
+      transform: translateY(-2px);
+      background: rgba(255,255,255,.06);
+      border-color: rgba(255,255,255,.16);
+    }
+
+    .thumb{
+      position:relative;
+      aspect-ratio: 16/9;
+      background-size:cover;
+      background-position:center;
+      transform: scale(1.02);
+      filter:saturate(1.05) contrast(1.05);
+    }
+    .thumb::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background: linear-gradient(180deg, rgba(0,0,0,.10), rgba(0,0,0,.70));
+    }
+
+    .body{
+      padding:14px 16px 16px;
+      display:grid;
+      gap:10px;
+    }
+    .titleRow{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:10px;
+    }
+    .t{
+      margin:0;
+      font-size:18px;
+      font-weight:950;
+      letter-spacing:-.02em;
+    }
+    .meta{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+    .pill{
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.14);
+      color: rgba(255,255,255,.84);
+      font-weight:900;
+      font-size:11px;
+      letter-spacing:.10em;
+      text-transform:uppercase;
+      white-space:nowrap;
+    }
+    .desc{
+      margin:0;
+      color: var(--muted);
+      line-height:1.6;
+      font-size:14px;
+    }
+
+    .go{
+      margin-top:4px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:10px;
+    }
+    .arrow{
+      width:34px;
+      height:34px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:950;
+      color: rgba(255,255,255,.90);
+    }
+
+    footer{
+      border-top:1px solid rgba(255,255,255,.08);
+      padding: 28px 0 40px;
+      color: rgba(255,255,255,.60);
+      font-size: 12.5px;
+    }
   </style>
 </head>
+
 <body>
-  <div class="wrap">
-    <div class="top">
-      <div class="brand">
-        <div class="logo" aria-hidden="true"></div>
-        <span>INCIDENTS</span>
-      </div>
-      <div style="display:flex;gap:10px;align-items:center;">
-        <a class="btn" href="./index.html">Home</a>
-        <a class="btn primary" href="./sundarijal-rescue.html">Sundarijal Rescue</a>
-      </div>
-    </div>
 
-    <div class="card">
-      <div class="head">
-        <h1>Incident Archive</h1>
-        <p>When something serious happens, I document it clearly so the story stays accurate.</p>
-      </div>
-
-      <div class="list">
-        <a class="item" href="./sundarijal-rescue.html">
-          <div class="meta">
-            <b>Sundarijal Rescue</b>
-            <small>Story and details</small>
-          </div>
-          <span class="go">↗</span>
+  <!-- NAV -->
+  <div class="nav">
+    <div class="wrap">
+      <div class="navIn">
+        <a class="brand" href="./index.html" aria-label="Home">
+          <div class="logo" aria-hidden="true"></div>
+          <span>NABIN BIST</span>
         </a>
+
+        <div class="navRight" aria-label="Primary navigation">
+          <a class="btn" href="./index.html">Home</a>
+          <a class="btn primary" href="./incidents.html">Incidents</a>
+          <a class="btn" href="./index.html#contact">Contact</a>
+          <a class="btn" href="./gym.html">Gym</a>
+        </div>
       </div>
     </div>
   </div>
+
+  <div class="wrap">
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="heroCard">
+        <div class="heroIn">
+          <h1>Incident Archive</h1>
+          <p class="lead">
+            Real moments from my life. No exaggeration. No fake hero story.
+            Just what happened, how it happened, and what it taught me.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- LIST -->
+    <section class="grid">
+
+      <!-- Sundarijal Rescue -->
+      <a class="incident" href="./sundarijal-rescue.html" aria-label="Open Sundarijal Rescue">
+        <div class="thumb" style="background-image:url('./assets/img/sundarijal-before.jpg')"></div>
+        <div class="body">
+          <div class="titleRow">
+            <div>
+              <div class="meta">
+                <span class="pill">Sundarijal</span>
+                <span class="pill">14 Sep 2017</span>
+              </div>
+              <h2 class="t">Sundarijal Rescue</h2>
+            </div>
+            <div class="arrow">↗</div>
+          </div>
+
+          <p class="desc">
+            Two girls slipped into the river. Everything turned chaotic in seconds.
+            This page documents the timeline, step by step, in my own voice.
+          </p>
+
+          <div class="go">
+            <span class="pill">Open story</span>
+            <span class="pill">Timeline</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Placeholder for next incident -->
+      <div class="incident" style="opacity:.72;">
+        <div class="thumb" style="background-image:linear-gradient(135deg, rgba(34,211,238,.20), rgba(167,139,250,.20))"></div>
+        <div class="body">
+          <div class="meta">
+            <span class="pill">Next</span>
+            <span class="pill">Coming soon</span>
+          </div>
+          <h2 class="t">More incidents</h2>
+          <p class="desc">
+            I will add more real stories here. Not every lesson comes from comfort.
+          </p>
+          <div class="go">
+            <span class="pill">Work in progress</span>
+            <span class="pill">Archive grows</span>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <footer>
+      © <span id="yr"></span> Nabin Bist. Incident archive.
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById("yr").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
