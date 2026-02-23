@@ -9,9 +9,8 @@
   <meta name="theme-color" content="#070A0F">
 
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Nabin Bist — Gym Schedule</title>
-  <meta name="theme-color" content="#070A0F" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,8 +28,14 @@
       --r:18px;
       --r2:26px;
       --max:980px;
+
+      --safeTop: env(safe-area-inset-top, 0px);
+      --safeLeft: env(safe-area-inset-left, 0px);
+      --safeRight: env(safe-area-inset-right, 0px);
     }
+
     *{box-sizing:border-box}
+    html,body{height:100%}
     body{
       margin:0;
       font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
@@ -43,18 +48,34 @@
       overflow-x:hidden;
     }
     a{color:inherit; text-decoration:none}
-    .wrap{max-width:var(--max); margin:0 auto; padding:22px 18px 60px}
+    .wrap{
+      max-width:var(--max);
+      margin:0 auto;
+      padding: calc(18px + var(--safeTop)) 18px 60px;
+      padding-left: calc(18px + var(--safeLeft));
+      padding-right: calc(18px + var(--safeRight));
+    }
 
     .top{
-      display:flex; align-items:center; justify-content:space-between;
-      gap:12px; padding:12px 0 18px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:12px 0 18px;
     }
-    .brand{display:flex; align-items:center; gap:10px; font-weight:900; letter-spacing:.08em}
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-weight:900;
+      letter-spacing:.08em;
+      min-width:0;
+    }
 
-    /* ✅ REAL LOGO IMAGE (same file as index root) */
+    /* ✅ REAL LOGO (same file as index) */
     .logo{
-      width:42px;
-      height:42px;
+      width:44px;
+      height:44px;
       border-radius:16px;
       position:relative;
       overflow:hidden;
@@ -84,6 +105,31 @@
       0%{transform: rotate(20deg) translateX(-60%)}
       45%{transform: rotate(20deg) translateX(90%)}
       100%{transform: rotate(20deg) translateX(90%)}
+    }
+
+    .brandText{
+      display:flex;
+      flex-direction:column;
+      min-width:0;
+      line-height:1.05;
+    }
+    .brandText .small{
+      font-size:12px;
+      color:rgba(255,255,255,.70);
+      font-weight:900;
+      letter-spacing:.14em;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      max-width: 44vw;
+    }
+    .brandText .big{
+      font-size:16px;
+      font-weight:900;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      max-width: 44vw;
     }
 
     .btn{
@@ -140,7 +186,14 @@
       border-radius: 16px;
       padding:10px;
     }
-    .stat small{display:block; color:rgba(255,255,255,.65); font-weight:900; letter-spacing:.10em; text-transform:uppercase; font-size:10.5px}
+    .stat small{
+      display:block;
+      color:rgba(255,255,255,.65);
+      font-weight:900;
+      letter-spacing:.10em;
+      text-transform:uppercase;
+      font-size:10.5px
+    }
     .stat b{display:block; margin-top:6px; font-size:13px}
 
     .progress{
@@ -163,13 +216,19 @@
       border-radius:999px;
       background: linear-gradient(90deg, var(--good), rgba(20,184,166,1));
       transition: width .25s ease;
-      display:flex; align-items:center; justify-content:center;
-      font-weight:900; font-size:11px; color:#04110a;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:900;
+      font-size:11px;
+      color:#04110a;
     }
     .progress p{margin:0; color:rgba(255,255,255,.78); font-weight:800; font-size:12.5px}
 
     .days{
-      display:flex; flex-wrap:wrap; gap:8px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
       margin:10px 0 14px;
     }
     .dayBtn{
@@ -202,7 +261,13 @@
       padding:14px;
       overflow:hidden;
     }
-    .panelTop{display:flex; align-items:flex-start; justify-content:space-between; gap:12px; margin-bottom:10px}
+    .panelTop{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom:10px
+    }
     .panel h2{margin:0; font-size:16px; font-weight:900}
     .badge{
       padding:7px 10px;
@@ -216,53 +281,93 @@
     }
 
     .list{list-style:none; padding:0; margin:0; display:grid; gap:8px}
+
     .item{
       border:1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.04);
       border-radius: 14px;
       padding:10px 10px;
-      display:flex; gap:10px; align-items:center;
+      display:flex;
+      gap:10px;
+      align-items:center;
       cursor:pointer;
       transition:.16s ease;
       -webkit-tap-highlight-color: transparent;
       touch-action: manipulation;
       user-select:none;
     }
-    .item:hover{transform: translateY(-1px); background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.14)}
+    .item:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,.06);
+      border-color: rgba(255,255,255,.14)
+    }
+
     .check{
-      width:18px; height:18px;
+      width:18px;
+      height:18px;
       border-radius:6px;
       border:2px solid rgba(255,255,255,.28);
-      display:flex; align-items:center; justify-content:center;
-      flex-shrink:0;
-    }
-    .item.done{opacity:.68; text-decoration: line-through}
-    .item.done .check{background: var(--good); border-color: var(--good)}
-    .item.done .check::after{content:"✓"; color:#052014; font-weight:900; font-size:12px}
-
-    .item .txt{flex:1; font-weight:900; font-size:13px}
-
-    /* ✅ video link button on the right */
-    .vlink{
-      flex:0 0 auto;
-      width:34px; height:34px;
-      border-radius:12px;
-      border:1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.06);
-      display:inline-flex;
+      display:flex;
       align-items:center;
       justify-content:center;
-      box-shadow: 0 10px 22px rgba(0,0,0,.22);
-      transition: transform .16s ease, background .16s ease, border-color .16s ease;
+      flex-shrink:0;
     }
-    .vlink:hover{
+
+    .item.done{
+      opacity:.68;
+      text-decoration: line-through;
+    }
+    .item.done .check{
+      background: var(--good);
+      border-color: var(--good);
+    }
+    .item.done .check::after{
+      content:"✓";
+      color:#052014;
+      font-weight:900;
+      font-size:12px
+    }
+
+    .exerciseText{
+      flex:1;
+      font-weight:900;
+      font-size:13px;
+      line-height:1.35;
+    }
+
+    /* ✅ TikTok button on right */
+    .videoBtn{
+      width:38px;
+      height:38px;
+      border-radius: 14px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.22);
+      display:grid;
+      place-items:center;
+      box-shadow: 0 12px 28px rgba(0,0,0,.26);
+      flex: 0 0 auto;
+      cursor:pointer;
+      transition: transform .16s ease, background .16s ease, border-color .16s ease;
+      -webkit-tap-highlight-color: transparent;
+      user-select:none;
+    }
+    .videoBtn:hover{
       transform: translateY(-1px);
-      background: rgba(255,255,255,.09);
+      background: rgba(255,255,255,.06);
       border-color: rgba(255,255,255,.18);
     }
-    .vlink svg{width:18px; height:18px; opacity:.92}
+    .videoBtn span{
+      font-weight:950;
+      font-size:14px;
+      opacity:.92;
+    }
 
-    .rest{display:grid; gap:10px; color: rgba(255,255,255,.86); font-weight:900}
+    .rest{
+      display:grid;
+      gap:10px;
+      color: rgba(255,255,255,.86);
+      font-weight:900
+    }
     .rest .r{
       border:1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.04);
@@ -274,6 +379,7 @@
 
     @media (max-width:720px){
       .stats{grid-template-columns:1fr 1fr}
+      .btn{font-size:13px; padding:10px 11px}
     }
   </style>
 </head>
@@ -285,21 +391,22 @@
         <div class="logo" aria-hidden="true">
           <img src="./android-chrome-192x192.png" alt="NB">
         </div>
-        <div>
-          <div style="font-size:12px; color:rgba(255,255,255,.70); font-weight:900; letter-spacing:.14em;">NABIN BIST</div>
-          <div style="font-size:16px; font-weight:900;">Gym Schedule</div>
+        <div class="brandText">
+          <div class="small">NABIN BIST</div>
+          <div class="big">Gym Schedule</div>
         </div>
       </div>
+
       <div style="display:flex; gap:10px; align-items:center;">
         <a class="btn" href="/">Home</a>
-        <button class="btn primary" id="resetBtn">Reset</button>
+        <button class="btn primary" id="resetBtn" type="button">Reset</button>
       </div>
     </div>
 
     <div class="card">
       <div class="head">
         <h1>Elite Training Program</h1>
-        <p>Tap exercises to mark done + hear it spoken. Tap the play icon for a form video.</p>
+        <p>Tap exercises to mark done (voice reads it). Tap ▶ to open TikTok app for that exercise.</p>
       </div>
 
       <div class="content">
@@ -319,13 +426,13 @@
         </div>
 
         <div class="days" id="days">
-          <button class="dayBtn active" data-day="monday">Mon</button>
-          <button class="dayBtn" data-day="tuesday">Tue</button>
-          <button class="dayBtn" data-day="wednesday">Wed</button>
-          <button class="dayBtn" data-day="thursday">Thu</button>
-          <button class="dayBtn" data-day="friday">Fri</button>
-          <button class="dayBtn" data-day="saturday">Sat</button>
-          <button class="dayBtn" data-day="sunday">Sun</button>
+          <button class="dayBtn active" data-day="monday" type="button">Mon</button>
+          <button class="dayBtn" data-day="tuesday" type="button">Tue</button>
+          <button class="dayBtn" data-day="wednesday" type="button">Wed</button>
+          <button class="dayBtn" data-day="thursday" type="button">Thu</button>
+          <button class="dayBtn" data-day="friday" type="button">Fri</button>
+          <button class="dayBtn" data-day="saturday" type="button">Sat</button>
+          <button class="dayBtn" data-day="sunday" type="button">Sun</button>
         </div>
 
         <div class="panel">
@@ -340,7 +447,7 @@
           <div id="panelBody"></div>
 
           <div class="actions">
-            <button class="btn" id="clearDayBtn">Clear this day</button>
+            <button class="btn" id="clearDayBtn" type="button">Clear this day</button>
             <a class="btn" href="/#contact">Work With Me</a>
           </div>
         </div>
@@ -350,37 +457,138 @@
   </div>
 
   <script>
-    const KEY = "nabin_gym_v1";
+    const KEY = "nabin_gym_v2";
 
+    // ========= TikTok open (APP first, fallback to browser) =========
+    function isMobile(){
+      return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    }
+
+    function encodeQuery(q){
+      return encodeURIComponent(q.trim());
+    }
+
+    // If you provide a real TikTok URL => it will deep-link best.
+    // If you provide a query string => it opens TikTok search in the app directly (best fallback).
+    function openTikTokSmart(input){
+      // If it's a real URL:
+      const isUrl = /^https?:\/\//i.test(input);
+
+      // Build both deep link + web fallback
+      let deep = "";
+      let web = "";
+
+      if(isUrl){
+        web = input;
+        // Convert: https://www.tiktok.com/... -> tiktok://...
+        deep = input.replace(/^https?:\/\/(www\.)?tiktok\.com\//i, "tiktok://");
+      }else{
+        // Treat as query
+        const q = encodeQuery(input);
+        deep = `tiktok://search?q=${q}`;
+        web  = `https://www.tiktok.com/search?q=${q}`;
+      }
+
+      if(!isMobile()){
+        window.open(web, "_blank", "noopener");
+        return;
+      }
+
+      // Try to open app
+      window.location.href = deep;
+
+      // Fallback to web quickly if app didn't open
+      setTimeout(() => {
+        window.location.href = web;
+      }, 900);
+    }
+
+    // ========= Voice =========
+    function toSpeechText(itemText){
+      const parts = itemText.split("—");
+      const name = (parts[0] || "").trim();
+
+      const setsRepsRaw = (parts[1] || "").trim()
+        .replace(/×/g, " x ")
+        .replace(/[–—]/g, "-")
+        .replace(/\s+/g, " ");
+
+      // Parse: "4 x 6-8"
+      const m = setsRepsRaw.match(/(\d+)\s*x\s*(\d+)(?:\s*-\s*(\d+))?/i);
+
+      if(m){
+        const sets = m[1];
+        const repLow = m[2];
+        const repHigh = m[3];
+        if(repHigh){
+          return `${name}. ${sets} sets. ${repLow} to ${repHigh} repetitions.`;
+        }
+        return `${name}. ${sets} sets. ${repLow} repetitions.`;
+      }
+
+      // Handles "3×45–60 sec"
+      if(setsRepsRaw){
+        return `${name}. ${setsRepsRaw}.`;
+      }
+
+      return name || itemText;
+    }
+
+    function speak(text){
+      if(!("speechSynthesis" in window)) return;
+
+      window.speechSynthesis.cancel();
+      const u = new SpeechSynthesisUtterance(text);
+
+      u.rate = 1.0;
+      u.pitch = 1.0;
+      u.volume = 1.0;
+
+      // pick English voice if available
+      const voices = window.speechSynthesis.getVoices?.() || [];
+      const en = voices.find(v => (v.lang || "").toLowerCase().startsWith("en"));
+      if(en) u.voice = en;
+
+      window.speechSynthesis.speak(u);
+    }
+
+    // iOS: voices load late, this helps
+    if("speechSynthesis" in window){
+      window.speechSynthesis.getVoices();
+      window.speechSynthesis.onvoiceschanged = () => window.speechSynthesis.getVoices();
+    }
+
+    // ========= Program data =========
+    // Each exercise has: text + video (either a REAL TikTok URL or a QUERY string).
     const program = {
       monday: { title:"Monday", sub:"Push (Heavy)", badge:"PUSH", type:"list", items:[
-        "Barbell Bench Press — 4×5–6",
-        "Incline Dumbbell Press — 3×6–8",
-        "Overhead Barbell Press — 3×6–8",
-        "Dumbbell Lateral Raise — 3×12–15",
-        "Rear Delt Fly — 3×12–15",
-        "Weighted Dips — 3×6–8",
-        "Triceps Pushdown — 3×10–12",
-        "Cable Crunch — 3×15"
+        { text:"Barbell Bench Press — 4×5–6", video:"barbell bench press proper form" },
+        { text:"Incline Dumbbell Press — 3×6–8", video:"incline dumbbell press form" },
+        { text:"Overhead Barbell Press — 3×6–8", video:"overhead press form" },
+        { text:"Dumbbell Lateral Raise — 3×12–15", video:"lateral raise technique" },
+        { text:"Rear Delt Fly — 3×12–15", video:"rear delt fly form" },
+        { text:"Weighted Dips — 3×6–8", video:"weighted dips form" },
+        { text:"Triceps Pushdown — 3×10–12", video:"triceps pushdown form" },
+        { text:"Cable Crunch — 3×15", video:"cable crunch form" }
       ]},
       tuesday: { title:"Tuesday", sub:"Pull (Heavy)", badge:"PULL", type:"list", items:[
-        "Barbell Row — 4×6–8",
-        "Pull-Ups / Lat Pulldown — 3×6–8",
-        "Chest Supported Row — 3×8",
-        "Dumbbell Shrugs — 3×12",
-        "Face Pull — 3×12–15",
-        "Barbell Curl — 3×8",
-        "Hammer Curl — 3×10–12",
-        "Hanging Leg Raise — 3×12"
+        { text:"Barbell Row — 4×6–8", video:"barbell row form" },
+        { text:"Pull-Ups / Lat Pulldown — 3×6–8", video:"pull up form lat pulldown form" },
+        { text:"Chest Supported Row — 3×8", video:"chest supported row form" },
+        { text:"Dumbbell Shrugs — 3×12", video:"dumbbell shrug form" },
+        { text:"Face Pull — 3×12–15", video:"face pull form" },
+        { text:"Barbell Curl — 3×8", video:"barbell curl form" },
+        { text:"Hammer Curl — 3×10–12", video:"hammer curl form" },
+        { text:"Hanging Leg Raise — 3×12", video:"hanging leg raise form" }
       ]},
       wednesday: { title:"Wednesday", sub:"Legs (Heavy)", badge:"LEGS", type:"list", items:[
-        "Barbell Squat — 4×5–6",
-        "Romanian Deadlift — 3×6–8",
-        "Leg Press — 3×8–10",
-        "Bulgarian Split Squat — 3×8–10",
-        "Leg Curl — 3×10–12",
-        "Standing Calf Raise — 4×15–20",
-        "Plank — 3×45–60 sec"
+        { text:"Barbell Squat — 4×5–6", video:"barbell squat form" },
+        { text:"Romanian Deadlift — 3×6–8", video:"romanian deadlift form" },
+        { text:"Leg Press — 3×8–10", video:"leg press form" },
+        { text:"Bulgarian Split Squat — 3×8–10", video:"bulgarian split squat form" },
+        { text:"Leg Curl — 3×10–12", video:"leg curl form" },
+        { text:"Standing Calf Raise — 4×15–20", video:"standing calf raise form" },
+        { text:"Plank — 3×45–60 sec", video:"plank technique" }
       ]},
       thursday: { title:"Thursday", sub:"Rest & Active Recovery", badge:"REST", type:"rest", items:[
         "✓ 10–12k steps",
@@ -389,102 +597,44 @@
         "✓ Sleep early"
       ]},
       friday: { title:"Friday", sub:"Push (Hypertrophy)", badge:"PUSH", type:"list", items:[
-        "Incline Machine Press — 3×10–12",
-        "Flat Dumbbell Press — 3×10–12",
-        "Cable Chest Fly (Low → High) — 3×12–15",
-        "Dumbbell Shoulder Press — 3×10",
-        "Cable Lateral Raise — 3×15",
-        "Rear Delt Fly — 3×15",
-        "Skull Crushers — 3×12",
-        "Overhead Triceps Extension — 3×12",
-        "Decline Sit-Ups — 3×15"
+        { text:"Incline Machine Press — 3×10–12", video:"incline machine press form" },
+        { text:"Flat Dumbbell Press — 3×10–12", video:"flat dumbbell press form" },
+        { text:"Cable Chest Fly (Low → High) — 3×12–15", video:"low to high cable fly form" },
+        { text:"Dumbbell Shoulder Press — 3×10", video:"dumbbell shoulder press form" },
+        { text:"Cable Lateral Raise — 3×15", video:"cable lateral raise form" },
+        { text:"Rear Delt Fly — 3×15", video:"rear delt fly form" },
+        { text:"Skull Crushers — 3×12", video:"skull crushers form" },
+        { text:"Overhead Triceps Extension — 3×12", video:"overhead triceps extension form" },
+        { text:"Decline Sit-Ups — 3×15", video:"decline sit up form" }
       ]},
       saturday: { title:"Saturday", sub:"Pull (Hypertrophy)", badge:"PULL", type:"list", items:[
-        "Lat Pulldown (Wide) — 3×10–12",
-        "Seated Cable Row — 3×10–12",
-        "Single Arm Dumbbell Row — 3×12",
-        "Face Pull — 3×15",
-        "Incline Dumbbell Curl — 3×12",
-        "Cable Curl — 3×12",
-        "Wrist Curls — 2×15",
-        "Pallof Press — 3×12 each side",
-        "Russian Twists — 3×20",
-        "Reverse Crunch — 3×15"
+        { text:"Lat Pulldown (Wide) — 3×10–12", video:"wide lat pulldown form" },
+        { text:"Seated Cable Row — 3×10–12", video:"seated cable row form" },
+        { text:"Single Arm Dumbbell Row — 3×12", video:"single arm dumbbell row form" },
+        { text:"Face Pull — 3×15", video:"face pull form" },
+        { text:"Incline Dumbbell Curl — 3×12", video:"incline dumbbell curl form" },
+        { text:"Cable Curl — 3×12", video:"cable curl form" },
+        { text:"Wrist Curls — 2×15", video:"wrist curls form" },
+        { text:"Pallof Press — 3×12 each side", video:"pallof press form" },
+        { text:"Russian Twists — 3×20", video:"russian twist form" },
+        { text:"Reverse Crunch — 3×15", video:"reverse crunch form" }
       ]},
       sunday: { title:"Sunday", sub:"Legs (Hypertrophy + Core)", badge:"LEGS", type:"list", items:[
-        "Front Squat — 3×8–10",
-        "Walking Lunges — 3×12",
-        "Leg Extension — 3×15",
-        "Leg Curl — 3×15",
-        "Hip Thrust — 3×10–12",
-        "Back Extension — 3×12",
-        "Seated Calf Raise — 4×20",
-        "Band Lateral Walk — 2×15",
-        "Hanging Leg Raise — 3×12",
-        "Side Plank — 3×40 sec",
-        "Ab Wheel Rollout — 3×10–12"
+        { text:"Front Squat — 3×8–10", video:"front squat form" },
+        { text:"Walking Lunges — 3×12", video:"walking lunges form" },
+        { text:"Leg Extension — 3×15", video:"leg extension form" },
+        { text:"Leg Curl — 3×15", video:"leg curl form" },
+        { text:"Hip Thrust — 3×10–12", video:"hip thrust form" },
+        { text:"Back Extension — 3×12", video:"back extension form" },
+        { text:"Seated Calf Raise — 4×20", video:"seated calf raise form" },
+        { text:"Band Lateral Walk — 2×15", video:"band lateral walk form" },
+        { text:"Hanging Leg Raise — 3×12", video:"hanging leg raise form" },
+        { text:"Side Plank — 3×40 sec", video:"side plank technique" },
+        { text:"Ab Wheel Rollout — 3×10–12", video:"ab wheel rollout form" }
       ]},
     };
 
-    // ✅ Put a link per exercise name (left side of "—")
-    // NOTE: These are placeholders. Replace any with your TikTok links whenever you want.
-    const videoMap = {
-      "Barbell Bench Press": "https://www.tiktok.com/search?q=barbell%20bench%20press%20form",
-      "Incline Dumbbell Press": "https://www.tiktok.com/search?q=incline%20dumbbell%20press%20form",
-      "Overhead Barbell Press": "https://www.tiktok.com/search?q=overhead%20press%20form",
-      "Dumbbell Lateral Raise": "https://www.tiktok.com/search?q=lateral%20raise%20form",
-      "Rear Delt Fly": "https://www.tiktok.com/search?q=rear%20delt%20fly%20form",
-      "Weighted Dips": "https://www.tiktok.com/search?q=weighted%20dips%20form",
-      "Triceps Pushdown": "https://www.tiktok.com/search?q=triceps%20pushdown%20form",
-      "Cable Crunch": "https://www.tiktok.com/search?q=cable%20crunch%20form",
-
-      "Barbell Row": "https://www.tiktok.com/search?q=barbell%20row%20form",
-      "Pull-Ups / Lat Pulldown": "https://www.tiktok.com/search?q=lat%20pulldown%20form",
-      "Chest Supported Row": "https://www.tiktok.com/search?q=chest%20supported%20row%20form",
-      "Dumbbell Shrugs": "https://www.tiktok.com/search?q=dumbbell%20shrugs%20form",
-      "Face Pull": "https://www.tiktok.com/search?q=face%20pull%20form",
-      "Barbell Curl": "https://www.tiktok.com/search?q=barbell%20curl%20form",
-      "Hammer Curl": "https://www.tiktok.com/search?q=hammer%20curl%20form",
-      "Hanging Leg Raise": "https://www.tiktok.com/search?q=hanging%20leg%20raise%20form",
-
-      "Barbell Squat": "https://www.tiktok.com/search?q=barbell%20squat%20form",
-      "Romanian Deadlift": "https://www.tiktok.com/search?q=romanian%20deadlift%20form",
-      "Leg Press": "https://www.tiktok.com/search?q=leg%20press%20form",
-      "Bulgarian Split Squat": "https://www.tiktok.com/search?q=bulgarian%20split%20squat%20form",
-      "Leg Curl": "https://www.tiktok.com/search?q=leg%20curl%20form",
-      "Standing Calf Raise": "https://www.tiktok.com/search?q=standing%20calf%20raise%20form",
-      "Plank": "https://www.tiktok.com/search?q=plank%20form",
-
-      "Incline Machine Press": "https://www.tiktok.com/search?q=incline%20machine%20press%20form",
-      "Flat Dumbbell Press": "https://www.tiktok.com/search?q=flat%20dumbbell%20press%20form",
-      "Cable Chest Fly (Low → High)": "https://www.tiktok.com/search?q=cable%20fly%20low%20to%20high%20form",
-      "Dumbbell Shoulder Press": "https://www.tiktok.com/search?q=dumbbell%20shoulder%20press%20form",
-      "Cable Lateral Raise": "https://www.tiktok.com/search?q=cable%20lateral%20raise%20form",
-      "Skull Crushers": "https://www.tiktok.com/search?q=skull%20crushers%20form",
-      "Overhead Triceps Extension": "https://www.tiktok.com/search?q=overhead%20triceps%20extension%20form",
-      "Decline Sit-Ups": "https://www.tiktok.com/search?q=decline%20sit%20ups%20form",
-
-      "Lat Pulldown (Wide)": "https://www.tiktok.com/search?q=wide%20lat%20pulldown%20form",
-      "Seated Cable Row": "https://www.tiktok.com/search?q=seated%20cable%20row%20form",
-      "Single Arm Dumbbell Row": "https://www.tiktok.com/search?q=single%20arm%20dumbbell%20row%20form",
-      "Incline Dumbbell Curl": "https://www.tiktok.com/search?q=incline%20dumbbell%20curl%20form",
-      "Cable Curl": "https://www.tiktok.com/search?q=cable%20curl%20form",
-      "Wrist Curls": "https://www.tiktok.com/search?q=wrist%20curls%20form",
-      "Pallof Press": "https://www.tiktok.com/search?q=pallof%20press%20form",
-      "Russian Twists": "https://www.tiktok.com/search?q=russian%20twists%20form",
-      "Reverse Crunch": "https://www.tiktok.com/search?q=reverse%20crunch%20form",
-
-      "Front Squat": "https://www.tiktok.com/search?q=front%20squat%20form",
-      "Walking Lunges": "https://www.tiktok.com/search?q=walking%20lunges%20form",
-      "Leg Extension": "https://www.tiktok.com/search?q=leg%20extension%20form",
-      "Hip Thrust": "https://www.tiktok.com/search?q=hip%20thrust%20form",
-      "Back Extension": "https://www.tiktok.com/search?q=back%20extension%20form",
-      "Seated Calf Raise": "https://www.tiktok.com/search?q=seated%20calf%20raise%20form",
-      "Band Lateral Walk": "https://www.tiktok.com/search?q=band%20lateral%20walk%20form",
-      "Side Plank": "https://www.tiktok.com/search?q=side%20plank%20form",
-      "Ab Wheel Rollout": "https://www.tiktok.com/search?q=ab%20wheel%20rollout%20form",
-    };
-
+    // ========= Local storage =========
     function loadState(){
       try{
         const raw = localStorage.getItem(KEY);
@@ -495,7 +645,9 @@
         return { currentDay:"monday", done:{} };
       }
     }
-    function saveState(){ localStorage.setItem(KEY, JSON.stringify(state)); }
+    function saveState(){
+      localStorage.setItem(KEY, JSON.stringify(state));
+    }
 
     let state = loadState();
 
@@ -527,51 +679,17 @@
       saveState();
     }
 
-    // ✅ Voice: convert "Barbell Row — 4×6–8" -> spoken sentence
-    function toSpeechText(itemText){
-      const parts = itemText.split("—");
-      const name = (parts[0] || "").trim();
+    function updateProgress(day){
+      const d = program[day];
+      if(!d || d.type !== "list") return;
 
-      const setsRepsRaw = (parts[1] || "").trim()
-        .replace(/×/g, " x ")
-        .replace(/[–—]/g, "-")
-        .replace(/\s+/g, " ");
+      const total = d.items.length;
+      const done = doneSetFor(day).size;
+      const pct = Math.round((done / total) * 100);
 
-      const m = setsRepsRaw.match(/(\d+)\s*x\s*(\d+)(?:\s*-\s*(\d+))?/i);
-
-      if(m){
-        const sets = m[1];
-        const repLow = m[2];
-        const repHigh = m[3];
-        if(repHigh){
-          return `${name}. ${sets} sets. ${repLow} to ${repHigh} repetitions.`;
-        }
-        return `${name}. ${sets} sets. ${repLow} repetitions.`;
-      }
-
-      if(setsRepsRaw){
-        return `${name}. ${setsRepsRaw}.`;
-      }
-      return name || itemText;
-    }
-
-    function speak(text){
-      if(!("speechSynthesis" in window)) return;
-
-      // stop previous speech so it doesn't overlap
-      window.speechSynthesis.cancel();
-
-      const u = new SpeechSynthesisUtterance(text);
-      u.rate = 1.0;
-      u.pitch = 1.0;
-      u.volume = 1.0;
-
-      // pick English voice if available
-      const voices = window.speechSynthesis.getVoices?.() || [];
-      const en = voices.find(v => (v.lang || "").toLowerCase().startsWith("en"));
-      if(en) u.voice = en;
-
-      window.speechSynthesis.speak(u);
+      barEl.style.width = pct + "%";
+      barEl.textContent = pct + "%";
+      progressTextEl.textContent = `${done} of ${total} exercises done`;
     }
 
     function renderDay(day){
@@ -609,53 +727,48 @@
       const ul = document.createElement("ul");
       ul.className = "list";
 
-      d.items.forEach(itemText=>{
+      d.items.forEach(obj=>{
+        const itemText = obj.text;
+        const linkOrQuery = obj.video;
+
         const li = document.createElement("li");
         li.className = "item" + (done.has(itemText) ? " done" : "");
 
-        const exName = itemText.split("—")[0].trim();
-        const vurl = videoMap[exName] || `https://www.tiktok.com/search?q=${encodeURIComponent(exName + " form")}`;
+        const check = document.createElement("div");
+        check.className = "check";
 
-        li.innerHTML = `
-          <div class="check"></div>
-          <div class="txt">${itemText}</div>
-          <a class="vlink" href="${vurl}" target="_blank" rel="noopener" aria-label="Video">
-            <svg viewBox="0 0 24 24" fill="none">
-              <path d="M10 8.5v7l6-3.5-6-3.5Z" stroke="white" stroke-width="1.8" stroke-linejoin="round"/>
-              <path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z" stroke="white" stroke-width="1.2" opacity=".7"/>
-            </svg>
-          </a>
-        `;
+        const text = document.createElement("div");
+        text.className = "exerciseText";
+        text.textContent = itemText;
 
-        // ✅ if you click video icon, don't toggle done
-        li.querySelector(".vlink").addEventListener("click", (e)=>{
+        const vbtn = document.createElement("button");
+        vbtn.type = "button";
+        vbtn.className = "videoBtn";
+        vbtn.setAttribute("aria-label", "Open TikTok video");
+        vbtn.innerHTML = "<span>▶</span>";
+
+        // ✅ Clicking ▶ should NOT mark as done
+        vbtn.addEventListener("click", (e)=>{
           e.stopPropagation();
+          openTikTokSmart(linkOrQuery || itemText);
         });
 
+        // ✅ Clicking item marks done + voice
         li.addEventListener("click", ()=>{
           speak(toSpeechText(itemText));
           toggleDone(day, itemText);
           renderDay(day);
         });
 
+        li.appendChild(check);
+        li.appendChild(text);
+        li.appendChild(vbtn);
+
         ul.appendChild(li);
       });
 
       panelBodyEl.appendChild(ul);
       updateProgress(day);
-    }
-
-    function updateProgress(day){
-      const d = program[day];
-      if(d.type !== "list") return;
-
-      const total = d.items.length;
-      const done = doneSetFor(day).size;
-      const pct = Math.round((done / total) * 100);
-
-      barEl.style.width = pct + "%";
-      barEl.textContent = pct + "%";
-      progressTextEl.textContent = `${done} of ${total} exercises done`;
     }
 
     daysEl.addEventListener("click", (e)=>{
@@ -678,11 +791,6 @@
       saveState();
       renderDay("monday");
     });
-
-    // iOS sometimes loads voices later; calling once helps populate list
-    if("speechSynthesis" in window){
-      window.speechSynthesis.getVoices();
-    }
 
     renderDay(state.currentDay || "monday");
   </script>
