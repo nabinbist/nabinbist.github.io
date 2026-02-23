@@ -1,18 +1,18 @@
 <!doctype html>
 <html lang="en">
 <head>
-  
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
   <link rel="manifest" href="/site.webmanifest">
   <meta name="theme-color" content="#070A0F">
-  
+
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Nabin Bist — Gym Schedule</title>
   <meta name="theme-color" content="#070A0F" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
@@ -51,7 +51,7 @@
     }
     .brand{display:flex; align-items:center; gap:10px; font-weight:900; letter-spacing:.08em}
 
-    /* ✅ REAL LOGO (same file as index) */
+    /* ✅ REAL LOGO IMAGE (same file as index root) */
     .logo{
       width:42px;
       height:42px;
@@ -99,6 +99,11 @@
       -webkit-tap-highlight-color: transparent;
       touch-action: manipulation;
       user-select:none;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      white-space:nowrap;
     }
     .btn:hover{transform: translateY(-1px); background:rgba(255,255,255,.09)}
     .btn.primary{
@@ -235,6 +240,28 @@
     .item.done .check{background: var(--good); border-color: var(--good)}
     .item.done .check::after{content:"✓"; color:#052014; font-weight:900; font-size:12px}
 
+    .item .txt{flex:1; font-weight:900; font-size:13px}
+
+    /* ✅ video link button on the right */
+    .vlink{
+      flex:0 0 auto;
+      width:34px; height:34px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      box-shadow: 0 10px 22px rgba(0,0,0,.22);
+      transition: transform .16s ease, background .16s ease, border-color .16s ease;
+    }
+    .vlink:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,.09);
+      border-color: rgba(255,255,255,.18);
+    }
+    .vlink svg{width:18px; height:18px; opacity:.92}
+
     .rest{display:grid; gap:10px; color: rgba(255,255,255,.86); font-weight:900}
     .rest .r{
       border:1px solid rgba(255,255,255,.10);
@@ -255,7 +282,6 @@
   <div class="wrap">
     <div class="top">
       <div class="brand">
-        <!-- ✅ LOGO IMAGE -->
         <div class="logo" aria-hidden="true">
           <img src="./android-chrome-192x192.png" alt="NB">
         </div>
@@ -273,7 +299,7 @@
     <div class="card">
       <div class="head">
         <h1>Elite Training Program</h1>
-        <p>Tap exercises to mark done. Progress saves automatically on your phone.</p>
+        <p>Tap exercises to mark done + hear it spoken. Tap the play icon for a form video.</p>
       </div>
 
       <div class="content">
@@ -400,6 +426,65 @@
       ]},
     };
 
+    // ✅ Put a link per exercise name (left side of "—")
+    // NOTE: These are placeholders. Replace any with your TikTok links whenever you want.
+    const videoMap = {
+      "Barbell Bench Press": "https://www.tiktok.com/search?q=barbell%20bench%20press%20form",
+      "Incline Dumbbell Press": "https://www.tiktok.com/search?q=incline%20dumbbell%20press%20form",
+      "Overhead Barbell Press": "https://www.tiktok.com/search?q=overhead%20press%20form",
+      "Dumbbell Lateral Raise": "https://www.tiktok.com/search?q=lateral%20raise%20form",
+      "Rear Delt Fly": "https://www.tiktok.com/search?q=rear%20delt%20fly%20form",
+      "Weighted Dips": "https://www.tiktok.com/search?q=weighted%20dips%20form",
+      "Triceps Pushdown": "https://www.tiktok.com/search?q=triceps%20pushdown%20form",
+      "Cable Crunch": "https://www.tiktok.com/search?q=cable%20crunch%20form",
+
+      "Barbell Row": "https://www.tiktok.com/search?q=barbell%20row%20form",
+      "Pull-Ups / Lat Pulldown": "https://www.tiktok.com/search?q=lat%20pulldown%20form",
+      "Chest Supported Row": "https://www.tiktok.com/search?q=chest%20supported%20row%20form",
+      "Dumbbell Shrugs": "https://www.tiktok.com/search?q=dumbbell%20shrugs%20form",
+      "Face Pull": "https://www.tiktok.com/search?q=face%20pull%20form",
+      "Barbell Curl": "https://www.tiktok.com/search?q=barbell%20curl%20form",
+      "Hammer Curl": "https://www.tiktok.com/search?q=hammer%20curl%20form",
+      "Hanging Leg Raise": "https://www.tiktok.com/search?q=hanging%20leg%20raise%20form",
+
+      "Barbell Squat": "https://www.tiktok.com/search?q=barbell%20squat%20form",
+      "Romanian Deadlift": "https://www.tiktok.com/search?q=romanian%20deadlift%20form",
+      "Leg Press": "https://www.tiktok.com/search?q=leg%20press%20form",
+      "Bulgarian Split Squat": "https://www.tiktok.com/search?q=bulgarian%20split%20squat%20form",
+      "Leg Curl": "https://www.tiktok.com/search?q=leg%20curl%20form",
+      "Standing Calf Raise": "https://www.tiktok.com/search?q=standing%20calf%20raise%20form",
+      "Plank": "https://www.tiktok.com/search?q=plank%20form",
+
+      "Incline Machine Press": "https://www.tiktok.com/search?q=incline%20machine%20press%20form",
+      "Flat Dumbbell Press": "https://www.tiktok.com/search?q=flat%20dumbbell%20press%20form",
+      "Cable Chest Fly (Low → High)": "https://www.tiktok.com/search?q=cable%20fly%20low%20to%20high%20form",
+      "Dumbbell Shoulder Press": "https://www.tiktok.com/search?q=dumbbell%20shoulder%20press%20form",
+      "Cable Lateral Raise": "https://www.tiktok.com/search?q=cable%20lateral%20raise%20form",
+      "Skull Crushers": "https://www.tiktok.com/search?q=skull%20crushers%20form",
+      "Overhead Triceps Extension": "https://www.tiktok.com/search?q=overhead%20triceps%20extension%20form",
+      "Decline Sit-Ups": "https://www.tiktok.com/search?q=decline%20sit%20ups%20form",
+
+      "Lat Pulldown (Wide)": "https://www.tiktok.com/search?q=wide%20lat%20pulldown%20form",
+      "Seated Cable Row": "https://www.tiktok.com/search?q=seated%20cable%20row%20form",
+      "Single Arm Dumbbell Row": "https://www.tiktok.com/search?q=single%20arm%20dumbbell%20row%20form",
+      "Incline Dumbbell Curl": "https://www.tiktok.com/search?q=incline%20dumbbell%20curl%20form",
+      "Cable Curl": "https://www.tiktok.com/search?q=cable%20curl%20form",
+      "Wrist Curls": "https://www.tiktok.com/search?q=wrist%20curls%20form",
+      "Pallof Press": "https://www.tiktok.com/search?q=pallof%20press%20form",
+      "Russian Twists": "https://www.tiktok.com/search?q=russian%20twists%20form",
+      "Reverse Crunch": "https://www.tiktok.com/search?q=reverse%20crunch%20form",
+
+      "Front Squat": "https://www.tiktok.com/search?q=front%20squat%20form",
+      "Walking Lunges": "https://www.tiktok.com/search?q=walking%20lunges%20form",
+      "Leg Extension": "https://www.tiktok.com/search?q=leg%20extension%20form",
+      "Hip Thrust": "https://www.tiktok.com/search?q=hip%20thrust%20form",
+      "Back Extension": "https://www.tiktok.com/search?q=back%20extension%20form",
+      "Seated Calf Raise": "https://www.tiktok.com/search?q=seated%20calf%20raise%20form",
+      "Band Lateral Walk": "https://www.tiktok.com/search?q=band%20lateral%20walk%20form",
+      "Side Plank": "https://www.tiktok.com/search?q=side%20plank%20form",
+      "Ab Wheel Rollout": "https://www.tiktok.com/search?q=ab%20wheel%20rollout%20form",
+    };
+
     function loadState(){
       try{
         const raw = localStorage.getItem(KEY);
@@ -447,13 +532,11 @@
       const parts = itemText.split("—");
       const name = (parts[0] || "").trim();
 
-      // remove some symbols that sound weird in speech
       const setsRepsRaw = (parts[1] || "").trim()
         .replace(/×/g, " x ")
         .replace(/[–—]/g, "-")
         .replace(/\s+/g, " ");
 
-      // Try to parse "4x6-8" or "3x10-12" or "3x15" etc.
       const m = setsRepsRaw.match(/(\d+)\s*x\s*(\d+)(?:\s*-\s*(\d+))?/i);
 
       if(m){
@@ -466,7 +549,6 @@
         return `${name}. ${sets} sets. ${repLow} repetitions.`;
       }
 
-      // Fallback for things like "3×45–60 sec"
       if(setsRepsRaw){
         return `${name}. ${setsRepsRaw}.`;
       }
@@ -530,13 +612,32 @@
       d.items.forEach(itemText=>{
         const li = document.createElement("li");
         li.className = "item" + (done.has(itemText) ? " done" : "");
-        li.innerHTML = `<div class="check"></div><div style="flex:1; font-weight:900; font-size:13px">${itemText}</div>`;
+
+        const exName = itemText.split("—")[0].trim();
+        const vurl = videoMap[exName] || `https://www.tiktok.com/search?q=${encodeURIComponent(exName + " form")}`;
+
+        li.innerHTML = `
+          <div class="check"></div>
+          <div class="txt">${itemText}</div>
+          <a class="vlink" href="${vurl}" target="_blank" rel="noopener" aria-label="Video">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M10 8.5v7l6-3.5-6-3.5Z" stroke="white" stroke-width="1.8" stroke-linejoin="round"/>
+              <path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z" stroke="white" stroke-width="1.2" opacity=".7"/>
+            </svg>
+          </a>
+        `;
+
+        // ✅ if you click video icon, don't toggle done
+        li.querySelector(".vlink").addEventListener("click", (e)=>{
+          e.stopPropagation();
+        });
+
         li.addEventListener("click", ()=>{
-          // ✅ Speak first, then mark
           speak(toSpeechText(itemText));
           toggleDone(day, itemText);
           renderDay(day);
         });
+
         ul.appendChild(li);
       });
 
