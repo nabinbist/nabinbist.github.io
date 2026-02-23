@@ -230,6 +230,14 @@
       .navRight{display:none}
       .menuBtn{display:inline-flex}
     }
+    
+    /* Mobile sizing polish (does NOT change your menu logic) */
+@media (max-width: 560px){
+  :root{ --navH: 62px; }          /* shorter navbar */
+  .logo{ width:44px; height:44px; border-radius:18px; }
+  .brand span{ font-size:16px; letter-spacing:.04em; }
+  .btn{ padding:9px 11px; font-size:13px; border-radius:13px; }
+}
 
     /* Drawer */
     .mask{
