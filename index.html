@@ -38,6 +38,12 @@
       --r2:26px;
       --max:1120px;
       --navH:72px;
+
+      /* ✅ Photo tuning */
+      --photo-bright:1.08;   /* makes dark photos visible (garden) */
+      --photo-contrast:1.10;
+      --photo-sat:1.06;
+      --photo-y:22%;         /* crop position (helps faces) */
     }
 
     *{box-sizing:border-box}
@@ -78,7 +84,7 @@
       position:fixed; left:0; right:0; top:0;
       z-index:60;
       backdrop-filter: blur(14px);
-      background: linear-gradient(180deg, rgba(5,6,10,.82), rgba(5,6,10,.40));
+      background: linear-gradient(180deg, rgba(5,6,10,.88), rgba(5,6,10,.46));
       border-bottom:1px solid rgba(255,255,255,.08);
     }
     .navIn{
@@ -97,7 +103,7 @@
       flex:0 0 auto;
     }
 
-    /* ✅ Logo badge (circle-ish glass) */
+    /* ✅ Logo badge */
     .logo{
       width:58px;
       height:58px;
@@ -316,19 +322,23 @@
       position:relative;
     }
     .heroCard.big{min-height:560px}
+
+    /* ✅ FIX: hero images brighter + better crop (helps faces + dark garden) */
     .heroImg{
       position:absolute; inset:0;
       background-size:cover;
-      background-position:center;
+      background-position: center var(--photo-y);
       transform: scale(1.03);
-      filter:saturate(1.06) contrast(1.06);
+      filter: saturate(var(--photo-sat)) contrast(var(--photo-contrast)) brightness(var(--photo-bright));
+      will-change: transform;
     }
+
     .heroShade{
       position:absolute; inset:0;
       background:
         radial-gradient(900px 550px at 20% 18%, rgba(34,211,238,.20), transparent 60%),
         radial-gradient(900px 550px at 80% 26%, rgba(167,139,250,.18), transparent 60%),
-        linear-gradient(180deg, rgba(0,0,0,.25), rgba(0,0,0,.78));
+        linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.82));
     }
     .heroIn{
       position:relative;
@@ -371,7 +381,7 @@
     .sub{
       margin:0;
       max-width: 60ch;
-      color: rgba(255,255,255,.80);
+      color: rgba(255,255,255,.82);
       line-height:1.6;
       font-size:15.5px;
     }
@@ -387,8 +397,9 @@
       border:1px solid rgba(255,255,255,.14);
       background: rgba(255,255,255,.06);
       font-weight:900;
-      color: rgba(255,255,255,.84);
+      color: rgba(255,255,255,.86);
       font-size:13px;
+      backdrop-filter: blur(10px);
     }
 
     .side{
@@ -420,10 +431,10 @@
       flex-direction:column;
       justify-content:flex-end;
       gap:10px;
-      background: linear-gradient(180deg, rgba(0,0,0,.15), rgba(0,0,0,.80));
+      background: linear-gradient(180deg, rgba(0,0,0,.12), rgba(0,0,0,.82));
     }
     .sideTitle{margin:0; font-weight:950; letter-spacing:-.02em; font-size:18px}
-    .sideText{margin:0; color: rgba(255,255,255,.76); font-size:14px; line-height:1.45}
+    .sideText{margin:0; color: rgba(255,255,255,.78); font-size:14px; line-height:1.45}
 
     /* SECTIONS */
     section{padding: 78px 0}
@@ -490,6 +501,30 @@
     .card h3{margin:10px 0 6px; font-size:18px; font-weight:950; letter-spacing:-.02em}
     .card p{margin:0; color: var(--muted); font-size:14px; line-height:1.6}
 
+    /* ✅ FIX: Journey cards show images too (better vibe + uses your photos) */
+    .jCard{
+      padding:0;
+      min-height: 210px;
+      overflow:hidden;
+    }
+    .jImg{
+      position:absolute; inset:0;
+      background-size:cover;
+      background-position:center var(--photo-y);
+      filter: saturate(var(--photo-sat)) contrast(var(--photo-contrast)) brightness(1.05);
+      transform: scale(1.02);
+    }
+    .jShade{
+      position:absolute; inset:0;
+      background: linear-gradient(180deg, rgba(0,0,0,.12), rgba(0,0,0,.82));
+    }
+    .jIn{
+      position:relative;
+      padding:18px;
+    }
+    .jIn h3, .jIn p{color: rgba(255,255,255,.92)}
+    .jIn p{color: rgba(255,255,255,.74)}
+
     /* Gallery */
     .gallery{
       display:grid;
@@ -498,11 +533,13 @@
       gap:14px;
     }
     @media (max-width: 980px){
-      .gallery{grid-template-columns: 1fr 1fr; grid-template-rows: 220px 220px 220px}
+      .gallery{grid-template-columns: 1fr 1fr; grid-template-rows: 240px 240px 240px}
       .g.big{grid-row: span 1}
     }
     @media (max-width: 560px){
-      .gallery{grid-template-columns:1fr; grid-template-rows: 220px 220px 220px 220px 220px}
+      /* ✅ FIX: taller tiles on mobile so faces don't get chopped */
+      .gallery{grid-template-columns:1fr; grid-template-rows: 300px 260px 260px 260px 260px}
+      .g.big{grid-row: span 1}
     }
     .g{
       border-radius: var(--r2);
@@ -518,20 +555,21 @@
     .g .img{
       position:absolute; inset:0;
       background-size:cover;
-      background-position:center;
+      background-position:center var(--photo-y);
       transition: transform .35s ease, filter .35s ease;
-      filter:saturate(1.03) contrast(1.03);
+      filter: saturate(var(--photo-sat)) contrast(var(--photo-contrast)) brightness(var(--photo-bright));
+      will-change: transform;
     }
     .g:hover .img{
       transform: scale(1.06);
-      filter:saturate(1.10) contrast(1.08);
+      filter: saturate(1.12) contrast(1.12) brightness(1.10);
     }
     .g .cap{
       position:absolute; left:14px; right:14px; bottom:14px;
       padding:12px;
       border-radius: 16px;
       border:1px solid rgba(255,255,255,.14);
-      background: linear-gradient(180deg, rgba(0,0,0,.22), rgba(0,0,0,.56));
+      background: linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.62));
       backdrop-filter: blur(10px);
       font-weight:950;
       display:flex;
@@ -623,7 +661,7 @@
       width:min(980px, 100%);
       border-radius: 22px;
       border:1px solid rgba(255,255,255,.14);
-      background: rgba(10,12,18,.75);
+      background: rgba(10,12,18,.78);
       overflow:hidden;
       box-shadow: var(--shadow);
     }
@@ -673,6 +711,13 @@
 
     /* safety: hide any stray <i> icons if present */
     i{display:none !important;}
+
+    /* Accessibility: reduce motion */
+    @media (prefers-reduced-motion: reduce){
+      .glow{animation:none}
+      .logo::after{animation:none}
+      *{scroll-behavior:auto}
+    }
   </style>
 </head>
 
@@ -685,7 +730,6 @@
       <div class="navIn">
         <a class="brand" href="#top" aria-label="Home">
           <div class="logo" aria-hidden="true">
-            <!-- ✅ Use icon that exists in MAIN -->
             <img src="./android-chrome-192x192.png" alt="NB">
           </div>
           <span>NABIN BIST</span>
@@ -763,7 +807,7 @@
       <div class="heroGrid">
 
         <div class="heroCard big">
-          <!-- ✅ HERO BACKGROUND = atgarden.jpg -->
+          <!-- ✅ HERO BACKGROUND = atgarden.webp -->
           <div class="heroImg" style="background-image:url('./assets/atgarden.webp')"></div>
           <div class="heroShade"></div>
 
@@ -784,7 +828,7 @@
             </div>
 
             <div class="pillRow">
-              <div class="pill"><b>Now</b> Traveling Europe and Learning to grow</div>
+              <div class="pill"><b>Now</b> Traveling Europe and learning to grow</div>
               <div class="pill"><b>Focus</b> skills and consistency</div>
               <div class="pill"><b>Energy</b> calm confidence</div>
             </div>
@@ -856,22 +900,34 @@
       </div>
 
       <div class="grid3">
-        <div class="card clickable" data-img="./assets/copenhagen.webp" data-title="Copenhagen">
-          <div class="tag"><i></i> Chapter</div>
-          <h3>Copenhagen</h3>
-          <p>New city. New mindset. Same discipline.</p>
+        <div class="card clickable jCard" data-img="./assets/copenhagen.webp" data-title="Copenhagen">
+          <div class="jImg" style="background-image:url('./assets/copenhagen.webp')"></div>
+          <div class="jShade"></div>
+          <div class="jIn">
+            <div class="tag"><i></i> Chapter</div>
+            <h3>Copenhagen</h3>
+            <p>New city. New mindset. Same discipline.</p>
+          </div>
         </div>
 
-        <div class="card clickable" data-img="./assets/temple.webp" data-title="Temple">
-          <div class="tag"><i></i> Chapter</div>
-          <h3>Temple</h3>
-          <p>Peace, focus, and clarity in silence.</p>
+        <div class="card clickable jCard" data-img="./assets/temple.webp" data-title="Temple">
+          <div class="jImg" style="background-image:url('./assets/temple.webp')"></div>
+          <div class="jShade"></div>
+          <div class="jIn">
+            <div class="tag"><i></i> Chapter</div>
+            <h3>Temple</h3>
+            <p>Peace, focus, and clarity in silence.</p>
+          </div>
         </div>
 
-        <div class="card clickable" data-img="./assets/motorbike.webp" data-title="On Motorbike">
-          <div class="tag"><i></i> Chapter</div>
-          <h3>On Motorbike</h3>
-          <p>Freedom, risk, and learning to stay calm.</p>
+        <div class="card clickable jCard" data-img="./assets/motorbike.webp" data-title="Motorbike">
+          <div class="jImg" style="background-image:url('./assets/motorbike.webp')"></div>
+          <div class="jShade"></div>
+          <div class="jIn">
+            <div class="tag"><i></i> Chapter</div>
+            <h3>Motorbike</h3>
+            <p>Freedom, risk, and learning to stay calm.</p>
+          </div>
         </div>
       </div>
     </div>
@@ -888,9 +944,10 @@
       </div>
 
       <div class="gallery">
-        <div class="g big" data-img="./assets/atgarden.webp" data-title="Garden">
-          <div class="img" style="background-image:url('./assets/garden.webp')"></div>
-          <div class="cap"><span>Garden</span><small>Tap</small></div>
+        <!-- ✅ FIX: your big tile now uses the SAME file for tile + modal -->
+        <div class="g big" data-img="./assets/atgarden.webp" data-title="At Garden">
+          <div class="img" style="background-image:url('./assets/atgarden.webp')"></div>
+          <div class="cap"><span>At Garden</span><small>Tap</small></div>
         </div>
 
         <div class="g" data-img="./assets/withcat.webp" data-title="With Cat">
@@ -911,6 +968,40 @@
         <div class="g" data-img="./assets/rainfall.webp" data-title="Rainfall">
           <div class="img" style="background-image:url('./assets/rainfall.webp')"></div>
           <div class="cap"><span>Rainfall</span><small>Tap</small></div>
+        </div>
+      </div>
+
+      <!-- ✅ Extra row to use the remaining photo you already have -->
+      <div style="height:14px"></div>
+      <div class="grid3">
+        <div class="card clickable jCard" data-img="./assets/city.webp" data-title="City">
+          <div class="jImg" style="background-image:url('./assets/city.webp')"></div>
+          <div class="jShade"></div>
+          <div class="jIn">
+            <div class="tag"><i></i> Shot</div>
+            <h3>City</h3>
+            <p>Nights, lights, and quiet thoughts.</p>
+          </div>
+        </div>
+
+        <div class="card clickable jCard" data-img="./assets/hero-eiffel.webp" data-title="Eiffel">
+          <div class="jImg" style="background-image:url('./assets/hero-eiffel.webp')"></div>
+          <div class="jShade"></div>
+          <div class="jIn">
+            <div class="tag"><i></i> Shot</div>
+            <h3>Eiffel</h3>
+            <p>Proof that dreams are physical places.</p>
+          </div>
+        </div>
+
+        <div class="card clickable jCard" data-img="./assets/temple.webp" data-title="Temple">
+          <div class="jImg" style="background-image:url('./assets/temple.webp')"></div>
+          <div class="jShade"></div>
+          <div class="jIn">
+            <div class="tag"><i></i> Shot</div>
+            <h3>Temple</h3>
+            <p>Stillness is strength.</p>
+          </div>
         </div>
       </div>
     </div>
@@ -1158,11 +1249,13 @@
       drawer.classList.add("open");
       mask.classList.add("open");
       menuBtn.setAttribute("aria-expanded","true");
+      document.body.style.overflow = "hidden";
     }
     function closeDrawer(){
       drawer.classList.remove("open");
       mask.classList.remove("open");
       menuBtn.setAttribute("aria-expanded","false");
+      document.body.style.overflow = "";
     }
     menuBtn.addEventListener("click", openDrawer);
     closeDrawerBtn.addEventListener("click", closeDrawer);
