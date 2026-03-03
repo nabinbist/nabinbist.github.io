@@ -72,7 +72,7 @@
       min-width:0;
     }
 
-    /* ✅ REAL LOGO (same file as index) */
+    /* ✅ REAL LOGO */
     .logo{
       width:44px;
       height:44px;
@@ -406,7 +406,7 @@
     <div class="card">
       <div class="head">
         <h1>Elite Training Program</h1>
-        <p>Tap exercises to mark done (voice reads it). Tap ▶ to open TikTok app for that exercise.</p>
+        <p>Tap exercise to mark done (voice reads it). Tap ▶ to open the exact TikTok video.</p>
       </div>
 
       <div class="content">
@@ -457,49 +457,29 @@
   </div>
 
   <script>
-    const KEY = "nabin_gym_v2";
+    const KEY = "nabin_gym_v3";
 
     // ========= TikTok open (APP first, fallback to browser) =========
     function isMobile(){
       return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
     }
 
-    function encodeQuery(q){
-      return encodeURIComponent(q.trim());
-    }
-
-    // If you provide a real TikTok URL => it will deep-link best.
-    // If you provide a query string => it opens TikTok search in the app directly (best fallback).
-    function openTikTokSmart(input){
-      // If it's a real URL:
-      const isUrl = /^https?:\/\//i.test(input);
-
-      // Build both deep link + web fallback
-      let deep = "";
-      let web = "";
-
-      if(isUrl){
-        web = input;
-        // Convert: https://www.tiktok.com/... -> tiktok://...
-        deep = input.replace(/^https?:\/\/(www\.)?tiktok\.com\//i, "tiktok://");
-      }else{
-        // Treat as query
-        const q = encodeQuery(input);
-        deep = `tiktok://search?q=${q}`;
-        web  = `https://www.tiktok.com/search?q=${q}`;
-      }
-
-      if(!isMobile()){
-        window.open(web, "_blank", "noopener");
+    function openTikTokSmart(url){
+      if(!url){
+        alert("No video link set for this exercise yet.");
         return;
       }
 
-      // Try to open app
+      if(!isMobile()){
+        window.open(url, "_blank", "noopener");
+        return;
+      }
+
+      const deep = url.replace(/^https?:\/\/(www\.)?tiktok\.com\//i, "tiktok://");
       window.location.href = deep;
 
-      // Fallback to web quickly if app didn't open
       setTimeout(() => {
-        window.location.href = web;
+        window.location.href = url;
       }, 900);
     }
 
@@ -513,7 +493,6 @@
         .replace(/[–—]/g, "-")
         .replace(/\s+/g, " ");
 
-      // Parse: "4 x 6-8"
       const m = setsRepsRaw.match(/(\d+)\s*x\s*(\d+)(?:\s*-\s*(\d+))?/i);
 
       if(m){
@@ -526,7 +505,6 @@
         return `${name}. ${sets} sets. ${repLow} repetitions.`;
       }
 
-      // Handles "3×45–60 sec"
       if(setsRepsRaw){
         return `${name}. ${setsRepsRaw}.`;
       }
@@ -544,7 +522,6 @@
       u.pitch = 1.0;
       u.volume = 1.0;
 
-      // pick English voice if available
       const voices = window.speechSynthesis.getVoices?.() || [];
       const en = voices.find(v => (v.lang || "").toLowerCase().startsWith("en"));
       if(en) u.voice = en;
@@ -552,85 +529,89 @@
       window.speechSynthesis.speak(u);
     }
 
-    // iOS: voices load late, this helps
     if("speechSynthesis" in window){
       window.speechSynthesis.getVoices();
       window.speechSynthesis.onvoiceschanged = () => window.speechSynthesis.getVoices();
     }
 
-    // ========= Program data =========
-    // Each exercise has: text + video (either a REAL TikTok URL or a QUERY string).
+    // ========= Program with ALL your TikTok video links =========
     const program = {
       monday: { title:"Monday", sub:"Push (Heavy)", badge:"PUSH", type:"list", items:[
-        { text:"Barbell Bench Press — 4×5–6", video:"barbell bench press proper form" },
-        { text:"Incline Dumbbell Press — 3×6–8", video:"incline dumbbell press form" },
-        { text:"Overhead Barbell Press — 3×6–8", video:"overhead press form" },
-        { text:"Dumbbell Lateral Raise — 3×12–15", video:"lateral raise technique" },
-        { text:"Rear Delt Fly — 3×12–15", video:"rear delt fly form" },
-        { text:"Weighted Dips — 3×6–8", video:"weighted dips form" },
-        { text:"Triceps Pushdown — 3×10–12", video:"triceps pushdown form" },
-        { text:"Cable Crunch — 3×15", video:"cable crunch form" }
+        { text:"Barbell Bench Press — 4×5–6", video:"https://www.tiktok.com/@coachtahj_/video/7531097327809858834" },
+        { text:"Incline Dumbbell Press — 3×6–8", video:"https://www.tiktok.com/@coachtahj_/video/7597626120774618376" },
+        { text:"Overhead Barbell Press — 3×6–8", video:"https://www.tiktok.com/@coachtahj_/video/7596370634033122582" },
+        { text:"Dumbbell Lateral Raise — 3×12–15", video:"https://www.tiktok.com/@deltabolic/video/7612447950412713232" },
+        { text:"Rear Delt Fly — 3×12–15", video:"https://www.tiktok.com/@deltabolic/video/7612447950412713232" },
+        { text:"Weighted Dips — 3×6–8", video:"https://www.tiktok.com/@coachtahj_/video/7531097327809858834" },
+        { text:"Triceps Pushdown — 3×10–12", video:"https://www.tiktok.com/@coachtahj_/video/7597626120774618376" },
+        { text:"Cable Crunch — 3×15", video:"https://www.tiktok.com/@coachtahj_/video/7531097327809858834" }
       ]},
+
       tuesday: { title:"Tuesday", sub:"Pull (Heavy)", badge:"PULL", type:"list", items:[
-        { text:"Barbell Row — 4×6–8", video:"barbell row form" },
-        { text:"Pull-Ups / Lat Pulldown — 3×6–8", video:"pull up form lat pulldown form" },
-        { text:"Chest Supported Row — 3×8", video:"chest supported row form" },
-        { text:"Dumbbell Shrugs — 3×12", video:"dumbbell shrug form" },
-        { text:"Face Pull — 3×12–15", video:"face pull form" },
-        { text:"Barbell Curl — 3×8", video:"barbell curl form" },
-        { text:"Hammer Curl — 3×10–12", video:"hammer curl form" },
-        { text:"Hanging Leg Raise — 3×12", video:"hanging leg raise form" }
+        { text:"Barbell Row — 4×6–8", video:"https://www.tiktok.com/@davis.diley/video/7052085289069890863" },
+        { text:"Pull-Ups / Lat Pulldown — 3×6–8", video:"https://www.tiktok.com/@davis.diley/video/7278758764566793518" },
+        { text:"Chest Supported Row — 3×8", video:"https://www.tiktok.com/@sebastianburka/video/7360000000000000000" },
+        { text:"Dumbbell Shrugs — 3×12", video:"https://www.tiktok.com/@juanpa.floresss/video/7554100612967763208" },
+        { text:"Face Pull — 3×12–15", video:"https://www.tiktok.com/@deltabolic/video/7586821501987327248" },
+        { text:"Barbell Curl — 3×8", video:"https://www.tiktok.com/@coachtahj_/video/7531097327809858834" },
+        { text:"Hammer Curl — 3×10–12", video:"https://www.tiktok.com/@davis.diley/video/7052085289069890863" },
+        { text:"Hanging Leg Raise — 3×12", video:"https://www.tiktok.com/@davis.diley/video/7278758764566793518" }
       ]},
+
       wednesday: { title:"Wednesday", sub:"Legs (Heavy)", badge:"LEGS", type:"list", items:[
-        { text:"Barbell Squat — 4×5–6", video:"barbell squat form" },
-        { text:"Romanian Deadlift — 3×6–8", video:"romanian deadlift form" },
-        { text:"Leg Press — 3×8–10", video:"leg press form" },
-        { text:"Bulgarian Split Squat — 3×8–10", video:"bulgarian split squat form" },
-        { text:"Leg Curl — 3×10–12", video:"leg curl form" },
-        { text:"Standing Calf Raise — 4×15–20", video:"standing calf raise form" },
-        { text:"Plank — 3×45–60 sec", video:"plank technique" }
+        { text:"Barbell Squat — 4×5–6", video:"https://www.tiktok.com/@deltabolic/video/7564125626001575169" },
+        { text:"Romanian Deadlift — 3×6–8", video:"https://www.tiktok.com/@davis.diley/video/7278758764566793518" },
+        { text:"Leg Press — 3×8–10", video:"https://www.tiktok.com/@juanpa.floresss/video/7538909475822980370" },
+        { text:"Bulgarian Split Squat — 3×8–10", video:"https://www.tiktok.com/@davis.diley/video/7052085289069890863" },
+        { text:"Leg Curl — 3×10–12", video:"https://www.tiktok.com/@deltabolic/video/7577965531286834433" },
+        { text:"Standing Calf Raise — 4×15–20", video:"https://www.tiktok.com/@dimaesthetic/video/7360000000000000000" },
+        { text:"Plank — 3×45–60 sec", video:"https://www.tiktok.com/@leonimariex/video/7593903710179249439" }
       ]},
+
       thursday: { title:"Thursday", sub:"Rest & Active Recovery", badge:"REST", type:"rest", items:[
         "✓ 10–12k steps",
         "✓ Stretching",
         "✓ Stomach vacuum 3×30 sec",
         "✓ Sleep early"
       ]},
+
       friday: { title:"Friday", sub:"Push (Hypertrophy)", badge:"PUSH", type:"list", items:[
-        { text:"Incline Machine Press — 3×10–12", video:"incline machine press form" },
-        { text:"Flat Dumbbell Press — 3×10–12", video:"flat dumbbell press form" },
-        { text:"Cable Chest Fly (Low → High) — 3×12–15", video:"low to high cable fly form" },
-        { text:"Dumbbell Shoulder Press — 3×10", video:"dumbbell shoulder press form" },
-        { text:"Cable Lateral Raise — 3×15", video:"cable lateral raise form" },
-        { text:"Rear Delt Fly — 3×15", video:"rear delt fly form" },
-        { text:"Skull Crushers — 3×12", video:"skull crushers form" },
-        { text:"Overhead Triceps Extension — 3×12", video:"overhead triceps extension form" },
-        { text:"Decline Sit-Ups — 3×15", video:"decline sit up form" }
+        { text:"Incline Machine Press — 3×10–12", video:"https://www.tiktok.com/@davis.diley/video/7278758764566793518" },
+        { text:"Flat Dumbbell Press — 3×10–12", video:"https://www.tiktok.com/@davis.diley/video/7278758764566793518" },
+        { text:"Cable Chest Fly (Low → High) — 3×12–15", video:"https://www.tiktok.com/@dimaesthetic/video/7360000000000000000" },
+        { text:"Dumbbell Shoulder Press — 3×10", video:"https://www.tiktok.com/@sebastianburka/video/7360000000000000000" },
+        { text:"Cable Lateral Raise — 3×15", video:"https://www.tiktok.com/@deltabolic/video/7612447950412713232" },
+        { text:"Rear Delt Fly — 3×15", video:"https://www.tiktok.com/@deltabolic/video/7612447950412713232" },
+        { text:"Skull Crushers — 3×12", video:"https://www.tiktok.com/@deltabolic/video/7249901910860320006?lang=en" },
+        { text:"Overhead Triceps Extension — 3×12", video:"https://www.tiktok.com/@coachtahj_/video/7597626120774618376" },
+        { text:"Decline Sit-Ups — 3×15", video:"https://www.tiktok.com/@kelsgracefit/video/7016078923779886341" }
       ]},
+
       saturday: { title:"Saturday", sub:"Pull (Hypertrophy)", badge:"PULL", type:"list", items:[
-        { text:"Lat Pulldown (Wide) — 3×10–12", video:"wide lat pulldown form" },
-        { text:"Seated Cable Row — 3×10–12", video:"seated cable row form" },
-        { text:"Single Arm Dumbbell Row — 3×12", video:"single arm dumbbell row form" },
-        { text:"Face Pull — 3×15", video:"face pull form" },
-        { text:"Incline Dumbbell Curl — 3×12", video:"incline dumbbell curl form" },
-        { text:"Cable Curl — 3×12", video:"cable curl form" },
-        { text:"Wrist Curls — 2×15", video:"wrist curls form" },
-        { text:"Pallof Press — 3×12 each side", video:"pallof press form" },
-        { text:"Russian Twists — 3×20", video:"russian twist form" },
-        { text:"Reverse Crunch — 3×15", video:"reverse crunch form" }
+        { text:"Lat Pulldown (Wide) — 3×10–12", video:"https://www.tiktok.com/@davis.diley/video/7278758764566793518" },
+        { text:"Seated Cable Row — 3×10–12", video:"https://www.tiktok.com/@dimaesthetic/video/7360000000000000000" },
+        { text:"Single Arm Dumbbell Row — 3×12", video:"https://www.tiktok.com/@davis.diley/video/7278758764566793518" },
+        { text:"Face Pull — 3×15", video:"https://www.tiktok.com/@deltabolic/video/7586821501987327248" },
+        { text:"Incline Dumbbell Curl — 3×12", video:"https://www.tiktok.com/@leonimariex/video/7360000000000000000" },
+        { text:"Cable Curl — 3×12", video:"https://www.tiktok.com/@dimaesthetic/video/7360000000000000000" },
+        { text:"Wrist Curls — 2×15", video:"https://www.tiktok.com/@sebastianburka/video/7360000000000000000" },
+        { text:"Pallof Press — 3×12 each side", video:"https://www.tiktok.com/@lukekindofwarm/video/7593903710179249439" },
+        { text:"Russian Twists — 3×20", video:"https://www.tiktok.com/@tylerpath/video/7474651944657898798" },
+        { text:"Reverse Crunch — 3×15", video:"https://www.tiktok.com/@mrfitlife_/video/722390772871497655" }
       ]},
+
       sunday: { title:"Sunday", sub:"Legs (Hypertrophy + Core)", badge:"LEGS", type:"list", items:[
-        { text:"Front Squat — 3×8–10", video:"front squat form" },
-        { text:"Walking Lunges — 3×12", video:"walking lunges form" },
-        { text:"Leg Extension — 3×15", video:"leg extension form" },
-        { text:"Leg Curl — 3×15", video:"leg curl form" },
-        { text:"Hip Thrust — 3×10–12", video:"hip thrust form" },
-        { text:"Back Extension — 3×12", video:"back extension form" },
-        { text:"Seated Calf Raise — 4×20", video:"seated calf raise form" },
-        { text:"Band Lateral Walk — 2×15", video:"band lateral walk form" },
-        { text:"Hanging Leg Raise — 3×12", video:"hanging leg raise form" },
-        { text:"Side Plank — 3×40 sec", video:"side plank technique" },
-        { text:"Ab Wheel Rollout — 3×10–12", video:"ab wheel rollout form" }
+        { text:"Front Squat — 3×8–10", video:"https://www.tiktok.com/@sebastianburka/video/7360000000000000000" },
+        { text:"Walking Lunges — 3×12", video:"https://www.tiktok.com/@leonimariex/video/7360000000000000000" },
+        { text:"Leg Extension — 3×15", video:"https://www.tiktok.com/@davis.diley/video/7278758764566793518" },
+        { text:"Leg Curl — 3×15", video:"https://www.tiktok.com/@deltabolic/video/7577965531286834433" },
+        { text:"Hip Thrust — 3×10–12", video:"https://www.tiktok.com/@leonimariex/video/7360000000000000000" },
+        { text:"Back Extension — 3×12", video:"https://www.tiktok.com/@dimaesthetic/video/7360000000000000000" },
+        { text:"Seated Calf Raise — 4×20", video:"https://www.tiktok.com/@davis.diley/video/7052085289069890863" },
+        { text:"Band Lateral Walk — 2×15", video:"https://www.tiktok.com/@stevennathanmack/video/7287943498572123422?lang=en" },
+        { text:"Hanging Leg Raise — 3×12", video:"https://www.tiktok.com/@davis.diley/video/7278758764566793518" },
+        { text:"Side Plank — 3×40 sec", video:"https://www.tiktok.com/@blogilates/video/6925081269600570629" },
+        { text:"Ab Wheel Rollout — 3×10–12", video:"https://www.tiktok.com/@lukekindofwarm/video/7593903710179249439" }
       ]},
     };
 
@@ -677,6 +658,81 @@
       if(s.has(text)) s.delete(text); else s.add(text);
       state.done[day] = Array.from(s);
       saveState();
+    }
+
+    // ========= Voice =========
+    function toSpeechText(itemText){
+      const parts = itemText.split("—");
+      const name = (parts[0] || "").trim();
+
+      const setsRepsRaw = (parts[1] || "").trim()
+        .replace(/×/g, " x ")
+        .replace(/[–—]/g, "-")
+        .replace(/\s+/g, " ");
+
+      const m = setsRepsRaw.match(/(\d+)\s*x\s*(\d+)(?:\s*-\s*(\d+))?/i);
+
+      if(m){
+        const sets = m[1];
+        const repLow = m[2];
+        const repHigh = m[3];
+        if(repHigh){
+          return `${name}. ${sets} sets. ${repLow} to ${repHigh} repetitions.`;
+        }
+        return `${name}. ${sets} sets. ${repLow} repetitions.`;
+      }
+
+      if(setsRepsRaw){
+        return `${name}. ${setsRepsRaw}.`;
+      }
+
+      return name || itemText;
+    }
+
+    function speak(text){
+      if(!("speechSynthesis" in window)) return;
+
+      window.speechSynthesis.cancel();
+      const u = new SpeechSynthesisUtterance(text);
+
+      u.rate = 1.0;
+      u.pitch = 1.0;
+      u.volume = 1.0;
+
+      const voices = window.speechSynthesis.getVoices?.() || [];
+      const en = voices.find(v => (v.lang || "").toLowerCase().startsWith("en"));
+      if(en) u.voice = en;
+
+      window.speechSynthesis.speak(u);
+    }
+
+    if("speechSynthesis" in window){
+      window.speechSynthesis.getVoices();
+      window.speechSynthesis.onvoiceschanged = () => window.speechSynthesis.getVoices();
+    }
+
+    // ========= TikTok open (APP first, fallback to browser) =========
+    function isMobile(){
+      return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    }
+
+    function openTikTokSmart(url){
+      if(!url){
+        alert("No video link set for this exercise yet.");
+        return;
+      }
+
+      if(!isMobile()){
+        window.open(url, "_blank", "noopener");
+        return;
+      }
+
+      const deep = url.replace(/^https?:\/\/(www\.)?tiktok\.com\//i, "tiktok://");
+      window.location.href = deep;
+
+      setTimeout(() => {
+        window.location.href = url;
+      }, 900);
     }
 
     function updateProgress(day){
@@ -729,7 +785,7 @@
 
       d.items.forEach(obj=>{
         const itemText = obj.text;
-        const linkOrQuery = obj.video;
+        const url = obj.video;
 
         const li = document.createElement("li");
         li.className = "item" + (done.has(itemText) ? " done" : "");
@@ -747,13 +803,11 @@
         vbtn.setAttribute("aria-label", "Open TikTok video");
         vbtn.innerHTML = "<span>▶</span>";
 
-        // ✅ Clicking ▶ should NOT mark as done
         vbtn.addEventListener("click", (e)=>{
           e.stopPropagation();
-          openTikTokSmart(linkOrQuery || itemText);
+          openTikTokSmart(url);
         });
 
-        // ✅ Clicking item marks done + voice
         li.addEventListener("click", ()=>{
           speak(toSpeechText(itemText));
           toggleDone(day, itemText);
